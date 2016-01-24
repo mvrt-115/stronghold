@@ -13,5 +13,6 @@ public class RobotMap {
 	public static final int JOYSTICK = 0;
 	
 	public static final int ENCODER_SCALE = 1444; //TODO change number if necessary
-	
+	public static final double DRIVE_OUTPUT_RANGE = 0.6;
+	public static final double DRIVE_SETPOINT = 1; //TODO
 }
