@@ -43,6 +43,10 @@ public class DriveTrain extends Subsystem{
 		drive.setLeftRightMotorOutputs(leftOutput, rightOutput);
 	}
 	
+	public void stop() {
+		drive(0, 0);
+	}
+	
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub		
