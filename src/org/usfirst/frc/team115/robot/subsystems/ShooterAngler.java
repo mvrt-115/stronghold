@@ -4,6 +4,7 @@ import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,7 +16,9 @@ public class ShooterAngler extends Subsystem {
 	
 	private final int LEFT = 1;
 	private final int RIGHT = 2;
-    
+
+	Encoder anglerEncoder = new Encoder(RobotMap.ENCODER_ANGLER_A, RobotMap.ENCODER_ANGLER_B, false, Encoder.EncodingType.k4X);
+	
 	private CANTalon[] shooterAngler = new CANTalon[2];
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -23,18 +26,47 @@ public class ShooterAngler extends Subsystem {
 		shooterAngler[LEFT] = new CANTalon(RobotMap.SHOOTER_ANGLER_LEFT);
 		shooterAngler[RIGHT] = new CANTalon(RobotMap.SHOOTER_ANGLER_RIGHT);
 		
+		
+		
 		for(CANTalon shooterAngler: shooterAngler) {
 			shooterAngler.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+			
 		}
 		
 		resetEncoders();
 	}
 	
-	public void spin() {
+	public void angleUp(int degrees) {
+		while(anglerEncoder.getDistance() < RobotMap.ENCODER_ONE_DEGREE * degrees) {
+			shooterAngler[LEFT].set(RobotMap.SHOOTER_ANGLER_SPEED);
+			shooterAngler[RIGHT].set(RobotMap.SHOOTER_ANGLER_SPEED);
+		}
+		
+		stop();
+		
+	}
+	
+	public void angleDown(int degrees) {
+		while(anglerEncoder.getDistance() < RobotMap.ENCODER_ONE_DEGREE * degrees) {
+			shooterAngler[LEFT].set(-RobotMap.SHOOTER_ANGLER_SPEED);
+			shooterAngler[RIGHT].set(-RobotMap.SHOOTER_ANGLER_SPEED);
+		}
+		
+	
+		stop();
+		
+	}
+	
+	public void goUp() {
 		shooterAngler[LEFT].set(RobotMap.SHOOTER_ANGLER_SPEED);
 		shooterAngler[RIGHT].set(RobotMap.SHOOTER_ANGLER_SPEED);
 	}
 	
+	public void goDown() {
+		shooterAngler[LEFT].set(-RobotMap.SHOOTER_ANGLER_SPEED);
+		shooterAngler[RIGHT].set(-RobotMap.SHOOTER_ANGLER_SPEED);
+	}
+
 	public void stop() {
 		shooterAngler[LEFT].disableControl();
 		shooterAngler[RIGHT].disableControl();

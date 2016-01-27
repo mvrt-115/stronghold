@@ -25,14 +25,15 @@ public class RobotMap {
 	public static final int SHOOTER_ANGLER_LEFT = 1;
 	public static final int SHOOTER_ANGLER_RIGHT = 2;
 	public static final double SHOOTER_ANGLER_SPEED = 0.5; //TODO
+	public static final int ENCODER_ANGLER_A = 1;
+	public static final int ENCODER_ANGLER_B = 2;
+	public static final double ENCODER_ONE_DEGREE = 1024/360;
+	public static final int BUTTON_ANGLE_UP = 1;
+	public static final int BUTTON_ANGLE_DOWN = 2;
 	
 	//Shooter Intake
 	public static final int SHOOTER_INTAKE_TOP = 1;
 	public static final int SHOOTER_INTAKE_BOTTOM = 2;
-	public static final double SHOOTER_INTAKE_SPEED = 0.5; //TODO
+	public static final double SHOOTER_INTAKE_SPEED = 0.5; //TODO 
 	
-	//Shooter Door
-	public static final int SHOOTER_DOOR_LEFT = 1;
-	public static final int SHOOTER_DOOR_RIGHT = 2;
-	public static final double SHOOTER_DOOR_SPEED = 0.2; //TODO
 }
