@@ -1,5 +1,9 @@
 package org.usfirst.frc.team115.robot.commands;
-
+/**
+ * Drives the robot straight to a setpoint using PID.
+ * 
+ * @author Ben Cuan
+ */
 import org.usfirst.frc.team115.robot.Robot;
 import org.usfirst.frc.team115.robot.RobotMap;
 
