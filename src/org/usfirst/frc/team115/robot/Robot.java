@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team115.robot;
 
+import org.usfirst.frc.team115.robot.subsystems.Shooter;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -14,16 +16,17 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	public static Shooter shooter;
 	public static OI oi;
-
+	
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
+    	shooter = new Shooter();
+    	oi = new OI();
         // instantiate the command used for the autonomous period
     }
 	
