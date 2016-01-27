@@ -14,21 +14,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem{
-	private CANTalon[] motors = new CANTalon[4];
+	
 	private RobotDrive drive;
-	private final int FRONT_LEFT = 0;
-	private final int FRONT_RIGHT = 1;
-	private final int BACK_LEFT = 2;
-	private final int BACK_RIGHT = 3;
+	private CANTalon left,left_follower, right, right_follower;
 	
 	public DriveTrain() {
-		motors[FRONT_LEFT] = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
-		motors[FRONT_RIGHT] = new CANTalon(RobotMap.FRONT_RIGHT_MOTOR);
-		motors[BACK_LEFT] = new CANTalon(RobotMap.BACK_LEFT_MOTOR);
-		motors[BACK_RIGHT] = new CANTalon(RobotMap.BACK_RIGHT_MOTOR);
+		left = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
+		left_follower = new CANTalon(RobotMap.FRONT_RIGHT_MOTOR);
+		right = new CANTalon(RobotMap.BACK_LEFT_MOTOR);
+		right_follower = new CANTalon(RobotMap.BACK_RIGHT_MOTOR);
 		
-		drive = new RobotDrive(motors[FRONT_LEFT], motors[FRONT_RIGHT], motors[BACK_LEFT],
-							   motors[BACK_RIGHT]);
+		drive = new RobotDrive(left, right);
+		left_follower.changeControlMode(CANTalon.ControlMode.Follower);
+		left_follower.set(left.getDeviceID());
+		right_follower.changeControlMode(CANTalon.ControlMode.Follower);
+		right_follower.set(right.getDeviceID());
 	}
 	
 	public void drive(double move, double rotate) {
