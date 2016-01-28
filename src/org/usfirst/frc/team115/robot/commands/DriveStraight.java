@@ -35,7 +35,7 @@ public class DriveStraight extends PIDCommand {
 		setInputRange(-180,180);
 		getPIDController().setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
 		getPIDController().setContinuous(true);
-		getPIDController().setSetpoint(RobotMap.DRIVE_SETPOINT);
+		getPIDController().setSetpoint(Robot.drive.getYaw());
 		
 	}
 
