@@ -12,7 +12,11 @@ public class AngleShooterUp extends Command {
     public AngleShooterUp() {
         
     }
-
+    
+    public double getRamp(double percentToTarget) {
+		return ((1 - 0.70 / (1 + 12000*Math.exp(-0.115 * percentToTarget))));
+	}
+    
     // Called just before this Command runs the first time
     protected void initialize() {
     }

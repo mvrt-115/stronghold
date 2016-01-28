@@ -67,6 +67,10 @@ public class ShooterAngler extends Subsystem {
 		shooterAngler[RIGHT].set(-RobotMap.SHOOTER_ANGLER_SPEED);
 	}
 
+	public void setSpeed(double speed) {
+		shooterAngler[LEFT].set (speed);
+		shooterAngler[RIGHT].set (speed);
+	}
 	public void stop() {
 		shooterAngler[LEFT].disableControl();
 		shooterAngler[RIGHT].disableControl();
@@ -76,6 +80,10 @@ public class ShooterAngler extends Subsystem {
 		for(CANTalon m:shooterAngler) {
 			m.reset();
 		}
+	}
+	
+	public double getHeight() {
+		return RobotMap.BOTTOM_HEIGHT - shooterAngler[LEFT].getPosition() / RobotMap.ENCODER_ONE_DEGREE;
 	}
 	
     public void initDefaultCommand() {
