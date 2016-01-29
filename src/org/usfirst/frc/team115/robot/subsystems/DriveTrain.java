@@ -2,13 +2,14 @@ package org.usfirst.frc.team115.robot.subsystems;
 
 import org.usfirst.frc.team115.robot.RobotMap;
 
+import com.kauailabs.nav6.frc.IMUAdvanced;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import com.kauailabs.nav6.frc.IMUAdvanced;
 
 /**
  * Drive Train for the 2016 stronghold competition.
@@ -27,6 +28,8 @@ public class DriveTrain extends Subsystem{
 		motors[LEFT] = new CANTalon(RobotMap.LEFT_MOTOR);
 		motors[RIGHT] = new CANTalon(RobotMap.RIGHT_MOTOR);
 		
+		motors[LEFT].changeControlMode(CANTalon.TalonControlMode.Follower);
+		motors[RIGHT].changeControlMode(CANTalon.TalonControlMode.Follower);
 		
 		navX = new IMUAdvanced(new SerialPort(57600, SerialPort.Port.kMXP));
 		
@@ -41,6 +44,7 @@ public class DriveTrain extends Subsystem{
 	
 	public void drive(double move, double rotate) {
 		drive.arcadeDrive(move, rotate);
+		
 	}
 	
 	public void drive(Joystick joystick) {
