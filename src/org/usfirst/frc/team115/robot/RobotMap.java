@@ -8,10 +8,8 @@ package org.usfirst.frc.team115.robot;
 public class RobotMap {
 	
 	//DriveTrain
-	public static final int FRONT_LEFT_MOTOR = 0;
-	public static final int FRONT_RIGHT_MOTOR = 1;
-	public static final int BACK_LEFT_MOTOR = 2;
-	public static final int BACK_RIGHT_MOTOR = 3;
+	public static final int LEFT_MOTOR = 0;
+	public static final int RIGHT_MOTOR = 1;
 	
 	//Joystick ID
 	public static final int JOYSTICK = 0;

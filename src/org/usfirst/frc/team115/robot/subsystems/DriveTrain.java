@@ -20,21 +20,17 @@ public class DriveTrain extends Subsystem{
 	private CANTalon[] motors = new CANTalon[4];
 	private RobotDrive drive;
 	private IMUAdvanced navX;
-	private final int FRONT_LEFT = 0;
-	private final int FRONT_RIGHT = 1;
-	private final int BACK_LEFT = 2;
-	private final int BACK_RIGHT = 3;
+	private final int LEFT = 0;
+	private final int RIGHT = 1;
 	
 	public DriveTrain() {
-		motors[FRONT_LEFT] = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
-		motors[FRONT_RIGHT] = new CANTalon(RobotMap.FRONT_RIGHT_MOTOR);
-		motors[BACK_LEFT] = new CANTalon(RobotMap.BACK_LEFT_MOTOR);
-		motors[BACK_RIGHT] = new CANTalon(RobotMap.BACK_RIGHT_MOTOR);
+		motors[LEFT] = new CANTalon(RobotMap.LEFT_MOTOR);
+		motors[RIGHT] = new CANTalon(RobotMap.RIGHT_MOTOR);
+		
 		
 		navX = new IMUAdvanced(new SerialPort(57600, SerialPort.Port.kMXP));
 		
-		drive = new RobotDrive(motors[FRONT_LEFT], motors[FRONT_RIGHT], motors[BACK_LEFT],
-							   motors[BACK_RIGHT]);
+		drive = new RobotDrive(motors[LEFT], motors[RIGHT]);
 		
 		for(CANTalon motor : motors) {
 			motor.setFeedbackDevice(FeedbackDevice.QuadEncoder);

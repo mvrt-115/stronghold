@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveStraight extends PIDCommand {
 	
-	
+	protected final static double SPEED_DEFAULT = 0.7;
 	private double speed;
 	private boolean joystick;
 	
