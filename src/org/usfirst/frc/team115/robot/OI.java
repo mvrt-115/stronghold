@@ -19,14 +19,7 @@ public class OI {
 	public OI() {
 		joystick = new Joystick(RobotMap.JOYSTICK);
 		
-		angleUp = new JoystickButton(joystick, RobotMap.BUTTON_ANGLE_UP);
-		angleDown = new JoystickButton(joystick, RobotMap.BUTTON_ANGLE_DOWN);
 		
-		angleUp.whenPressed(new AngleShooterUp());
-		angleUp.whenReleased(new AngleShooterStop());
-		
-		angleDown.whenPressed(new AngleShooterDown());
-		angleDown.whenReleased(new AngleShooterStop());
 		
 	}
 	
