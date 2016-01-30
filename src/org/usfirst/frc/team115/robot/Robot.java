@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team115.robot;
 
-import org.usfirst.frc.team115.robot.subsystems.Drive;
+import org.usfirst.frc.team115.robot.subsystems.CompressorSystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -15,17 +15,16 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static Drive drive;
 	public static OI oi;
-
+	public static CompressorSystem compressor;
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-    	drive = new Drive();
 		oi = new OI();
+		compressor = new CompressorSystem();
         // instantiate the command used for the autonomous period
     }
 	

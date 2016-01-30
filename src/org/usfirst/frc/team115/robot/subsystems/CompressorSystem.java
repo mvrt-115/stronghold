@@ -6,7 +6,11 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
+/**
+ * 
+ * @author Nolan Nguyen
+ *
+ */
 public class CompressorSystem extends Subsystem{
 	private Compressor compressor;
 	public CompressorSystem() {
