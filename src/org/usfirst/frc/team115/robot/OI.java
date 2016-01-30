@@ -1,6 +1,7 @@
 package org.usfirst.frc.team115.robot;
 
 import org.usfirst.frc.team115.robot.commands.Intake;
+import org.usfirst.frc.team115.robot.commands.Shoot;
 import org.usfirst.frc.team115.robot.commands.Stop;
 import org.usfirst.frc.team115.robot.subsystems.Shooter;
 
@@ -25,7 +26,7 @@ public class OI {
     	intake.whenPressed(new Intake());
     	intake.whenReleased(new Stop());
     	
-    	shooter.whenPressed(new Intake());
+    	shooter.whenPressed(new Shoot());
     	shooter.whenReleased(new Stop());
     }
 }
