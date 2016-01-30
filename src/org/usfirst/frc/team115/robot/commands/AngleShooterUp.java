@@ -1,16 +1,22 @@
 package org.usfirst.frc.team115.robot.commands;
 
 import org.usfirst.frc.team115.robot.Robot;
+import org.usfirst.frc.team115.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *Angles the shooter up at default speed. 
+ *Coded for use with a button.
+ *@author Ben Cuan
  */
 public class AngleShooterUp extends Command {
-
+	
+	DigitalInput limitSwitch;
+	
     public AngleShooterUp() {
-        
+        limitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_TOP);
     }
     
     public double getRamp(double percentToTarget) {
@@ -27,9 +33,7 @@ public class AngleShooterUp extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+   
 
     // Called once after isFinished returns true
     protected void end() {
@@ -41,4 +45,10 @@ public class AngleShooterUp extends Command {
     protected void interrupted() {
     	end();
     }
+
+	@Override
+	protected boolean isFinished() {
+		if(Robot.shooterAngler.getLimitSwitchDown(limitSwitch)) return true;
+    	else return false;
+	}
 }

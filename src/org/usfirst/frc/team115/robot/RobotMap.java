@@ -31,6 +31,8 @@ public class RobotMap {
 	public static final int BUTTON_ANGLE_UP = 1;
 	public static final int BUTTON_ANGLE_DOWN = 2;
 	public static final double BOTTOM_HEIGHT = 0;
+	public static final int LIMIT_SWITCH_TOP = 1;
+	public static final int LIMIT_SWITCH_BOTTOM = 2;
 	
 	//Shooter Intake
 	public static final int SHOOTER_INTAKE_TOP = 1;

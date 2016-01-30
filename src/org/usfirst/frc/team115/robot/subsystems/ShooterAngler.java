@@ -4,6 +4,7 @@ import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -79,6 +80,16 @@ public class ShooterAngler extends Subsystem {
 	public void resetEncoders() {
 		for(CANTalon m:shooterAngler) {
 			m.reset();
+		}
+	}
+	
+	public boolean getLimitSwitchDown(DigitalInput limitSwitch) {
+		return limitSwitch.get();
+		
+	}
+	public void resetEncoders(DigitalInput limitSwitch) {
+		if(limitSwitch.get() == true) {
+			for(CANTalon m:shooterAngler) m.reset();
 		}
 	}
 	
