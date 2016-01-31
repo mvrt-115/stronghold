@@ -6,7 +6,7 @@ import org.usfirst.frc.team115.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Shoot extends Command{
-
+	private static final double SHOOT_SPEED = 0.6;
 	public Shoot()
 	{
 		requires(Robot.shooter);
@@ -20,7 +20,7 @@ public class Shoot extends Command{
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		Robot.shooter.shoot(0.6);
+		Robot.shooter.shoot(SHOOT_SPEED);
 	}
 
 	@Override

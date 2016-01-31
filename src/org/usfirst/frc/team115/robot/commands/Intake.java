@@ -4,9 +4,9 @@ import org.usfirst.frc.team115.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Intake extends Command{
-	public Intake()
-	{
+public class Intake extends Command {
+	private static final double INTAKE_SPEED = -0.6;
+	public Intake() {
 		requires(Robot.shooter);
 	}
 
@@ -18,7 +18,7 @@ public class Intake extends Command{
 
 	@Override
 	protected void execute() {
-		Robot.shooter.shoot(-0.6);
+		Robot.shooter.shoot(INTAKE_SPEED);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class Intake extends Command{
 
 	@Override
 	protected void end() {
-		Robot.shooter.shoot(0);
+		Robot.shooter.stop();
 	}
 
 	@Override
