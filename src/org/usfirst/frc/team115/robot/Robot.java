@@ -1,7 +1,10 @@
 
 package org.usfirst.frc.team115.robot;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -16,6 +19,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static AHRS ahrs;
 
 
     /**
@@ -23,6 +27,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	ahrs = new AHRS(SPI.Port.kMXP); 
 		oi = new OI();
         // instantiate the command used for the autonomous period
     }
