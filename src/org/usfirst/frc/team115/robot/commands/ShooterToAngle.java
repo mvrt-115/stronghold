@@ -3,7 +3,6 @@ package org.usfirst.frc.team115.robot.commands;
 import org.usfirst.frc.team115.robot.Robot;
 import org.usfirst.frc.team115.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -18,7 +17,6 @@ public class ShooterToAngle extends Command {
 	private double distance;
 	private double direction;
 	
-	DigitalInput limitSwitchTop, limitSwitchBottom;
 	
     public ShooterToAngle(double destAngle) {
     	requires(Robot.shooterAngler);
@@ -36,8 +34,6 @@ public class ShooterToAngle extends Command {
 		distance = Math.abs(Robot.shooterAngler.getHeight() - destAngle);
 		direction = destAngle < Robot.shooterAngler.getHeight() ? DOWN : UP;
 		
-		limitSwitchTop = new DigitalInput(RobotMap.LIMIT_SWITCH_TOP);
-		limitSwitchBottom = new DigitalInput(RobotMap.LIMIT_SWITCH_BOTTOM);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -54,10 +50,10 @@ public class ShooterToAngle extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	
+    		if(Robot.shooterAngler.getLimitSwitchDown()) {
+    			return true;
+    		} else {
     	
-    	if(limitSwitchTop.get() || limitSwitchBottom.get()) {
-    		return true;
-    	} else {
     		if(direction == UP){
     			return (Robot.shooterAngler.getHeight() >= destAngle);
     		}
@@ -65,7 +61,6 @@ public class ShooterToAngle extends Command {
     			return (Robot.shooterAngler.getHeight() <= destAngle);
     		}
     	}
-    	
     }
 
     // Called once after isFinished returns true

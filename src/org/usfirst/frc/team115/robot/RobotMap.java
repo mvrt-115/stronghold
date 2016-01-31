@@ -7,19 +7,12 @@ package org.usfirst.frc.team115.robot;
  */
 public class RobotMap {
 	
-	//DriveTrain
-	public static final int FRONT_LEFT_MOTOR = 0;
-	public static final int FRONT_RIGHT_MOTOR = 1;
-	public static final int BACK_LEFT_MOTOR = 2;
-	public static final int BACK_RIGHT_MOTOR = 3;
+	
 	
 	//Joystick ID
 	public static final int JOYSTICK = 0;
 	
-	//DriveStraight
-	public static final int ENCODER_SCALE = 1444; //TODO change number if necessary
-	public static final double DRIVE_OUTPUT_RANGE = 0.6;
-	public static final double DRIVE_SETPOINT = 1; //TODO
+	
 	
 	//Shooter Angler
 	public static final int SHOOTER_ANGLER_LEFT = 1;

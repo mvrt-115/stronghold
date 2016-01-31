@@ -17,7 +17,7 @@ public class AnglePID extends PIDCommand {
 
     public AnglePID(double goal, final double P, final double I, final double D) { // Custom access to PID values
         super(P, I, D);
-    	requires(Robot.drive);
+    	requires(Robot.shooterAngler);
         this.goal = goal;
         
         getPIDController().setContinuous(true);
@@ -34,7 +34,7 @@ public class AnglePID extends PIDCommand {
      */
     @Override
     protected double returnPIDInput() {
-        return Robot.drive.getYaw();
+        return Robot.shooterAngler.getDistance();
     }
 
     /**
@@ -43,17 +43,17 @@ public class AnglePID extends PIDCommand {
      */
     @Override
     protected void usePIDOutput(double output) {
-    	Robot.drive.drive(0, output);
-    	SmartDashboard.putNumber("Turn Output", output);
+    	Robot.shooterAngler.setSpeed(output);
+    	SmartDashboard.putNumber("Angler Output", output);
     }
 
     @Override
     protected void initialize() {
     	
         getPIDController().setAbsoluteTolerance(7); //set 5 degree tolerance
-    	initial = Robot.drive.getYaw();
+    	initial = Robot.shooterAngler.getDistance();
     	setSetpoint((initial + goal)%360);
-    	SmartDashboard.putNumber("Turn Setpoint", getSetpoint());
+    	SmartDashboard.putNumber("Angler Setpoint", getSetpoint());
     	System.out.println("goal: " + goal + ", initial: " + initial + ", setpoint: " + getSetpoint()); //TODO remove debug
     	
     }
@@ -84,7 +84,7 @@ public class AnglePID extends PIDCommand {
      */
     @Override
     protected void end() {
-        Robot.drive.stop();
+        Robot.shooterAngler.stop();
     }
 
     /**

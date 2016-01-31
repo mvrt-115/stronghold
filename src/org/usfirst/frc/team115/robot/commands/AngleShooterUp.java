@@ -16,6 +16,8 @@ public class AngleShooterUp extends Command {
 	DigitalInput limitSwitch;
 	
     public AngleShooterUp() {
+    	requires(Robot.shooterAngler);
+    	
         limitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH_TOP);
     }
     
@@ -48,7 +50,6 @@ public class AngleShooterUp extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		if(Robot.shooterAngler.getLimitSwitchDown(limitSwitch)) return true;
-    	else return false;
+		return Robot.shooterAngler.getLimitSwitchDown();
 	}
 }

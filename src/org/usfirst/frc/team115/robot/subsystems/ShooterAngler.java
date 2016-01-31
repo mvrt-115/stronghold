@@ -4,7 +4,6 @@ import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -14,7 +13,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *@author Ben Cuan
  */
 public class ShooterAngler extends Subsystem {
-	
 	private final int LEFT = 1;
 	private final int RIGHT = 2;
 
@@ -24,6 +22,10 @@ public class ShooterAngler extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public ShooterAngler() {
+		
+		shooterAngler[LEFT].enableLimitSwitch(true, false);
+		shooterAngler[RIGHT].enableLimitSwitch(true, false);
+		
 		shooterAngler[LEFT] = new CANTalon(RobotMap.SHOOTER_ANGLER_LEFT);
 		shooterAngler[RIGHT] = new CANTalon(RobotMap.SHOOTER_ANGLER_RIGHT);
 		
@@ -77,20 +79,18 @@ public class ShooterAngler extends Subsystem {
 		shooterAngler[RIGHT].disableControl();
 	}
 	
-	public void resetEncoders() {
-		for(CANTalon m:shooterAngler) {
-			m.reset();
-		}
-	}
 	
-	public boolean getLimitSwitchDown(DigitalInput limitSwitch) {
-		return limitSwitch.get();
+	public boolean getLimitSwitchDown() {
+		return shooterAngler[LEFT].isFwdLimitSwitchClosed();
 		
 	}
-	public void resetEncoders(DigitalInput limitSwitch) {
-		if(limitSwitch.get() == true) {
-			for(CANTalon m:shooterAngler) m.reset();
+	
+	public void resetEncoders() {
+		anglerEncoder.reset();
 		}
+	
+	public double getDistance() {
+		return anglerEncoder.getDistance();
 	}
 	
 	public double getHeight() {

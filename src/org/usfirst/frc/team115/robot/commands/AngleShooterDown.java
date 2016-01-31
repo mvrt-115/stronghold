@@ -28,17 +28,13 @@ public class AngleShooterDown extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	
-    	
     	Robot.shooterAngler.goDown();
-    	
-    	
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Robot.shooterAngler.getLimitSwitchDown(limitSwitch)) return true;
-    	else return false;
+    	return Robot.shooterAngler.getLimitSwitchDown();
     }
 
     // Called once after isFinished returns true

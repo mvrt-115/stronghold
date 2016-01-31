@@ -34,8 +34,8 @@ public class ShooterIntake extends Subsystem {
 		resetEncoders();
 	}
 	
-	public void drive(double move, double rotate) {
-		intake.arcadeDrive(move, rotate);
+	public void drive(double move) {
+		intake.arcadeDrive(move, 0);
 	}
 	
 	public void drive(Joystick joystick) {
@@ -44,7 +44,7 @@ public class ShooterIntake extends Subsystem {
 	
 	
 	public void stop() {
-		drive(0,0);
+		drive(0);
 	}
 	
 	public void resetEncoders() {
