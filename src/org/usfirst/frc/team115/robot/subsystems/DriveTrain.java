@@ -18,18 +18,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem{
-	private CANTalon[] motors = new CANTalon[4];
+	
+	private CANTalon[] motors = new CANTalon[2];
 	private RobotDrive drive;
 	private IMUAdvanced navX;
-	private final int LEFT = 0;
-	private final int RIGHT = 1;
+	private final int LEFT = 1;
+	private final int RIGHT = 2;
+	private CANTalon backLeft;
+	private CANTalon backRight;
 	
 	public DriveTrain() {
 		motors[LEFT] = new CANTalon(RobotMap.LEFT_MOTOR);
 		motors[RIGHT] = new CANTalon(RobotMap.RIGHT_MOTOR);
+		backLeft = new CANTalon(RobotMap.LEFT_BACK_MOTOR);
+		backRight = new CANTalon(RobotMap.RIGHT_BACK_MOTOR);
 		
-		motors[LEFT].changeControlMode(CANTalon.TalonControlMode.Follower);
-		motors[RIGHT].changeControlMode(CANTalon.TalonControlMode.Follower);
+		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
+		backLeft.set(LEFT);
+		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
+		backRight.set(RIGHT);
+		
 		
 		navX = new IMUAdvanced(new SerialPort(57600, SerialPort.Port.kMXP));
 		
@@ -99,14 +107,14 @@ public class DriveTrain extends Subsystem{
     }
 
     /**
-     * @return the displacement along x axis
+     * @return the displacement along y axis
      */
     public float getY() {
         return navX.getWorldLinearAccelY();
     }
 
     /**
-     * @return the displacement along x axis
+     * @return the displacement along z axis
      */
     public float getZ() {
         return navX.getWorldLinearAccelZ();

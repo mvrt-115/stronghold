@@ -2,8 +2,6 @@
 package org.usfirst.frc.team115.robot;
 
 import org.usfirst.frc.team115.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team115.robot.subsystems.ShooterAngler;
-import org.usfirst.frc.team115.robot.subsystems.ShooterIntake;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -19,9 +17,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 	public static DriveTrain drive;
 	public static OI oi;
-	public static ShooterAngler shooterAngler;
-	public static ShooterIntake shooterIntake;
-
 
     /**
      * This function is run when the robot is first started up and should be
@@ -30,8 +25,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	drive = new DriveTrain();
 		oi = new OI();
-		shooterAngler = new ShooterAngler();
-		shooterIntake = new ShooterIntake();
+		
         // instantiate the command used for the autonomous period
     }
 	

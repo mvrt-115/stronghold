@@ -1,8 +1,5 @@
 package org.usfirst.frc.team115.robot;
 
-import org.usfirst.frc.team115.robot.commands.AngleShooterDown;
-import org.usfirst.frc.team115.robot.commands.AngleShooterStop;
-import org.usfirst.frc.team115.robot.commands.AngleShooterUp;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
