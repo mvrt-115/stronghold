@@ -23,7 +23,7 @@ public class DriveStraight extends PIDCommand {
 		
 		this.speed = speed;
 		this.joystick = joystick;
-		// TODO Auto-generated constructor stub
+	
 	}
 
 
@@ -35,7 +35,7 @@ public class DriveStraight extends PIDCommand {
 		setInputRange(-180,180);
 		getPIDController().setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
 		getPIDController().setContinuous(true);
-		getPIDController().setSetpoint(Robot.drive.getYaw());
+		//getPIDController().setSetpoint(Robot.drive.getYaw()); //TODO
 		
 	}
 
@@ -50,31 +50,31 @@ public class DriveStraight extends PIDCommand {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
+		
 		Robot.drive.stop();
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
+
 		end();
 	}
 
 	@Override
 	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
+
 		
 		SmartDashboard.putNumber("Drive Output", output);
 		if(joystick) {
