@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * 
  * @author Nolan Nguyen
+ * @edited Rithvik Chuppala
  *
  */
 public class CompressorSystem extends Subsystem{
@@ -20,7 +21,9 @@ public class CompressorSystem extends Subsystem{
 	}
 
 	public void log() {
-		SmartDashboard.putBoolean("Compressor Enabled?", compressor.enabled());
+		SmartDashboard.putBoolean("Compressor Enabled? ", compressor.enabled());
+		SmartDashboard.putNumber("Compressor Current: ", compressor.getCompressorCurrent());
+		SmartDashboard.putBoolean("Pressure Switch Value: ", compressor.getPressureSwitchValue());
 	}
 
 	protected void initDefaultCommand() {
