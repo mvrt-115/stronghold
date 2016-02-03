@@ -14,7 +14,7 @@ public class OI {
 		joystick = new Joystick(RobotMap.JOYSTICK);
 	}
 	
-    public Joystick getJoystick(){
+    public Joystick getJoystick() {
     	return joystick;
     }
 }

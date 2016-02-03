@@ -17,10 +17,6 @@ public class RobotMap {
 	//Joystick ID
 	public static final int JOYSTICK = 0;
 	
-	//DriveStraight
-	public static final int ENCODER_SCALE = 1444; //TODO change number if necessary
-	public static final double DRIVE_OUTPUT_RANGE = 0.6;
-	public static final double DRIVE_SETPOINT = 1; //TODO
 	
 
 	
