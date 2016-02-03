@@ -3,6 +3,7 @@ package org.usfirst.frc.team115.robot.subsystems;
 import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -15,24 +16,30 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveTrain extends Subsystem{
 	
+	private CANTalon[] motors = new CANTalon[2];
 	private RobotDrive drive;
-	private CANTalon left,left_follower, right, right_follower;
+	private final int LEFT = 1;
+	private final int RIGHT = 2;
+	private CANTalon backLeft;
+	private CANTalon backRight;
 	
 	public DriveTrain() {
-		left = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
-		left_follower = new CANTalon(RobotMap.FRONT_RIGHT_MOTOR);
-		right = new CANTalon(RobotMap.BACK_LEFT_MOTOR);
-		right_follower = new CANTalon(RobotMap.BACK_RIGHT_MOTOR);
+		motors[LEFT] = new CANTalon(RobotMap.LEFT_MOTOR);
+		motors[RIGHT] = new CANTalon(RobotMap.RIGHT_MOTOR);
+		backLeft = new CANTalon(RobotMap.LEFT_BACK_MOTOR);
+		backRight = new CANTalon(RobotMap.RIGHT_BACK_MOTOR);
 		
-		drive = new RobotDrive(left, right);
-		left_follower.changeControlMode(CANTalon.ControlMode.Follower);
-		left_follower.set(left.getDeviceID());
-		right_follower.changeControlMode(CANTalon.ControlMode.Follower);
-		right_follower.set(right.getDeviceID());
+		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
+		backLeft.set(LEFT);
+		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
+		backRight.set(RIGHT);
+		
+		drive = new RobotDrive(motors[LEFT], motors[RIGHT]);
 	}
 	
 	public void drive(double move, double rotate) {
 		drive.arcadeDrive(move, rotate);
+		
 	}
 	
 	public void drive(Joystick joystick) {
@@ -51,4 +58,5 @@ public class DriveTrain extends Subsystem{
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub		
 	}
+	
 }

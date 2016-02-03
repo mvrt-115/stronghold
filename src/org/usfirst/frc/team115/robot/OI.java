@@ -7,13 +7,14 @@ import edu.wpi.first.wpilibj.Joystick;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	
 	private Joystick joystick;
 	
 	public OI() {
 		joystick = new Joystick(RobotMap.JOYSTICK);
 	}
 	
-    public Joystick getJoystick(){
+    public Joystick getJoystick() {
     	return joystick;
     }
 }
