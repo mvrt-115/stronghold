@@ -4,9 +4,9 @@ import org.usfirst.frc.team115.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveStraight extends Command{
+public class DriveStraightWithJoystick extends Command {
 
-	public DriveStraight()
+	public DriveStraightWithJoystick()
 	{
 		requires(Robot.drive);
 	}
