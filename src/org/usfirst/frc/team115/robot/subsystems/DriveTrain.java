@@ -3,7 +3,6 @@ package org.usfirst.frc.team115.robot.subsystems;
 import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Amit Palekar
  *
  */
-public class DriveTrain extends Subsystem{
-	
+public class DriveTrain extends Subsystem {
+
 	private CANTalon[] motors = new CANTalon[2];
 	private RobotDrive drive;
 	private final int LEFT = 1;
@@ -39,7 +38,6 @@ public class DriveTrain extends Subsystem{
 	
 	public void drive(double move, double rotate) {
 		drive.arcadeDrive(move, rotate);
-		
 	}
 	
 	public void drive(Joystick joystick) {
@@ -58,5 +56,4 @@ public class DriveTrain extends Subsystem{
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub		
 	}
-	
 }

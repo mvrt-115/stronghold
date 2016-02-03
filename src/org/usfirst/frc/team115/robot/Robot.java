@@ -18,16 +18,16 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drive;
 	public static OI oi;
 
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
-	public void robotInit() {
-		drive = new DriveTrain();
+    /**
+     * This function is run when the robot is first started up and should be
+     * used for any initialization code.
+     */
+    public void robotInit() {
 		oi = new OI();
-		// instantiate the command used for the autonomous period
-	}
-
+		drive = new DriveTrain();
+        // instantiate the command used for the autonomous period
+    }
+	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}

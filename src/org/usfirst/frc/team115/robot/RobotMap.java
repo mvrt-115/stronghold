@@ -16,8 +16,4 @@ public class RobotMap {
 	
 	//Joystick ID
 	public static final int JOYSTICK = 0;
-	
-	
-
-	
 }
