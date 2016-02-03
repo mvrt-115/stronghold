@@ -24,14 +24,13 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	drive = new DriveTrain();
-		oi = new OI();
-		
+    	oi = new OI();	
         // instantiate the command used for the autonomous period
     }
 	
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-	}
+    public void disabledPeriodic() {
+    	Scheduler.getInstance().run();
+    }
 
     public void autonomousInit() {
     }
@@ -44,10 +43,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
+		
     }
 
     /**

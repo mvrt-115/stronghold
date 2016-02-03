@@ -26,8 +26,6 @@ public class DriveStraight extends PIDCommand {
 	
 	}
 
-
-
 	@Override
 	protected void initialize() {
 		
