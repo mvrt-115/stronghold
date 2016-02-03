@@ -3,7 +3,6 @@ package org.usfirst.frc.team115.robot.subsystems;
 import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -36,11 +35,6 @@ public class DriveTrain extends Subsystem{
 		
 		drive = new RobotDrive(motors[LEFT], motors[RIGHT]);
 		
-		for(CANTalon motor : motors) {
-			motor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		}
-		
-		resetEncoders();
 	}
 	
 	public void drive(double move, double rotate) {
@@ -60,11 +54,6 @@ public class DriveTrain extends Subsystem{
 		drive(0, 0);
 	}
 	
-	public void resetEncoders() {
-		for(CANTalon m:motors) {
-			m.reset();
-		}
-	}
 	
 	@Override
 	protected void initDefaultCommand() {
