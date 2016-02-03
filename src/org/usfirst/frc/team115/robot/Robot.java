@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team115.robot;
 
-import org.usfirst.frc.team115.robot.subsystems.DriveTrain;
+//import org.usfirst.frc.team115.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team115.robot.subsystems.ShooterAngler;
 import org.usfirst.frc.team115.robot.subsystems.ShooterIntake;
 
@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static DriveTrain drive;
+	//public static DriveTrain drive;
 	public static OI oi;
 	public static ShooterAngler shooterAngler;
 	public static ShooterIntake shooterIntake;
@@ -28,7 +28,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	drive = new DriveTrain();
+    	//drive = new DriveTrain();
 		oi = new OI();
 		shooterAngler = new ShooterAngler();
 		shooterIntake = new ShooterIntake();

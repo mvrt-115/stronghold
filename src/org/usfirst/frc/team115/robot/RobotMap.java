@@ -39,4 +39,10 @@ public class RobotMap {
 	public static final int SHOOTER_INTAKE_BOTTOM = 2;
 	public static final double SHOOTER_INTAKE_SPEED = 0.5; //TODO 
 	
+	//Solenoids
+	public static final int PUNCH_SOLENOID_A = 1;
+	public static final int PUNCH_SOLENOID_B = 2;
+	
+	//Compressor
+	public static final int PCM = 3;
 }
