@@ -9,9 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class Shoot extends Command {
-
-    public Shoot() {
+    
+    private double shootDistance;
+    public Shoot(double shootDistance) {
         requires(Robot.shooterIntake);
+        this.shootDistance = shootDistance;
     }
 
     // Called just before this Command runs the first time
@@ -27,9 +29,10 @@ public class Shoot extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-      while(Robot.shooterIntake.getEncoderDistance() < RobotMap.ENCODER_SHOT_ONCE) {
+      while(Robot.shooterIntake.getEncoderDistance() < shootDistance) {
         return false;
       }
+      
       return true;
     }
 
@@ -42,5 +45,6 @@ public class Shoot extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+      end();
     }
 }

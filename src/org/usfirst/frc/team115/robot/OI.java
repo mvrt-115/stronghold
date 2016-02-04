@@ -1,8 +1,8 @@
 package org.usfirst.frc.team115.robot;
 
-import org.usfirst.frc.team115.robot.commands.AngleShooterDown;
-import org.usfirst.frc.team115.robot.commands.AngleShooterStop;
-import org.usfirst.frc.team115.robot.commands.AngleShooterUp;
+import org.usfirst.frc.team115.robot.commands.Intake;
+import org.usfirst.frc.team115.robot.commands.Shoot;
+import org.usfirst.frc.team115.robot.commands.Stop;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -13,20 +13,20 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	private Joystick joystick;
-	private JoystickButton angleUp;
-	private JoystickButton angleDown;
+	private JoystickButton shoot;
+	private JoystickButton intake;
 	
 	public OI() {
 		joystick = new Joystick(RobotMap.JOYSTICK);
 		
-		angleUp = new JoystickButton(joystick, RobotMap.BUTTON_ANGLE_UP);
-		angleDown = new JoystickButton(joystick, RobotMap.BUTTON_ANGLE_DOWN);
+		shoot = new JoystickButton(joystick, RobotMap.SHOOT_BUTTON);
+		intake = new JoystickButton(joystick, RobotMap.SHOOT_BUTTON);
 		
-		angleUp.whenPressed(new AngleShooterUp());
-		angleUp.whenReleased(new AngleShooterStop());
+		shoot.whenPressed(new Shoot(0));
+		shoot.whenReleased(new Stop());
 		
-		angleDown.whenPressed(new AngleShooterDown());
-		angleDown.whenReleased(new AngleShooterStop());
+		intake.whenPressed(new Intake());
+		intake.whenReleased(new Stop());
 		
 	}
 	

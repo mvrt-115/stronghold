@@ -12,6 +12,10 @@ public class RobotMap {
 	//Joystick ID
 	public static final int JOYSTICK = 0;
 	
+	//Intake Buttons
+	public static final int SHOOT_BUTTON = 1;
+	public static final int INTAKE_BUTTON = 2;
+	
 	//Shooter Intake
 	public static final int SHOOTER_INTAKE_TOP = 1;
 	public static final int SHOOTER_INTAKE_BOTTOM = 2;
@@ -20,6 +24,7 @@ public class RobotMap {
 	//Shooter Encoders
 	public static final int ENCODER_ID_A = 0;
 	public static final int ENCODER_ID_B = 1;
-	public static final int ENCODER_SHOT_ONCE = 1500;
+	public static final int ENCODER_SHOT_ONCE = 1500; 
+	public static final int ENCODER_INTAKE_AMOUNT = 700;
 	
 }
