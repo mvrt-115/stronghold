@@ -1,17 +1,17 @@
 package org.usfirst.frc.team115.robot.commands;
 
 import org.usfirst.frc.team115.robot.Robot;
+import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AngleShooterStop extends Command {
+public class Intake extends Command {
 
-    public AngleShooterStop() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public Intake() {
+        requires(Robot.shooterIntake);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +20,7 @@ public class AngleShooterStop extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooterAngler.stop();
+      Robot.shooterIntake.drive(-RobotMap.SHOOTER_INTAKE_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
