@@ -1,6 +1,7 @@
 package org.usfirst.frc.team115.robot.subsystems;
 
 import org.usfirst.frc.team115.robot.RobotMap;
+import org.usfirst.frc.team115.robot.commands.ArcadeDriveWithJoystick;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
@@ -54,6 +55,6 @@ public class DriveTrain extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub		
+		this.setDefaultCommand(new ArcadeDriveWithJoystick());		
 	}
 }
