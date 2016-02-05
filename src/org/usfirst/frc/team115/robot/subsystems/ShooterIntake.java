@@ -53,7 +53,7 @@ public class ShooterIntake extends Subsystem {
 	
 	public void resetEncoders() {
 		for(CANTalon m:shooterIntake) {
-			m.reset();
+			m.setPosition(0);
 		}
 	}
 	
