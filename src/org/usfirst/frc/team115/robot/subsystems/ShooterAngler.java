@@ -1,0 +1,134 @@
+package org.usfirst.frc.team115.robot.subsystems;
+
+import org.usfirst.frc.team115.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+/**
+ *Code for the motors that control the angle of the shooter.
+ *
+ *@author Ben Cuan & Nolan Nguyen
+ */
+public class ShooterAngler extends Subsystem {
+	
+	private final int LEFT = 1;
+	private final int RIGHT = 2;
+	public AnalogInput tester;
+	public double getVoltage;
+
+	Encoder anglerEncoder = new Encoder(RobotMap.ENCODER_ANGLER_A, RobotMap.ENCODER_ANGLER_B, false, Encoder.EncodingType.k4X);
+	
+	private CANTalon[] shooterAngler = new CANTalon[2];
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
+	public ShooterAngler() {
+		shooterAngler[LEFT] = new CANTalon(RobotMap.SHOOTER_ANGLER_LEFT);
+		shooterAngler[RIGHT] = new CANTalon(RobotMap.SHOOTER_ANGLER_RIGHT);
+		getVoltage = 0;
+		tester = new AnalogInput(0);
+		
+		
+		for(CANTalon shooterAngler: shooterAngler) {
+			shooterAngler.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+			
+		}
+		
+		resetEncoders();
+	}
+	
+	public void angleUp(int degrees) {
+		while(anglerEncoder.getDistance() < RobotMap.ENCODER_ONE_DEGREE * degrees) {
+			shooterAngler[LEFT].set(RobotMap.SHOOTER_ANGLER_SPEED);
+			shooterAngler[RIGHT].set(RobotMap.SHOOTER_ANGLER_SPEED);
+		}
+		
+		stop();
+		
+	}
+	
+	public void angleDown(int degrees) {
+		while(anglerEncoder.getDistance() < RobotMap.ENCODER_ONE_DEGREE * degrees) {
+			shooterAngler[LEFT].set(-RobotMap.SHOOTER_ANGLER_SPEED);
+			shooterAngler[RIGHT].set(-RobotMap.SHOOTER_ANGLER_SPEED);
+		}
+		
+	
+		stop();
+		
+	}
+	
+	public void goUp() {
+		shooterAngler[LEFT].set(RobotMap.SHOOTER_ANGLER_SPEED);
+		shooterAngler[RIGHT].set(RobotMap.SHOOTER_ANGLER_SPEED);
+	}
+	
+	public void goDown() {
+		shooterAngler[LEFT].set(-RobotMap.SHOOTER_ANGLER_SPEED);
+		shooterAngler[RIGHT].set(-RobotMap.SHOOTER_ANGLER_SPEED);
+	}
+
+	public void setSpeed(double speed) {
+		shooterAngler[LEFT].set (speed);
+		shooterAngler[RIGHT].set (speed);
+	}
+	public void stop() {
+		shooterAngler[LEFT].disableControl();
+		shooterAngler[RIGHT].disableControl();
+	}
+	
+	public void resetEncoders() {
+		for(CANTalon m:shooterAngler) {
+			m.reset();
+		}
+	}
+	
+	public boolean getLimitSwitchDown(DigitalInput limitSwitch) {
+		return limitSwitch.get();
+		
+	}
+	public void resetEncoders(DigitalInput limitSwitch) {
+		if(limitSwitch.get() == true) {
+			for(CANTalon m:shooterAngler) m.reset();
+		}
+	}
+	
+	public double getHeight() {
+		return RobotMap.BOTTOM_HEIGHT - shooterAngler[LEFT].getPosition() / RobotMap.ENCODER_ONE_DEGREE;
+	}
+	
+	public boolean isShootHall() {
+		getVoltage = tester.getVoltage();
+		SmartDashboard.putNumber("voltage", getVoltage);
+		if(getVoltage > 0)
+			return true;
+		else
+			return false;
+	}
+	public boolean isBottomHall() {
+		getVoltage = tester.getVoltage();
+		SmartDashboard.putNumber("voltage", getVoltage);
+		if(getVoltage > 0)
+			return true;
+		else
+			return false;
+	}
+	public boolean isTopHall() {
+		getVoltage = tester.getVoltage();
+		SmartDashboard.putNumber("voltage", getVoltage);
+		if(getVoltage > 0)
+			return true;
+		else
+			return false;
+	}
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    }
+}
+

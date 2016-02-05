@@ -1,8 +1,10 @@
 
 package org.usfirst.frc.team115.robot;
 
+//import org.usfirst.frc.team115.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team115.robot.subsystems.ShooterAngler;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -14,8 +16,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	//public static DriveTrain drive;
 	public static OI oi;
+	public static ShooterAngler shooterAngler;
 
 
     /**
@@ -23,7 +26,9 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	//drive = new DriveTrain();
 		oi = new OI();
+		shooterAngler = new ShooterAngler();
         // instantiate the command used for the autonomous period
     }
 	
