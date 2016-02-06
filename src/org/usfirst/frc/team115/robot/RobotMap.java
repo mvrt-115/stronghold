@@ -1,10 +1,5 @@
 package org.usfirst.frc.team115.robot;
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
+
 public class RobotMap {
 	
 	//DriveTrain
@@ -16,4 +11,7 @@ public class RobotMap {
 	
 	//Joystick ID
 	public static final int JOYSTICK = 0;
+
+	//compressor
+	public static final int PCM = 1;
 }

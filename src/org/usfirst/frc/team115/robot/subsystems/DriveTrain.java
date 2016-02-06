@@ -30,9 +30,9 @@ public class DriveTrain extends Subsystem {
 		backRight = new CANTalon(RobotMap.RIGHT_BACK_MOTOR);
 		
 		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
-		backLeft.set(LEFT);
+		backLeft.set(motors[LEFT].getDeviceID());
 		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
-		backRight.set(RIGHT);
+		backRight.set(motors[RIGHT].getDeviceID());
 		
 		drive = new RobotDrive(motors[LEFT], motors[RIGHT]);
 	}
