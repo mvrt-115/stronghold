@@ -1,14 +1,20 @@
 package org.usfirst.frc.team115.robot.commands;
 
 import org.usfirst.frc.team115.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class FireShooter extends Command{
-	
-	public FireShooter() {
-		requires(Robot.shooter);
-	}
+/**
+ * 
+ * 
+ * @author Rithvik Chuppala and Heather Baker
+ */
 
+public class StopWinch extends Command {
+	
+	public StopWinch() {
+		requires(Robot.winch);
+	}
 	@Override
 	protected void initialize() {
 		
@@ -16,25 +22,21 @@ public class FireShooter extends Command{
 
 	@Override
 	protected void execute() {
-		Robot.shooter.drive(0.80);
-		Robot.shooter.punch();
+		Robot.winch.stop();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	@Override
 	protected void end() {
-		Robot.shooter.stop();
-		Robot.shooter.retract();
 		
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
 		
 	}
 

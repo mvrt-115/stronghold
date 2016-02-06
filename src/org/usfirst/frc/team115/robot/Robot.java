@@ -5,9 +5,14 @@ import org.usfirst.frc.team115.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team115.robot.subsystems.CompressorSystem;
 import org.usfirst.frc.team115.robot.subsystems.ShooterIntake;
 
+import org.usfirst.frc.team115.robot.commands.LiftArm;
+import org.usfirst.frc.team115.robot.commands.RaiseRobot;
+import org.usfirst.frc.team115.robot.subsystems.Winch;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,8 +24,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 	public static DriveTrain drive;
 	public static CompressorSystem compressor;
-	public static ShooterIntake shooterIntake;
+	public static ShooterIntake shooter;
+	public static Winch winch;
 	public static OI oi;
+
 
     /**
      * This function is run when the robot is first started up and should be
@@ -29,8 +36,10 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	drive = new DriveTrain();
 		compressor = new CompressorSystem();
-		shooterIntake = new ShooterIntake();
+		shooter = new ShooterIntake();
+		winch = new Winch();
 		oi = new OI();
+
     }
 	
 	public void disabledPeriodic() {
@@ -47,7 +56,10 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 	}
 
-	public void teleopInit() {
+    public void teleopInit() {
+    	SmartDashboard.putData("Pullup Winch ",new RaiseRobot());
+    	SmartDashboard.putData("Letout Winch ", new LiftArm());
+
 
 	}
 

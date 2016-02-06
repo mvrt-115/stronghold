@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Code for the intake/shooting motors in the shooter.
  * 
- * @author Ben Cuan & Nolan Nguyen
- * Nolan -- added puncher code
+ * @author Ben Cuan, Nolan Nguyen, and Heather Baker
  */
 public class ShooterIntake extends Subsystem {
 	
@@ -23,14 +22,14 @@ public class ShooterIntake extends Subsystem {
     private DoubleSolenoid punchSolenoid;
 	
 	private CANTalon[] shooterIntake = new CANTalon[2];
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    
 	public ShooterIntake() {
 		punchSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PUNCH_SOLENOID_A, RobotMap.PUNCH_SOLENOID_B);
 		shooterIntake[TOP] = new CANTalon(RobotMap.SHOOTER_INTAKE_TOP);
 		shooterIntake[BOTTOM] = new CANTalon(RobotMap.SHOOTER_INTAKE_BOTTOM);
 		
 		intake = new RobotDrive(shooterIntake[TOP], shooterIntake[BOTTOM]);
+		
 		for(CANTalon shooterIntake: shooterIntake) {
 			shooterIntake.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		}
@@ -58,16 +57,15 @@ public class ShooterIntake extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	
     }
-    public void punch() {//punches, open doubleSolenoid
+    
+    public void punch() {
     	punchSolenoid.set(DoubleSolenoid.Value.kForward);
-    	System.out.println("Falcon, PUNCH!");
     }
-    public void retract() { //retracts piston, close doubleSolenoid
+    
+    public void retract() {
     	punchSolenoid.set(DoubleSolenoid.Value.kReverse);
-    	System.out.println("RETREAT!!!");
     }
     
 }

@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Drive Train for the 2016 stronghold competition.
  * 
- * @author Amit Palekar
+ * @author Amit Palekar and Heather Baker
  *
  */
 public class DriveTrain extends Subsystem {
@@ -24,10 +24,10 @@ public class DriveTrain extends Subsystem {
 	private CANTalon backRight;
 	
 	public DriveTrain() {
-		motors[LEFT] = new CANTalon(RobotMap.LEFT_MOTOR);
-		motors[RIGHT] = new CANTalon(RobotMap.RIGHT_MOTOR);
-		backLeft = new CANTalon(RobotMap.LEFT_BACK_MOTOR);
-		backRight = new CANTalon(RobotMap.RIGHT_BACK_MOTOR);
+		motors[LEFT] = new CANTalon(RobotMap.DRIVE_LEFT_FRONT_MOTOR);
+		motors[RIGHT] = new CANTalon(RobotMap.DRIVE_RIGHT_FRONT_MOTOR);
+		backLeft = new CANTalon(RobotMap.DRIVE_LEFT_BACK_MOTOR);
+		backRight = new CANTalon(RobotMap.DRIVE_RIGHT_BACK_MOTOR);
 		
 		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		backLeft.set(motors[LEFT].getDeviceID());
