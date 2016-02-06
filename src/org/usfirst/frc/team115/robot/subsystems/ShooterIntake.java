@@ -4,7 +4,7 @@ import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -12,27 +12,31 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Code for the intake/shooting motors in the shooter.
  * 
- * @author Ben Cuan
+ * @author Ben Cuan, Nolan Nguyen, and Heather Baker
  */
+
+
 public class ShooterIntake extends Subsystem {
-	
-	private final int TOP = 1;
-	private final int BOTTOM = 2;
+  
+  private CANTalon[] shooterIntake = new CANTalon[2];
+	private final int LEFT = 0;
+	private final int RIGHT = 1;
+
 	private RobotDrive intake;
-	private Encoder encoder;
+  
+	private DoubleSolenoid punchSolenoid;
+	
+	private final double TICKS_PER_INCH = 1.00; //TODO
     
-	private CANTalon[] shooterIntake = new CANTalon[2];
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	public ShooterIntake() {
-		shooterIntake[TOP] = new CANTalon(RobotMap.SHOOTER_INTAKE_TOP);
-		shooterIntake[BOTTOM] = new CANTalon(RobotMap.SHOOTER_INTAKE_BOTTOM);
+		punchSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PUNCH_SOLENOID_A, RobotMap.PUNCH_SOLENOID_B);
+		shooterIntake[LEFT] = new CANTalon(RobotMap.SHOOTER_INTAKE_LEFT_MOTOR);
+		shooterIntake[RIGHT] = new CANTalon(RobotMap.SHOOTER_INTAKE_RIGHT_MOTOR);
 		
-		intake = new RobotDrive(shooterIntake[TOP], shooterIntake[BOTTOM]);
-		for(CANTalon shooterIntake: shooterIntake) {
-			shooterIntake.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-			
-		encoder = new Encoder(RobotMap.ENCODER_ID_A, RobotMap.ENCODER_ID_B, false, Encoder.EncodingType.k4X);
+		intake = new RobotDrive(shooterIntake[LEFT], shooterIntake[RIGHT]);
+		
+		for(CANTalon si: shooterIntake) {
+			si.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		}
 		
 		resetEncoders();
@@ -46,24 +50,32 @@ public class ShooterIntake extends Subsystem {
 		intake.arcadeDrive(joystick);
 	}
 	
+	
 	public void stop() {
 		drive(0);
 	}
 	
 	public void resetEncoders() {
 		for(CANTalon m:shooterIntake) {
-			m.reset();
+			m.setPosition(0);
 		}
-		encoder.reset();
 	}
 	
-	public double getEncoderDistance() {
-	  return encoder.getDistance();
+	public double getDistance() {
+	  return ((shooterIntake[LEFT].getPosition() + shooterIntake[RIGHT].getPosition())/(2 * TICKS_PER_INCH));
 	}
 	
   public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	
   }
+    
+  public void punch() {
+    punchSolenoid.set(DoubleSolenoid.Value.kForward);
+  }
+    
+  public void retract() {
+    punchSolenoid.set(DoubleSolenoid.Value.kReverse);
+  }
+    
 }
 

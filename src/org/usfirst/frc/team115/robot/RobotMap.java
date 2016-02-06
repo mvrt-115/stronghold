@@ -1,30 +1,33 @@
 package org.usfirst.frc.team115.robot;
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
+
 public class RobotMap {
 	
+	// Motors
+	public static final int DRIVE_LEFT_FRONT_MOTOR = 0;
+	public static final int DRIVE_RIGHT_FRONT_MOTOR = 1;
+	public static final int DRIVE_LEFT_BACK_MOTOR = 2;
+	public static final int DRIVE_RIGHT_BACK_MOTOR = 3;
+	public static final int SHOOTER_ANGLER_LEFT_MOTOR = 4;
+	public static final int SHOOTER_ANGLER_RIGHT_MOTOR = 5;
+	public static final int SHOOTER_INTAKE_LEFT_MOTOR = 6;
+	public static final int SHOOTER_INTAKE_RIGHT_MOTOR = 7;
 	
-	
-	//Joystick ID
+	// Joystick
 	public static final int JOYSTICK = 0;
+
+	// Compressor
+	public static final int PCM = 1;
 	
-	//Intake Buttons
-	public static final int SHOOT_BUTTON = 1;
-	public static final int INTAKE_BUTTON = 2;
+	// Solenoids
+	public static final int PUNCH_SOLENOID_A = 1;
+	public static final int PUNCH_SOLENOID_B = 2;
+	public static final int BRAKE_SOLENOID_A = 3;
+	public static final int BRAKE_SOLENOID_B = 4;
+	public static final int ARM_SOLENOID_A = 5;
+	public static final int ARM_SOLENOID_B = 6;
 	
-	//Shooter Intake
-	public static final int SHOOTER_INTAKE_TOP = 1;
-	public static final int SHOOTER_INTAKE_BOTTOM = 2;
-	public static final double SHOOTER_INTAKE_SPEED = 0.5; //TODO 
-	
-	//Shooter Encoders
-	public static final int ENCODER_ID_A = 0;
-	public static final int ENCODER_ID_B = 1;
-	public static final int ENCODER_SHOT_ONCE = 1500; 
-	public static final int ENCODER_INTAKE_AMOUNT = 700;
-	
+	// Hall Effects
+	public static final int ANGLER_BOTTOM_HALL = 0;
+	public static final int ANGLER_SHOOT_HALL = 1;
+	public static final int ANGLER_TOP_HALL = 2;
 }

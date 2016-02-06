@@ -11,21 +11,19 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 
 
-public class Intake extends Command {
+public class ArcadeDriveWithJoystick extends Command {
 
-	public Intake() {
-		requires(Robot.shooter);
+	public ArcadeDriveWithJoystick() {
+		requires(Robot.drive);
 	}
-
+	
 	@Override
 	protected void initialize() {
-		
 	}
 
 	@Override
 	protected void execute() {
-		Robot.shooter.drive(-0.80);
-		
+		Robot.drive.drive(Robot.oi.getJoystick());		
 	}
 
 	@Override
@@ -35,7 +33,7 @@ public class Intake extends Command {
 
 	@Override
 	protected void end() {
-		Robot.shooter.stop();
+		Robot.drive.stop();
 	}
 
 	@Override

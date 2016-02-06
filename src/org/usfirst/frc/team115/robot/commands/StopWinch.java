@@ -7,16 +7,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * 
  * 
- * @author Heather Baker
+ * @author Rithvik Chuppala and Heather Baker
  */
 
 
-public class Intake extends Command {
-
-	public Intake() {
-		requires(Robot.shooter);
+public class StopWinch extends Command {
+	
+	public StopWinch() {
+		requires(Robot.winch);
 	}
-
 	@Override
 	protected void initialize() {
 		
@@ -24,23 +23,22 @@ public class Intake extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.shooter.drive(-0.80);
-		
+		Robot.winch.stop();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	@Override
 	protected void end() {
-		Robot.shooter.stop();
+		
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
+		
 	}
 
 }

@@ -7,25 +7,23 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * 
  * 
- * @author Heather Baker
+ * @author Amit Palekar
  */
 
 
-public class Intake extends Command {
+public class DriveStraightWithJoystick extends Command {
 
-	public Intake() {
-		requires(Robot.shooter);
+	public DriveStraightWithJoystick() {
+		requires(Robot.drive);
 	}
-
+	
 	@Override
 	protected void initialize() {
-		
 	}
 
 	@Override
 	protected void execute() {
-		Robot.shooter.drive(-0.80);
-		
+		Robot.drive.drive(Robot.oi.getJoystick().getY(), 0);
 	}
 
 	@Override
@@ -35,12 +33,11 @@ public class Intake extends Command {
 
 	@Override
 	protected void end() {
-		Robot.shooter.stop();
+		Robot.drive.stop();
 	}
 
 	@Override
 	protected void interrupted() {
 		end();
 	}
-
 }

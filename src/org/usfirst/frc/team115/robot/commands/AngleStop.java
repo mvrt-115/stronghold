@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 
 
-public class Intake extends Command {
+public class AngleStop extends Command {
 
-	public Intake() {
-		requires(Robot.shooter);
+	public AngleStop() {
+		requires(Robot.angler);
 	}
 
 	@Override
@@ -24,23 +24,22 @@ public class Intake extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.shooter.drive(-0.80);
-		
+		Robot.angler.stop();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	@Override
 	protected void end() {
-		Robot.shooter.stop();
+		
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
+		
 	}
 
 }
