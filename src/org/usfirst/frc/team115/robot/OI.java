@@ -20,7 +20,7 @@ public class OI {
 		joystick = new Joystick(RobotMap.JOYSTICK);
 		
 		shoot = new JoystickButton(joystick, RobotMap.SHOOT_BUTTON);
-		intake = new JoystickButton(joystick, RobotMap.SHOOT_BUTTON);
+		intake = new JoystickButton(joystick, RobotMap.INTAKE_BUTTON);
 		
 		shoot.whenPressed(new Shoot(0));
 		shoot.whenReleased(new Stop());
