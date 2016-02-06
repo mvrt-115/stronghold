@@ -1,6 +1,5 @@
 package org.usfirst.frc.team115.robot.subsystems;
 
-import org.usfirst.frc.team115.robot.Robot;
 import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;

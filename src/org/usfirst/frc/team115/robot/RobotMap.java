@@ -30,4 +30,7 @@ public class RobotMap {
 	public static final int ANGLER_BOTTOM_HALL = 0;
 	public static final int ANGLER_SHOOT_HALL = 1;
 	public static final int ANGLER_TOP_HALL = 2;
+	
+	//Drive Straight
+	public static final double DEFAULT_SPEED = 0.6;
 }
