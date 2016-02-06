@@ -4,11 +4,19 @@ import org.usfirst.frc.team115.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * 
+ * 
+ * @author Heather Baker
+ */
+
+
 public class ArcadeDriveWithJoystick extends Command {
 
 	public ArcadeDriveWithJoystick() {
 		requires(Robot.drive);
 	}
+	
 	@Override
 	protected void initialize() {
 	}

@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Rithvik Chuppala and Heather Baker
  */
 
+
 public class StopWinch extends Command {
 	
 	public StopWinch() {

@@ -13,7 +13,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class CompressorSystem extends Subsystem {
+  
 	private Compressor compressor;
+	
 	public CompressorSystem() {
 		compressor = new Compressor(RobotMap.PCM);
 		compressor.setClosedLoopControl(true);
@@ -27,5 +29,6 @@ public class CompressorSystem extends Subsystem {
 	}
 
 	protected void initDefaultCommand() {
+	
 	}
 }

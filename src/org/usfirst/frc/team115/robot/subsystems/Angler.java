@@ -14,37 +14,41 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *Code for the motors that control the angle of the shooter.
  *
- *@author Ben Cuan & Nolan Nguyen
+ *@author Ben Cuan, Nolan Nguyen, and Heather Baker
  */
+
+
 public class Angler extends Subsystem {
 	
+  private CANTalon[] shooterAngler = new CANTalon[2];
 	private final int LEFT = 0;
 	private final int RIGHT = 1;
-	private AnalogInput bottomHall, topHall, shootHall;
 	
-	private CANTalon[] shooterAngler = new CANTalon[2];
 	private RobotDrive angler;
 	
+	private AnalogInput bottomHall, topHall, shootHall;
+	
 	private final double HALL_EFFECT_TRUE = 3.00;
+	private final double TICKS_PER_DEGREE = 1.00;
     
 	public Angler() {
 		shooterAngler[LEFT] = new CANTalon(RobotMap.SHOOTER_ANGLER_LEFT_MOTOR);
 		shooterAngler[RIGHT] = new CANTalon(RobotMap.SHOOTER_ANGLER_RIGHT_MOTOR);
-		bottomHall = new AnalogInput(RobotMap.ANGLER_BOTTOM_HALL);
-		shootHall = new AnalogInput(RobotMap.ANGLER_SHOOT_HALL);
-		topHall = new AnalogInput(RobotMap.ANGLER_TOP_HALL);
 		
 		angler = new RobotDrive(shooterAngler[LEFT], shooterAngler[RIGHT]);
 		
-		for(CANTalon shooterAngler: shooterAngler) {
-			shooterAngler.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-			
+    bottomHall = new AnalogInput(RobotMap.ANGLER_BOTTOM_HALL);
+    shootHall = new AnalogInput(RobotMap.ANGLER_SHOOT_HALL);
+    topHall = new AnalogInput(RobotMap.ANGLER_TOP_HALL);
+		
+		for(CANTalon sa: shooterAngler) {
+			sa.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		}
 		
 		resetEncoders();
 	}
 	
-	public void angle(int speed) {
+	public void angle(double speed) {
 		angler.arcadeDrive(speed, 0);
 		
 	}
@@ -59,8 +63,8 @@ public class Angler extends Subsystem {
 		}
 	}
 	
-	public double getHeight() {
-		return RobotMap.BOTTOM_HEIGHT - shooterAngler[LEFT].getPosition() / RobotMap.ENCODER_ONE_DEGREE;
+	public double getAngle() {
+	  return ((shooterAngler[LEFT].getPosition() + shooterAngler[RIGHT].getPosition()) / (2 * TICKS_PER_DEGREE));
 	}
 	
 	public boolean isShootHall() {
@@ -70,7 +74,7 @@ public class Angler extends Subsystem {
 			return false;
 	}
 	
-	public boolean isBottomHallTrue(AnalogInput sensor) {
+	public boolean isBottomHallTrue() {
 		if(bottomHall.getVoltage() > HALL_EFFECT_TRUE)
 			return true;
 		else

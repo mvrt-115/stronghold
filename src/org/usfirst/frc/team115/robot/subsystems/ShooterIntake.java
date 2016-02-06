@@ -14,24 +14,29 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * 
  * @author Ben Cuan, Nolan Nguyen, and Heather Baker
  */
+
+
 public class ShooterIntake extends Subsystem {
-	
-	private final int TOP = 1;
-	private final int BOTTOM = 2;
+  
+  private CANTalon[] shooterIntake = new CANTalon[2];
+	private final int LEFT = 0;
+	private final int RIGHT = 1;
+
 	private RobotDrive intake;
-    private DoubleSolenoid punchSolenoid;
+  
+	private DoubleSolenoid punchSolenoid;
 	
-	private CANTalon[] shooterIntake = new CANTalon[2];
+	private final double TICKS_PER_INCH = 1.00; //TODO
     
 	public ShooterIntake() {
 		punchSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PUNCH_SOLENOID_A, RobotMap.PUNCH_SOLENOID_B);
-		shooterIntake[TOP] = new CANTalon(RobotMap.SHOOTER_INTAKE_TOP);
-		shooterIntake[BOTTOM] = new CANTalon(RobotMap.SHOOTER_INTAKE_BOTTOM);
+		shooterIntake[LEFT] = new CANTalon(RobotMap.SHOOTER_INTAKE_LEFT_MOTOR);
+		shooterIntake[RIGHT] = new CANTalon(RobotMap.SHOOTER_INTAKE_RIGHT_MOTOR);
 		
-		intake = new RobotDrive(shooterIntake[TOP], shooterIntake[BOTTOM]);
+		intake = new RobotDrive(shooterIntake[LEFT], shooterIntake[RIGHT]);
 		
-		for(CANTalon shooterIntake: shooterIntake) {
-			shooterIntake.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		for(CANTalon si: shooterIntake) {
+			si.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		}
 		
 		resetEncoders();
@@ -56,17 +61,21 @@ public class ShooterIntake extends Subsystem {
 		}
 	}
 	
-    public void initDefaultCommand() {
+	public double getDistance() {
+	  return ((shooterIntake[LEFT].getPosition() + shooterIntake[RIGHT].getPosition())/(2 * TICKS_PER_INCH));
+	}
+	
+  public void initDefaultCommand() {
     	
-    }
+  }
     
-    public void punch() {
-    	punchSolenoid.set(DoubleSolenoid.Value.kForward);
-    }
+  public void punch() {
+    punchSolenoid.set(DoubleSolenoid.Value.kForward);
+  }
     
-    public void retract() {
-    	punchSolenoid.set(DoubleSolenoid.Value.kReverse);
-    }
+  public void retract() {
+    punchSolenoid.set(DoubleSolenoid.Value.kReverse);
+  }
     
 }
 

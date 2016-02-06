@@ -14,14 +14,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Amit Palekar and Heather Baker
  *
  */
-public class DriveTrain extends Subsystem {
 
+
+public class DriveTrain extends Subsystem {
+  
+  private CANTalon backLeft;
+  private CANTalon backRight;
 	private CANTalon[] motors = new CANTalon[2];
+	private final int LEFT = 0;
+	private final int RIGHT = 1;
+
 	private RobotDrive drive;
-	private final int LEFT = 1;
-	private final int RIGHT = 2;
-	private CANTalon backLeft;
-	private CANTalon backRight;
+	
+	private final double TICKS_PER_INCH = 1.00;
 	
 	public DriveTrain() {
 		motors[LEFT] = new CANTalon(RobotMap.DRIVE_LEFT_FRONT_MOTOR);
@@ -51,6 +56,10 @@ public class DriveTrain extends Subsystem {
 	
 	public void stop() {
 		drive(0, 0);
+	}
+	
+	public double getDistance() {
+	  return ((motors[LEFT].getPosition() + motors[RIGHT].getPosition()) / (2 * TICKS_PER_INCH));
 	}
 	
 	@Override

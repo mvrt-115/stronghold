@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * 
  * 
- * @author Rithvik Chuppala
+ * @author Rithvik Chuppala and Heather Baker
  */
 
 public class LiftArm extends Command {
@@ -19,12 +19,12 @@ public class LiftArm extends Command {
 	@Override
 	protected void initialize() {
 		Robot.winch.releaseBrake();
-		Robot.winch.liftArm();
 	}
 
 	@Override
 	protected void execute() {
-		Robot.winch.outRope();
+	  Robot.winch.liftArm();
+		Robot.winch.driveWinch(0.5);
 	}
 
 	@Override

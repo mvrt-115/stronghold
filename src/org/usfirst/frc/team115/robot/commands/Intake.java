@@ -4,6 +4,13 @@ import org.usfirst.frc.team115.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * 
+ * 
+ * @author Heather Baker
+ */
+
+
 public class Intake extends Command {
 
 	public Intake() {
