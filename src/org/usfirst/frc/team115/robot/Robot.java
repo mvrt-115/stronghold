@@ -1,10 +1,16 @@
 
 package org.usfirst.frc.team115.robot;
 
+import org.usfirst.frc.team115.robot.commands.Letout;
+import org.usfirst.frc.team115.robot.commands.Pullup;
+import org.usfirst.frc.team115.robot.subsystems.Winch;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -16,6 +22,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static Winch winch;
+	public static DoubleSolenoid doublesolenoid;
+	public static DoubleSolenoid diskbreak;
+	public static Encoder encoder;
 
 
     /**
@@ -24,6 +34,10 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		winch = new Winch();
+		doublesolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PORTA, RobotMap.PORTB);
+		encoder = new Encoder(RobotMap.ENCODERA, RobotMap.ENCODERB, false, Encoder.EncodingType.k4X);
+		diskbreak = new DoubleSolenoid(RobotMap.PCMA, RobotMap.PORTC, RobotMap.PORTD);
         // instantiate the command used for the autonomous period
     }
 	
@@ -42,10 +56,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
+    	SmartDashboard.putData("Pullup Winch ",new Pullup());
+    	SmartDashboard.putData("Letout Winch ", new Letout());
     }
 
     /**
