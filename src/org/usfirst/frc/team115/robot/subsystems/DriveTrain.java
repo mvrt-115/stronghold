@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveTrain extends Subsystem {
   
-  private CANTalon backLeft;
-  private CANTalon backRight;
+    private CANTalon backLeft;
+    private CANTalon backRight;
 	private CANTalon[] motors = new CANTalon[2];
 	private final int LEFT = 0;
 	private final int RIGHT = 1;
@@ -34,10 +34,13 @@ public class DriveTrain extends Subsystem {
 		backLeft = new CANTalon(RobotMap.DRIVE_LEFT_BACK_MOTOR);
 		backRight = new CANTalon(RobotMap.DRIVE_RIGHT_BACK_MOTOR);
 		
+		//Makes talons follow the front
 		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		backLeft.set(motors[LEFT].getDeviceID());
 		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		backRight.set(motors[RIGHT].getDeviceID());
+		
+		motors[RIGHT].setInverted(true);
 		
 		drive = new RobotDrive(motors[LEFT], motors[RIGHT]);
 	}
@@ -59,7 +62,7 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public double getDistance() {
-	  return ((motors[LEFT].getPosition() + motors[RIGHT].getPosition()) / (2 * TICKS_PER_INCH));
+	    return ((motors[LEFT].getPosition() + motors[RIGHT].getPosition()) / (2 * TICKS_PER_INCH));
 	}
 	
 	@Override
