@@ -16,6 +16,11 @@ import org.usfirst.frc.team115.robot.commands.StopWinch;
 import org.usfirst.frc.team115.robot.subsystems.Winch;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,6 +40,7 @@ public class Robot extends IterativeRobot {
 	public static Winch winch;
 	public static Angler angler;
 	public static OI oi;
+	public static AHRS ahrs;
 
 
   /**
@@ -47,6 +53,7 @@ public class Robot extends IterativeRobot {
 		shooter = new ShooterIntake();
 		winch = new Winch();
 		angler = new Angler();
+		ahrs = new AHRS(SPI.Port.kMXP);
 		oi = new OI();
   }
 	
