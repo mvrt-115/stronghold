@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
 	public static Winch winch;
 	public static Angler angler;
 	public static OI oi;
-	public static AHRS ahrs;
+	public static AHRS navx;
 
 
   /**
@@ -53,7 +53,7 @@ public class Robot extends IterativeRobot {
 		shooter = new ShooterIntake();
 		winch = new Winch();
 		angler = new Angler();
-		ahrs = new AHRS(SPI.Port.kMXP);
+		navx = new AHRS(SPI.Port.kMXP);
 		oi = new OI();
   }
 	
