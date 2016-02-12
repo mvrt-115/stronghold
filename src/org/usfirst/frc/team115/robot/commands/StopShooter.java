@@ -9,17 +9,15 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Eric Wang
  */
 
+public class StopShooter extends Command {
+  public StopShooter() {
+	requires(Robot.shooter);
+  }
 
-public class StopShooter extends Command{
-	
-	public StopShooter() {
-		requires(Robot.shooter);
-	}
-
-	@Override
+  @Override
 	protected void initialize() {
-		
-	}
+
+  }
 
 	@Override
 	protected void execute() {
@@ -34,15 +32,12 @@ public class StopShooter extends Command{
 
 	@Override
 	protected void end() {
-		Robot.shooter.stop();
-		Robot.shooter.retract();
-		
 	}
 
 	@Override
 	protected void interrupted() {
 		end();
-		
+
 	}
 
 }
