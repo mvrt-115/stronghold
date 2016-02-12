@@ -5,9 +5,15 @@ import org.usfirst.frc.team115.robot.Robot;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * 
+ * 
+ * @author Heather Baker
+ */
+
 public class DriveStraight extends PIDCommand {
 
-  private final static double DEFAULT_SPEED = 0.75;
+  protected final static double DEFAULT_SPEED = 0.75;
   private final static double P = 0;
   private final static int I = 0;
   private final static int D = 0;

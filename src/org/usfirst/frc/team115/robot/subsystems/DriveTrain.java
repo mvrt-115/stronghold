@@ -6,6 +6,7 @@ import org.usfirst.frc.team115.robot.commands.ArcadeDriveWithJoystick;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -43,6 +44,13 @@ public class DriveTrain extends Subsystem {
 		motors[RIGHT].setInverted(true);
 		
 		drive = new RobotDrive(motors[LEFT], motors[RIGHT]);
+		
+		for(CANTalon motor: motors) {
+      motor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    }
+    
+    resetEncoders();
+		
 	}
 	
 	public void drive(double move, double rotate) {
@@ -63,6 +71,12 @@ public class DriveTrain extends Subsystem {
 	
 	public double getDistance() {
 	    return ((motors[LEFT].getPosition() + motors[RIGHT].getPosition()) / (2 * TICKS_PER_INCH));
+	}
+	
+	public void resetEncoders() {
+	  for (CANTalon motor: motors) {
+	    motor.reset();
+	  }
 	}
 	
 	@Override
