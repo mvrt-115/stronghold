@@ -3,8 +3,8 @@ package org.usfirst.frc.team115.robot;
 public class RobotMap {
 	
 	// Motors
-	public static final int DRIVE_LEFT_FRONT_MOTOR = 1;
-	public static final int DRIVE_RIGHT_FRONT_MOTOR = 4;
+	public static final int DRIVE_LEFT_FRONT_MOTOR = 0;
+	public static final int DRIVE_RIGHT_FRONT_MOTOR = 1;
 	public static final int DRIVE_LEFT_BACK_MOTOR = 2;
 	public static final int DRIVE_RIGHT_BACK_MOTOR = 3;
 	public static final int SHOOTER_ANGLER_LEFT_MOTOR = 4;
@@ -30,4 +30,21 @@ public class RobotMap {
 	public static final int ANGLER_BOTTOM_HALL = 0;
 	public static final int ANGLER_SHOOT_HALL = 1;
 	public static final int ANGLER_TOP_HALL = 2;
+	
+	//Drive Straight
+	public static final double DEFAULT_SPEED = 0.6;
+	
+	//Encoder IDs
+	public static final int ENCODER_SHOOTER_LEFT_A = 1;
+	public static final int ENCODER_SHOOTER_LEFT_B = 1;
+	public static final int ENCODER_SHOOTER_RIGHT_A = 2;
+	public static final int ENCODER_SHOOTER_RIGHT_B = 2;
+	public static final int ENCODER_ANGLER_LEFT_A = 1;
+	public static final int ENCODER_ANGLER_LEFT_B = 1;
+	public static final int ENCODER_ANGLER_RIGHT_A = 2;
+	public static final int ENCODER_ANGLER_RIGHT_B = 2;
+	public static final int ENCODER_WINCH_LEFT_A = 1;
+	public static final int ENCODER_WINCH_LEFT_B = 1;
+	public static final int ENCODER_WINCH_RIGHT_A = 2;
+	public static final int ENCODER_WINCH_RIGHT_B = 2;
 }

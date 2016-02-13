@@ -1,17 +1,17 @@
 package org.usfirst.frc.team115.robot.subsystems;
 
-import org.usfirst.frc.team115.robot.Robot;
 import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * 
  * 
- * @author Rithvik Chuppala and Heather Baker
+ * @author Rithvik Chuppala, Ben Cuan, and Heather Baker
  */
 
 
@@ -23,6 +23,9 @@ public class Winch extends Subsystem {
   
 	private RobotDrive winch;
 	
+	private Encoder encoderLeft;
+	private Encoder encoderRight;
+	
 	private DoubleSolenoid armSolenoid, brakeSolenoid;
 	
 	private final double TICKS_PER_INCH = 1.00; //TODO
@@ -31,6 +34,9 @@ public class Winch extends Subsystem {
 		motors[LEFT] = new CANTalon(LEFT);
 		motors[RIGHT] = new CANTalon(RIGHT);
 		winch = new RobotDrive(motors[LEFT], motors[RIGHT]);
+		
+		encoderLeft = new Encoder(RobotMap.ENCODER_WINCH_LEFT_A, RobotMap.ENCODER_WINCH_LEFT_B, false, Encoder.EncodingType.k4X);
+		encoderRight = new Encoder(RobotMap.ENCODER_WINCH_RIGHT_A, RobotMap.ENCODER_WINCH_RIGHT_B, false, Encoder.EncodingType.k4X);
 		
 		armSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.ARM_SOLENOID_A, RobotMap.ARM_SOLENOID_B);
 		brakeSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.BRAKE_SOLENOID_A, RobotMap.BRAKE_SOLENOID_B);
@@ -49,16 +55,16 @@ public class Winch extends Subsystem {
 	}
 	
 	public void liftArm() {
-		armSolenoid.set(DoubleSolenoid.Value.kForward);
+		armSolenoid.set(DoubleSolenoid.Value.kForward); //This line doesn't make sense
 	}
 
 	public void stop() {
-		brakeSolenoid.set(DoubleSolenoid.Value.kForward);
+		brake();
 		driveWinch(0);
 	}
 	
 	public double getDistance() {
-	  return ((motors[LEFT].getPosition() + motors[RIGHT].getPosition()) / (2 * TICKS_PER_INCH));
+	  return ((encoderLeft.getDistance() + encoderRight.getDistance()) / (2 * TICKS_PER_INCH));
 	}
 	
 	@Override
