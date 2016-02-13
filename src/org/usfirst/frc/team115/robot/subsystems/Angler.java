@@ -75,8 +75,7 @@ public class Angler extends Subsystem {
 	public boolean isHallEffectTrue(int hallEffect) {
 		if(hallEffects[hallEffect].getVoltage() >= HALL_EFFECT_ACTIVE)
 			return true;
-		else
-			return false;
+		return false;
 	}
 
 	public void initDefaultCommand() {}

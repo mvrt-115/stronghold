@@ -67,7 +67,7 @@ public class FlyWheels extends Subsystem {
   }
   
   public double getAngle(int side) {
-    return (flyEncoders[side].get() / (2 * TICKS_PER_DEGREE));
+    return (flyEncoders[side].get() / (TICKS_PER_DEGREE));
   }
   
   public double getAngle() {

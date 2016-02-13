@@ -22,6 +22,7 @@ public class DriveTurn extends PIDCommand {
   private double speed;
   private double angle;
   private double destination = 0.0;
+  private double distLeft;
   
   public DriveTurn(double angle) {
     this(DEFAULT_SPEED, angle);
@@ -31,6 +32,7 @@ public class DriveTurn extends PIDCommand {
     super(P, I, D);
     this.speed = speed;
     this.angle = angle;
+    distLeft = this.angle;
     requires(Robot.drive);
   }
 
@@ -60,10 +62,17 @@ public class DriveTurn extends PIDCommand {
   protected void execute() {
     // No code in here, all done in usePIDOutput
   }
+  
+  protected double absoluteDistanceLeft() {
+	  distLeft = destination - Robot.navx.getYaw();
+	  if (distLeft < 0)
+		  return -distLeft;
+	  return distLeft;
+  }
 
   @Override
   protected boolean isFinished() {
-    return Math.abs(destination - Robot.navx.getYaw()) <= THRESHOLD;
+    return absoluteDistanceLeft() <= THRESHOLD;
   }
 
   @Override
