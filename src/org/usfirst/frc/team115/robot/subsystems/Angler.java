@@ -1,5 +1,6 @@
 package org.usfirst.frc.team115.robot.subsystems;
 
+import org.usfirst.frc.team115.robot.Constants;
 import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -20,29 +21,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Angler extends Subsystem {
 	
-  private CANTalon[] shooterAngler = new CANTalon[2];
-	private final int LEFT = 0;
-	private final int RIGHT = 1;
+  private CANTalon[] anglers = new CANTalon[2];
 	
 	private RobotDrive angler;
 	
-	private AnalogInput bottomHall, topHall, shootHall;
+	private AnalogInput[] hallEffects = new AnalogInput[3];
 	
-	private final double HALL_EFFECT_TRUE = 3.00;
-	private final double TICKS_PER_DEGREE = 1.00;
+	private final double HALL_EFFECT_TRUE = 3.00; // TODO
+	private final double TICKS_PER_DEGREE = 1.00; // TODO
     
 	public Angler() {
-		shooterAngler[LEFT] = new CANTalon(RobotMap.SHOOTER_ANGLER_LEFT_MOTOR);
-		shooterAngler[RIGHT] = new CANTalon(RobotMap.SHOOTER_ANGLER_RIGHT_MOTOR);
+		anglers[Constants.kLeft] = new CANTalon(RobotMap.ANGLER_LEFT_MOTOR);
+		anglers[Constants.kRight] = new CANTalon(RobotMap.ANGLER_RIGHT_MOTOR);
 		
-		angler = new RobotDrive(shooterAngler[LEFT], shooterAngler[RIGHT]);
+		angler = new RobotDrive(anglers[Constants.kLeft], anglers[Constants.kRight]);
 		
-    bottomHall = new AnalogInput(RobotMap.ANGLER_BOTTOM_HALL);
-    shootHall = new AnalogInput(RobotMap.ANGLER_SHOOT_HALL);
-    topHall = new AnalogInput(RobotMap.ANGLER_TOP_HALL);
+    hallEffects[Constants.kBottom] = new AnalogInput(RobotMap.ANGLER_BOTTOM_HALL);
+    hallEffects[Constants.kMiddle] = new AnalogInput(RobotMap.ANGLER_SHOOT_HALL);
+    hallEffects[Constants.kTop] = new AnalogInput(RobotMap.ANGLER_TOP_HALL);
 		
-		for(CANTalon sa: shooterAngler) {
-			sa.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		for(CANTalon angler: anglers) {
+			angler.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		}
 		
 		resetEncoders();
@@ -50,7 +49,6 @@ public class Angler extends Subsystem {
 	
 	public void angle(double speed) {
 		angler.arcadeDrive(speed, 0);
-		
 	}
 	
 	public void stop() {
@@ -58,31 +56,23 @@ public class Angler extends Subsystem {
 	}
 	
 	public void resetEncoders() {
-		for(CANTalon m:shooterAngler) {
-			m.reset();
+		for(CANTalon angler : anglers) {
+			angler.reset();
 		}
 	}
 	
 	public double getAngle() {
-	  return ((shooterAngler[LEFT].getPosition() + shooterAngler[RIGHT].getPosition()) / (2 * TICKS_PER_DEGREE));
+	  return ((anglers[Constants.kLeft].getPosition() + anglers[Constants.kRight].getPosition()) / (2 * TICKS_PER_DEGREE));
 	}
 	
-	public boolean isShootHall() {
-		if(shootHall.getVoltage() > HALL_EFFECT_TRUE)
-			return true;
-		else
-			return false;
-	}
-	
-	public boolean isBottomHallTrue() {
-		if(bottomHall.getVoltage() > HALL_EFFECT_TRUE)
-			return true;
-		else
-			return false;
-	}
-	
-	public boolean isTopHallTrue() {
-		if(topHall.getVoltage() > HALL_EFFECT_TRUE)
+	/** 
+	 * The hallEffect parameter number is how many hall effects are under the hall effect that is trying to be read.
+	 * Example: the number for bottom most hall effect is 0. There are no other hall effects underneath it.
+	 * @param hallEffect
+	 * @return
+	 */
+	public boolean isHallEffectTrue(int hallEffect) {
+		if(hallEffects[hallEffect].getVoltage() > HALL_EFFECT_TRUE)
 			return true;
 		else
 			return false;

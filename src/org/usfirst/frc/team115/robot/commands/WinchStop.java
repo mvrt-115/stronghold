@@ -7,38 +7,38 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * 
  * 
- * @author Heather Baker
+ * @author Rithvik Chuppala and Heather Baker
  */
 
 
-public class ArcadeDriveWithJoystick extends Command {
-
-	public ArcadeDriveWithJoystick() {
-		requires(Robot.drive);
-	}
+public class WinchStop extends Command {
 	
+	public WinchStop() {
+		requires(Robot.winch);
+	}
 	@Override
 	protected void initialize() {
+		
 	}
 
 	@Override
 	protected void execute() {
-		Robot.drive.drive(Robot.oi.getJoystick());		
+		Robot.winch.stop();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	@Override
 	protected void end() {
-		Robot.drive.stop();
+		
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
+		
 	}
 
 }

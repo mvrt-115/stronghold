@@ -7,40 +7,40 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * 
  * 
- * @author Heather Baker
+ * @author Rithvik Chuppala and Heather Baker
  */
 
 
-public class AngleUp extends Command {
-
-	public AngleUp() {
-		requires(Robot.angler);
+public class WinchRaiseRobot extends Command {
+	
+	public WinchRaiseRobot() {
+		requires(Robot.winch);
 	}
-
+	
 	@Override
 	protected void initialize() {
-		
+		Robot.winch.releaseBrake();
 	}
 
 	@Override
 	protected void execute() {
-		Robot.angler.angle(0.5);
-		
+		Robot.winch.driveWinch(-0.5);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.angler.isTopHallTrue();
+		return false;
 	}
 
 	@Override
 	protected void end() {
-		Robot.angler.stop();
+		Robot.winch.stop();
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
+	  end();
 	}
+	
 
 }

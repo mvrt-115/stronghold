@@ -1,5 +1,6 @@
 package org.usfirst.frc.team115.robot.commands;
 
+import org.usfirst.frc.team115.robot.Constants;
 import org.usfirst.frc.team115.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -7,38 +8,40 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * 
  * 
- * @author Rithvik Chuppala and Heather Baker
+ * @author Heather Baker
  */
 
-public class LiftArm extends Command {
-	
-	public LiftArm() {
-		requires(Robot.winch);
+
+public class AnglerUp extends Command {
+
+	public AnglerUp() {
+		requires(Robot.angler);
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.winch.releaseBrake();
+		
 	}
 
 	@Override
 	protected void execute() {
-	  Robot.winch.liftArm();
-		Robot.winch.driveWinch(0.5);
+		Robot.angler.angle(0.5);
+		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return Robot.angler.isHallEffectTrue(Constants.kTop);
 	}
 
 	@Override
 	protected void end() {
-		Robot.winch.stop();
+		Robot.angler.stop();
 	}
 
 	@Override
 	protected void interrupted() {
 		end();
 	}
+
 }

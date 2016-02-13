@@ -1,5 +1,6 @@
 package org.usfirst.frc.team115.robot.commands;
 
+import org.usfirst.frc.team115.robot.Constants;
 import org.usfirst.frc.team115.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -11,9 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 
 
-public class AngleDown extends Command {
+public class AnglerDown extends Command {
 
-	public AngleDown() {
+	public AnglerDown() {
 		requires(Robot.angler);
 	}
 
@@ -29,7 +30,7 @@ public class AngleDown extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.angler.isBottomHallTrue();
+		return Robot.angler.isHallEffectTrue(Constants.kBottom);
 	}
 
 	@Override
