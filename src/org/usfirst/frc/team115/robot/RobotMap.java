@@ -33,4 +33,18 @@ public class RobotMap {
 	
 	//Drive Straight
 	public static final double DEFAULT_SPEED = 0.6;
+	
+	//Encoder IDs
+	public static final int ENCODER_SHOOTER_LEFT_A = 1;
+	public static final int ENCODER_SHOOTER_LEFT_B = 1;
+	public static final int ENCODER_SHOOTER_RIGHT_A = 2;
+	public static final int ENCODER_SHOOTER_RIGHT_B = 2;
+	public static final int ENCODER_ANGLER_LEFT_A = 1;
+	public static final int ENCODER_ANGLER_LEFT_B = 1;
+	public static final int ENCODER_ANGLER_RIGHT_A = 2;
+	public static final int ENCODER_ANGLER_RIGHT_B = 2;
+	public static final int ENCODER_WINCH_LEFT_A = 1;
+	public static final int ENCODER_WINCH_LEFT_B = 1;
+	public static final int ENCODER_WINCH_RIGHT_A = 2;
+	public static final int ENCODER_WINCH_RIGHT_B = 2;
 }
