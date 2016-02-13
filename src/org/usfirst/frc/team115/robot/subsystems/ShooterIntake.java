@@ -5,6 +5,7 @@ import org.usfirst.frc.team115.robot.RobotMap;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -21,6 +22,9 @@ public class ShooterIntake extends Subsystem {
   private CANTalon[] shooterIntake = new CANTalon[2];
 	private final int LEFT = 0;
 	private final int RIGHT = 1;
+	
+	private Encoder encoderLeft;
+	private Encoder encoderRight;
 
 	private RobotDrive intake;
   
@@ -32,6 +36,10 @@ public class ShooterIntake extends Subsystem {
 		punchSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PUNCH_SOLENOID_A, RobotMap.PUNCH_SOLENOID_B);
 		shooterIntake[LEFT] = new CANTalon(RobotMap.SHOOTER_INTAKE_LEFT_MOTOR);
 		shooterIntake[RIGHT] = new CANTalon(RobotMap.SHOOTER_INTAKE_RIGHT_MOTOR);
+		
+		encoderLeft = new Encoder(RobotMap.ENCODER_SHOOTER_LEFT_A, RobotMap.ENCODER_SHOOTER_LEFT_B, false, Encoder.EncodingType.k4X);
+		encoderRight = new Encoder(RobotMap.ENCODER_SHOOTER_RIGHT_A, RobotMap.ENCODER_SHOOTER_RIGHT_B, false, Encoder.EncodingType.k4X);
+		
 		
 		intake = new RobotDrive(shooterIntake[LEFT], shooterIntake[RIGHT]);
 		
@@ -62,7 +70,7 @@ public class ShooterIntake extends Subsystem {
 	}
 	
 	public double getDistance() {
-	  return ((shooterIntake[LEFT].getPosition() + shooterIntake[RIGHT].getPosition())/(2 * TICKS_PER_INCH));
+	  return ((encoderLeft.getDistance() + encoderRight.getDistance())/(2 * TICKS_PER_INCH));
 	}
 	
   public void initDefaultCommand() {

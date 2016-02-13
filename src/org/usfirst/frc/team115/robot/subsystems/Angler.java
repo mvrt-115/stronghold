@@ -5,11 +5,9 @@ import org.usfirst.frc.team115.robot.RobotMap;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *Code for the motors that control the angle of the shooter.
@@ -19,77 +17,74 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Angler extends Subsystem {
-	
-  private CANTalon[] shooterAngler = new CANTalon[2];
+
+	private CANTalon[] shooterAngler = new CANTalon[2];
 	private final int LEFT = 0;
 	private final int RIGHT = 1;
-	
+
 	private RobotDrive angler;
-	
+	private Encoder encoderLeft;
+	private Encoder encoderRight;
+
 	private AnalogInput bottomHall, topHall, shootHall;
-	
-	private final double HALL_EFFECT_TRUE = 3.00;
-	private final double TICKS_PER_DEGREE = 1.00;
-    
+
+	private final double HALL_EFFECT_ACTIVE = 3.00;
+	private final double TICKS_PER_DEGREE = 1024/360;
+
 	public Angler() {
 		shooterAngler[LEFT] = new CANTalon(RobotMap.SHOOTER_ANGLER_LEFT_MOTOR);
 		shooterAngler[RIGHT] = new CANTalon(RobotMap.SHOOTER_ANGLER_RIGHT_MOTOR);
-		
+
+		encoderLeft = new Encoder(RobotMap.ENCODER_ANGLER_LEFT_A, RobotMap.ENCODER_ANGLER_LEFT_B, false, Encoder.EncodingType.k4X);
+		encoderRight = new Encoder(RobotMap.ENCODER_ANGLER_RIGHT_A, RobotMap.ENCODER_ANGLER_RIGHT_B, false, Encoder.EncodingType.k4X);
+
 		angler = new RobotDrive(shooterAngler[LEFT], shooterAngler[RIGHT]);
-		
-    bottomHall = new AnalogInput(RobotMap.ANGLER_BOTTOM_HALL);
-    shootHall = new AnalogInput(RobotMap.ANGLER_SHOOT_HALL);
-    topHall = new AnalogInput(RobotMap.ANGLER_TOP_HALL);
-		
+
+		bottomHall = new AnalogInput(RobotMap.ANGLER_BOTTOM_HALL);
+		shootHall = new AnalogInput(RobotMap.ANGLER_SHOOT_HALL);
+		topHall = new AnalogInput(RobotMap.ANGLER_TOP_HALL);
+
 		for(CANTalon sa: shooterAngler) {
 			sa.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		}
-		
+
 		resetEncoders();
 	}
-	
+
 	public void angle(double speed) {
 		angler.arcadeDrive(speed, 0);
-		
+
 	}
-	
+
 	public void stop() {
 		angle(0);
 	}
-	
+
 	public void resetEncoders() {
 		for(CANTalon m:shooterAngler) {
 			m.reset();
 		}
 	}
-	
+
 	public double getAngle() {
-	  return ((shooterAngler[LEFT].getPosition() + shooterAngler[RIGHT].getPosition()) / (2 * TICKS_PER_DEGREE));
+		return ((encoderRight.getDistance() + encoderLeft.getDistance()) / (2 * TICKS_PER_DEGREE));
 	}
-	
+
 	public boolean isShootHall() {
-		if(shootHall.getVoltage() > HALL_EFFECT_TRUE)
-			return true;
-		else
-			return false;
+		return (shootHall.getVoltage() >= HALL_EFFECT_ACTIVE);
+			
 	}
-	
+
 	public boolean isBottomHallTrue() {
-		if(bottomHall.getVoltage() > HALL_EFFECT_TRUE)
-			return true;
-		else
-			return false;
+		return (bottomHall.getVoltage() >= HALL_EFFECT_ACTIVE);
 	}
-	
+
 	public boolean isTopHallTrue() {
-		if(topHall.getVoltage() > HALL_EFFECT_TRUE)
-			return true;
-		else
-			return false;
+		return (topHall.getVoltage() >= HALL_EFFECT_ACTIVE);
 	}
-    
+
 	public void initDefaultCommand() {
-		
+
 	}
 }
 
