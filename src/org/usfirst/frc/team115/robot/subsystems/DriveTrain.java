@@ -1,7 +1,7 @@
 package org.usfirst.frc.team115.robot.subsystems;
 
 import org.usfirst.frc.team115.robot.RobotMap;
-import org.usfirst.frc.team115.robot.commands.ArcadeDriveWithJoystick;
+import org.usfirst.frc.team115.robot.commands.DriveArcadeWithJoystick;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveTrain extends Subsystem {
   
-    private CANTalon backLeft;
-    private CANTalon backRight;
+  private CANTalon backLeft;
+  private CANTalon backRight;
 	private CANTalon[] motors = new CANTalon[2];
 	private final int LEFT = 0;
 	private final int RIGHT = 1;
@@ -67,6 +67,6 @@ public class DriveTrain extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		this.setDefaultCommand(new ArcadeDriveWithJoystick());		
+		this.setDefaultCommand(new DriveArcadeWithJoystick());		
 	}
 }

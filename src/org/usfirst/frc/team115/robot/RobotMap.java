@@ -1,5 +1,7 @@
 package org.usfirst.frc.team115.robot;
 
+import edu.wpi.first.wpilibj.DigitalSource;
+
 public class RobotMap {
 	
 	// Motors
@@ -30,4 +32,10 @@ public class RobotMap {
 	public static final int ANGLER_BOTTOM_HALL = 0;
 	public static final int ANGLER_SHOOT_HALL = 1;
 	public static final int ANGLER_TOP_HALL = 2;
+	
+	// Encoders
+  public static final int FLYWHEEL_LEFT_ENCODER_A = 0;
+  public static final int FLYWHEEL_LEFT_ENCODER_B = 1;
+  public static final int FLYWHEEL_RIGHT_ENCODER_A = 2;
+  public static final int FLYWHEEL_RIGHT_ENCODER_B = 3;
 }

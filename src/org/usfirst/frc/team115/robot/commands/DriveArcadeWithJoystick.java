@@ -1,30 +1,29 @@
 package org.usfirst.frc.team115.robot.commands;
 
 import org.usfirst.frc.team115.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * 
  * 
- * @author Nolan Nyugen and Heather Baker
+ * @author Heather Baker
  */
 
 
-public class FireShooter extends Command{
-	
-	public FireShooter() {
-		requires(Robot.shooter);
-	}
+public class DriveArcadeWithJoystick extends Command {
 
+	public DriveArcadeWithJoystick() {
+		requires(Robot.drive);
+	}
+	
 	@Override
 	protected void initialize() {
-		
 	}
 
 	@Override
 	protected void execute() {
-		Robot.shooter.drive(0.80);
-		Robot.shooter.punch();
+		Robot.drive.drive(Robot.oi.getJoystick());		
 	}
 
 	@Override
@@ -34,15 +33,12 @@ public class FireShooter extends Command{
 
 	@Override
 	protected void end() {
-		Robot.shooter.stop();
-		Robot.shooter.retract();
-		
+		Robot.drive.stop();
 	}
 
 	@Override
 	protected void interrupted() {
 		end();
-		
 	}
 
 }

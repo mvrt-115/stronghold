@@ -4,15 +4,14 @@ package org.usfirst.frc.team115.robot;
 import org.usfirst.frc.team115.robot.subsystems.Angler;
 import org.usfirst.frc.team115.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team115.robot.subsystems.CompressorSystem;
-import org.usfirst.frc.team115.robot.subsystems.ShooterIntake;
-import org.usfirst.frc.team115.robot.commands.AngleDown;
-import org.usfirst.frc.team115.robot.commands.AngleStop;
-import org.usfirst.frc.team115.robot.commands.AngleUp;
-import org.usfirst.frc.team115.robot.commands.FireShooter;
-import org.usfirst.frc.team115.robot.commands.Intake;
-import org.usfirst.frc.team115.robot.commands.LiftArm;
-import org.usfirst.frc.team115.robot.commands.RaiseRobot;
-import org.usfirst.frc.team115.robot.commands.StopWinch;
+import org.usfirst.frc.team115.robot.subsystems.FlyWheels;
+import org.usfirst.frc.team115.robot.subsystems.Punch;
+import org.usfirst.frc.team115.robot.commands.AnglerDown;
+import org.usfirst.frc.team115.robot.commands.AnglerStop;
+import org.usfirst.frc.team115.robot.commands.AnglerUp;
+import org.usfirst.frc.team115.robot.commands.WinchArmLift;
+import org.usfirst.frc.team115.robot.commands.WinchRaiseRobot;
+import org.usfirst.frc.team115.robot.commands.WinchStop;
 import org.usfirst.frc.team115.robot.subsystems.Winch;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -31,9 +30,10 @@ public class Robot extends IterativeRobot {
   
 	public static DriveTrain drive;
 	public static CompressorSystem compressor;
-	public static ShooterIntake shooter;
+	public static Punch punch;
 	public static Winch winch;
 	public static Angler angler;
+	public static FlyWheels flyWheels;
 	public static OI oi;
 
 
@@ -44,9 +44,10 @@ public class Robot extends IterativeRobot {
   public void robotInit() {
     drive = new DriveTrain();
 		compressor = new CompressorSystem();
-		shooter = new ShooterIntake();
+		punch = new Punch();
 		winch = new Winch();
 		angler = new Angler();
+		flyWheels = new FlyWheels();
 		oi = new OI();
   }
 	
@@ -65,14 +66,12 @@ public class Robot extends IterativeRobot {
 	}
 
   public void teleopInit() {
-    SmartDashboard.putData("RaiseRobot ", new RaiseRobot());
-    SmartDashboard.putData("LiftArm ", new LiftArm());
-    SmartDashboard.putData("StopWinch ", new StopWinch());
-    SmartDashboard.putData("ShooterIntake ", new Intake());
-    SmartDashboard.putData("ShooterFire ", new FireShooter());
-    SmartDashboard.putData("AngleUp ", new AngleUp());
-    SmartDashboard.putData("AngleDown ", new AngleDown());
-    SmartDashboard.putData("AngleStop ", new AngleStop());
+    SmartDashboard.putData("RaiseRobot ", new WinchRaiseRobot());
+    SmartDashboard.putData("LiftArm ", new WinchArmLift());
+    SmartDashboard.putData("StopWinch ", new WinchStop());
+    SmartDashboard.putData("AngleUp ", new AnglerUp());
+    SmartDashboard.putData("AngleDown ", new AnglerDown());
+    SmartDashboard.putData("AngleStop ", new AnglerStop());
 	}
 
 	/**

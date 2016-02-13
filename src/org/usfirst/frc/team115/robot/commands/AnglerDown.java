@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 
 
-public class AngleDown extends Command {
+public class AnglerDown extends Command {
 
-	public AngleDown() {
+	public AnglerDown() {
 		requires(Robot.angler);
 	}
 
