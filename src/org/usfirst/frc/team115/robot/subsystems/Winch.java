@@ -40,6 +40,8 @@ public class Winch extends Subsystem {
 		
 		armSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.ARM_SOLENOID_A, RobotMap.ARM_SOLENOID_B);
 		brakeSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.BRAKE_SOLENOID_A, RobotMap.BRAKE_SOLENOID_B);
+		
+		resetEncoders();
 	}
 
 	public void driveWinch(double move) {
@@ -61,6 +63,11 @@ public class Winch extends Subsystem {
 	public void stop() {
 		brake();
 		driveWinch(0);
+	}
+	
+	public void resetEncoders() {
+		encoderLeft.reset();
+		encoderRight.reset();
 	}
 	
 	public double getDistance() {

@@ -43,10 +43,6 @@ public class ShooterIntake extends Subsystem {
 		
 		intake = new RobotDrive(shooterIntake[LEFT], shooterIntake[RIGHT]);
 		
-		for(CANTalon si: shooterIntake) {
-			si.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		}
-		
 		resetEncoders();
 	}
 	
@@ -64,9 +60,8 @@ public class ShooterIntake extends Subsystem {
 	}
 	
 	public void resetEncoders() {
-		for(CANTalon m:shooterIntake) {
-			m.setPosition(0);
-		}
+		encoderLeft.reset();
+		encoderRight.reset();
 	}
 	
 	public double getDistance() {

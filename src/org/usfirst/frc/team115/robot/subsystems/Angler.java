@@ -4,7 +4,6 @@ import org.usfirst.frc.team115.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -44,10 +43,6 @@ public class Angler extends Subsystem {
 		shootHall = new AnalogInput(RobotMap.ANGLER_SHOOT_HALL);
 		topHall = new AnalogInput(RobotMap.ANGLER_TOP_HALL);
 
-		for(CANTalon sa: shooterAngler) {
-			sa.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		}
-
 		resetEncoders();
 	}
 
@@ -61,9 +56,8 @@ public class Angler extends Subsystem {
 	}
 
 	public void resetEncoders() {
-		for(CANTalon m:shooterAngler) {
-			m.reset();
-		}
+		encoderLeft.reset();
+		encoderRight.reset();
 	}
 
 	public double getAngle() {
