@@ -1,18 +1,33 @@
 package org.usfirst.frc.team115.robot;
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
+
 public class RobotMap {
-    // For example to map the left and right motors, you could define the
-    // following variables to use with your drivetrain subsystem.
-    // public static int leftMotor = 1;
-    // public static int rightMotor = 2;
-    
-    // If you are using multiple modules, make sure to define both the port
-    // number and the module. For example you with a rangefinder:
-    // public static int rangefinderPort = 1;
-    // public static int rangefinderModule = 1;
+	
+	// Motors
+	public static final int DRIVE_LEFT_FRONT_MOTOR = 1;
+	public static final int DRIVE_RIGHT_FRONT_MOTOR = 4;
+	public static final int DRIVE_LEFT_BACK_MOTOR = 2;
+	public static final int DRIVE_RIGHT_BACK_MOTOR = 3;
+	public static final int SHOOTER_ANGLER_LEFT_MOTOR = 4;
+	public static final int SHOOTER_ANGLER_RIGHT_MOTOR = 5;
+	public static final int SHOOTER_INTAKE_LEFT_MOTOR = 6;
+	public static final int SHOOTER_INTAKE_RIGHT_MOTOR = 7;
+	
+	// Joystick
+	public static final int JOYSTICK = 0;
+
+	// Compressor
+	public static final int PCM = 1;
+	
+	// Solenoids
+	public static final int PUNCH_SOLENOID_A = 1;
+	public static final int PUNCH_SOLENOID_B = 2;
+	public static final int BRAKE_SOLENOID_A = 3;
+	public static final int BRAKE_SOLENOID_B = 4;
+	public static final int ARM_SOLENOID_A = 5;
+	public static final int ARM_SOLENOID_B = 6;
+	
+	// Hall Effects
+	public static final int ANGLER_BOTTOM_HALL = 0;
+	public static final int ANGLER_SHOOT_HALL = 1;
+	public static final int ANGLER_TOP_HALL = 2;
 }
