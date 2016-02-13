@@ -25,7 +25,7 @@ public class AnglerUp extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.angler.angle(0.5);
+		Robot.angler.setOutput(0.5);
 		
 	}
 

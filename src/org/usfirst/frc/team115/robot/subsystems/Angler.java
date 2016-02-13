@@ -27,8 +27,13 @@ public class Angler extends Subsystem {
 	
 	private AnalogInput[] hallEffects = new AnalogInput[3];
 	
-	private final double HALL_EFFECT_TRUE = 3.00; // TODO
-	private final double TICKS_PER_DEGREE = 1.00; // TODO
+	private static final double HALL_EFFECT_ACTIVE = 3.00; // TODO
+	private final static double TICKS_PER_DEGREE = 1.00; // TODO
+
+  public static final double PRESET_INTAKE = 0;
+  public static final double PRESET_SHOOT_BATTER = 90 * TICKS_PER_DEGREE;
+  public static final double PRESET_LOW_BAR = 45 * TICKS_PER_DEGREE;
+  public static final double[] presets = {PRESET_INTAKE, PRESET_SHOOT_BATTER, PRESET_LOW_BAR};
     
 	public Angler() {
 		anglers[Constants.kLeft] = new CANTalon(RobotMap.ANGLER_MOTOR_LEFT);
@@ -39,28 +44,24 @@ public class Angler extends Subsystem {
     hallEffects[Constants.kBottom] = new AnalogInput(RobotMap.ANGLER_HALL_BOTTOM);
     hallEffects[Constants.kMiddle] = new AnalogInput(RobotMap.ANGLER_HALL_MIDDLE);
     hallEffects[Constants.kTop] = new AnalogInput(RobotMap.ANGLER_HALL_TOP);
-		
-		for(CANTalon angler: anglers) {
-			angler.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		}
-		
+
 		resetEncoders();
 	}
-	
-	public void angle(double speed) {
+
+	public void setOutput(double speed) {
 		angler.arcadeDrive(speed, 0);
 	}
-	
+
 	public void stop() {
-		angle(0);
+		setOutput(0);
 	}
-	
+
 	public void resetEncoders() {
 		for(CANTalon angler : anglers) {
 			angler.reset();
 		}
 	}
-	
+
 	public double getAngle() {
 	  return ((anglers[Constants.kLeft].getPosition() + anglers[Constants.kRight].getPosition()) / (2 * TICKS_PER_DEGREE));
 	}
@@ -72,14 +73,13 @@ public class Angler extends Subsystem {
 	 * @return
 	 */
 	public boolean isHallEffectTrue(int hallEffect) {
-		if(hallEffects[hallEffect].getVoltage() > HALL_EFFECT_TRUE)
+		if(hallEffects[hallEffect].getVoltage() >= HALL_EFFECT_ACTIVE)
 			return true;
 		else
 			return false;
 	}
+
+	public void initDefaultCommand() {}
     
-	public void initDefaultCommand() {
-		
-	}
-}
+  }
 
