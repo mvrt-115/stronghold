@@ -31,14 +31,14 @@ public class Angler extends Subsystem {
 	private final double TICKS_PER_DEGREE = 1.00; // TODO
     
 	public Angler() {
-		anglers[Constants.kLeft] = new CANTalon(RobotMap.ANGLER_LEFT_MOTOR);
-		anglers[Constants.kRight] = new CANTalon(RobotMap.ANGLER_RIGHT_MOTOR);
+		anglers[Constants.kLeft] = new CANTalon(RobotMap.ANGLER_MOTOR_LEFT);
+		anglers[Constants.kRight] = new CANTalon(RobotMap.ANGLER_MOTOR_RIGHT);
 		
 		angler = new RobotDrive(anglers[Constants.kLeft], anglers[Constants.kRight]);
 		
-    hallEffects[Constants.kBottom] = new AnalogInput(RobotMap.ANGLER_BOTTOM_HALL);
-    hallEffects[Constants.kMiddle] = new AnalogInput(RobotMap.ANGLER_SHOOT_HALL);
-    hallEffects[Constants.kTop] = new AnalogInput(RobotMap.ANGLER_TOP_HALL);
+    hallEffects[Constants.kBottom] = new AnalogInput(RobotMap.ANGLER_HALL_BOTTOM);
+    hallEffects[Constants.kMiddle] = new AnalogInput(RobotMap.ANGLER_HALL_MIDDLE);
+    hallEffects[Constants.kTop] = new AnalogInput(RobotMap.ANGLER_HALL_TOP);
 		
 		for(CANTalon angler: anglers) {
 			angler.setFeedbackDevice(FeedbackDevice.QuadEncoder);

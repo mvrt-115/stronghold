@@ -5,6 +5,7 @@ import org.usfirst.frc.team115.robot.RobotMap;
 import org.usfirst.frc.team115.robot.commands.DriveArcadeWithJoystick;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -23,16 +24,17 @@ public class DriveTrain extends Subsystem {
   private CANTalon backLeft;
   private CANTalon backRight;
 	private CANTalon[] motors = new CANTalon[2];
+	private Encoder[] encoders = new Encoder[2];
 
 	private RobotDrive drive;
 	
 	private final double TICKS_PER_INCH = 1.00; // TODO
 	
 	public DriveTrain() {
-		motors[Constants.kLeft] = new CANTalon(RobotMap.DRIVE_LEFT_FRONT_MOTOR);
-		motors[Constants.kRight] = new CANTalon(RobotMap.DRIVE_RIGHT_FRONT_MOTOR);
-		backLeft = new CANTalon(RobotMap.DRIVE_LEFT_BACK_MOTOR);
-		backRight = new CANTalon(RobotMap.DRIVE_RIGHT_BACK_MOTOR);
+		motors[Constants.kLeft] = new CANTalon(RobotMap.DRIVE_MOTOR_LEFT_FRONT);
+		motors[Constants.kRight] = new CANTalon(RobotMap.DRIVE_MOTOR_RIGHT_FRONT);
+		backLeft = new CANTalon(RobotMap.DRIVE_MOTOR_LEFT_BACK);
+		backRight = new CANTalon(RobotMap.DRIVE_MOTOR_RIGHT_BACK);
 		
 		//Makes talons follow the front
 		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
@@ -44,9 +46,8 @@ public class DriveTrain extends Subsystem {
 		
 		drive = new RobotDrive(motors[Constants.kLeft], motors[Constants.kRight]);
 		
-		for(CANTalon motor: motors) {
-      motor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    }
+		encoders[Constants.kLeft] = new Encoder(RobotMap.DRIVE_ENCODER_LEFT_A, RobotMap.FLYWHEEL_ENCODER_LEFT_B, false, Encoder.EncodingType.k4X);
+    encoders[Constants.kRight] = new Encoder(RobotMap.DRIVE_ENCODER_RIGHT_A, RobotMap.DRIVE_ENCODER_RIGHT_B, false, Encoder.EncodingType.k4X);
     
     resetEncoders();
 		
@@ -69,12 +70,12 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public double getDistance() {
-	    return ((motors[Constants.kLeft].getPosition() + motors[Constants.kRight].getPosition()) / (2 * TICKS_PER_INCH));
+	    return ((encoders[Constants.kLeft].get() + encoders[Constants.kRight].get()) / (2 * TICKS_PER_INCH));
 	}
 	
 	public void resetEncoders() {
-	  for (CANTalon motor: motors) {
-	    motor.reset();
+	  for (Encoder encoder : encoders) {
+	    encoder.reset();
 	  }
 	}
 	

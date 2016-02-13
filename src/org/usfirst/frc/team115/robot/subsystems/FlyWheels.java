@@ -27,11 +27,11 @@ public class FlyWheels extends Subsystem {
   private final int P = 0, I = 0, D = 0, F = 0; // TODO
   
   public FlyWheels() {
-    flyWheels[Constants.kLeft] = new CANTalon(RobotMap.FLYWHEEL_LEFT_MOTOR);
-    flyWheels[Constants.kRight] = new CANTalon(RobotMap.FLYWHEEL_RIGHT_MOTOR);
+    flyWheels[Constants.kLeft] = new CANTalon(RobotMap.FLYWHEEL_MOTOR_LEFT);
+    flyWheels[Constants.kRight] = new CANTalon(RobotMap.FLYWHEEL_MOTOR_RIGHT);
     
-    flyEncoders[Constants.kLeft] = new Encoder(RobotMap.FLYWHEEL_LEFT_ENCODER_A, RobotMap.FLYWHEEL_LEFT_ENCODER_B, false, Encoder.EncodingType.k4X);
-    flyEncoders[Constants.kRight] = new Encoder(RobotMap.FLYWHEEL_RIGHT_ENCODER_A, RobotMap.FLYWHEEL_RIGHT_ENCODER_B, false, Encoder.EncodingType.k4X);
+    flyEncoders[Constants.kLeft] = new Encoder(RobotMap.FLYWHEEL_ENCODER_LEFT_A, RobotMap.FLYWHEEL_ENCODER_LEFT_B, false, Encoder.EncodingType.k4X);
+    flyEncoders[Constants.kRight] = new Encoder(RobotMap.FLYWHEEL_ENCODER_RIGHT_A, RobotMap.FLYWHEEL_ENCODER_RIGHT_B, false, Encoder.EncodingType.k4X);
     
     controllers[Constants.kLeft] = new PIDController(P, I, D, F, flyEncoders[Constants.kLeft], flyWheels[Constants.kLeft]);
     controllers[Constants.kRight] = new PIDController(P, I, D, F, flyEncoders[Constants.kRight], flyWheels[Constants.kRight]);

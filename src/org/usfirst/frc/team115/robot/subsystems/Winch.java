@@ -27,8 +27,8 @@ public class Winch extends Subsystem {
 	private final double TICKS_PER_INCH = 1.00; //TODO
 	
 	public Winch() {
-		motors[Constants.kLeft] = new CANTalon(RobotMap.WINCH_LEFT_MOTOR);
-		motors[Constants.kRight] = new CANTalon(RobotMap.WINCH_RIGHT_MOTOR);
+		motors[Constants.kLeft] = new CANTalon(RobotMap.WINCH_MOTOR_LEFT);
+		motors[Constants.kRight] = new CANTalon(RobotMap.WINCH_MOTOR_RIGHT);
 		winch = new RobotDrive(motors[Constants.kLeft], motors[Constants.kRight]);
 		
 		armSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.ARM_SOLENOID_A, RobotMap.ARM_SOLENOID_B);
