@@ -19,77 +19,67 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Angler extends Subsystem {
-	
-  private CANTalon[] shooterAngler = new CANTalon[2];
-	private final int LEFT = 0;
-	private final int RIGHT = 1;
-	
+	private static final double HALL_EFFECT_ACTIVE = 3.00;
+	private static final double TICKS_PER_DEGREE = 1.00;
+	private static final int LEFT = 0;
+	private static final int RIGHT = 1;	
+
+	private CANTalon[] shooterAngler = new CANTalon[2];
 	private RobotDrive angler;
-	
 	private AnalogInput bottomHall, topHall, shootHall;
-	
-	private final double HALL_EFFECT_TRUE = 3.00;
-	private final double TICKS_PER_DEGREE = 1.00;
-    
+
+	public static final double PRESET_INTAKE = 0;
+	public static final double PRESET_SHOOT_BATTER = 90 * TICKS_PER_DEGREE;
+	public static final double PRESET_LOW_BAR = 45 * TICKS_PER_DEGREE;
+	public static final double[] presets = {PRESET_INTAKE, PRESET_SHOOT_BATTER, PRESET_LOW_BAR};
+
 	public Angler() {
 		shooterAngler[LEFT] = new CANTalon(RobotMap.SHOOTER_ANGLER_LEFT_MOTOR);
 		shooterAngler[RIGHT] = new CANTalon(RobotMap.SHOOTER_ANGLER_RIGHT_MOTOR);
-		
+
 		angler = new RobotDrive(shooterAngler[LEFT], shooterAngler[RIGHT]);
-		
-    bottomHall = new AnalogInput(RobotMap.ANGLER_BOTTOM_HALL);
-    shootHall = new AnalogInput(RobotMap.ANGLER_SHOOT_HALL);
-    topHall = new AnalogInput(RobotMap.ANGLER_TOP_HALL);
-		
+
+		bottomHall = new AnalogInput(RobotMap.ANGLER_BOTTOM_HALL);
+		shootHall = new AnalogInput(RobotMap.ANGLER_SHOOT_HALL);
+		topHall = new AnalogInput(RobotMap.ANGLER_TOP_HALL);
+
 		for(CANTalon sa: shooterAngler) {
 			sa.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		}
-		
+
 		resetEncoders();
 	}
-	
-	public void angle(double speed) {
+
+	public void setOutput(double speed) {
 		angler.arcadeDrive(speed, 0);
-		
 	}
-	
+
 	public void stop() {
-		angle(0);
+		setOutput(0);
 	}
-	
+
 	public void resetEncoders() {
 		for(CANTalon m:shooterAngler) {
 			m.reset();
 		}
 	}
-	
+
 	public double getAngle() {
-	  return ((shooterAngler[LEFT].getPosition() + shooterAngler[RIGHT].getPosition()) / (2 * TICKS_PER_DEGREE));
+		return ((shooterAngler[LEFT].getPosition() + shooterAngler[RIGHT].getPosition()) / (2 * TICKS_PER_DEGREE));
 	}
-	
+
 	public boolean isShootHall() {
-		if(shootHall.getVoltage() > HALL_EFFECT_TRUE)
-			return true;
-		else
-			return false;
+		return shootHall.getVoltage() >= HALL_EFFECT_ACTIVE;
 	}
-	
+
 	public boolean isBottomHallTrue() {
-		if(bottomHall.getVoltage() > HALL_EFFECT_TRUE)
-			return true;
-		else
-			return false;
+		return bottomHall.getVoltage() >= HALL_EFFECT_ACTIVE;
 	}
-	
+
 	public boolean isTopHallTrue() {
-		if(topHall.getVoltage() > HALL_EFFECT_TRUE)
-			return true;
-		else
-			return false;
+		return topHall.getVoltage() >= HALL_EFFECT_ACTIVE;
 	}
-    
-	public void initDefaultCommand() {
-		
-	}
+
+	public void initDefaultCommand() {}
 }
 
