@@ -24,7 +24,6 @@ public class DriveTrain extends Subsystem {
   private CANTalon backLeft;
   private CANTalon backRight;
 	private CANTalon[] motors = new CANTalon[2];
-	private Encoder[] encoders = new Encoder[2];
 
 	private RobotDrive drive;
 	
@@ -43,13 +42,9 @@ public class DriveTrain extends Subsystem {
 		backRight.set(motors[Constants.kRight].getDeviceID());
 		
 		motors[Constants.kRight].setInverted(true);
+		motors[Constants.kLeft].setInverted(true);
 		
 		drive = new RobotDrive(motors[Constants.kLeft], motors[Constants.kRight]);
-		
-		encoders[Constants.kLeft] = new Encoder(RobotMap.DRIVE_ENCODER_LEFT_A, RobotMap.FLYWHEEL_ENCODER_LEFT_B, false, Encoder.EncodingType.k4X);
-    encoders[Constants.kRight] = new Encoder(RobotMap.DRIVE_ENCODER_RIGHT_A, RobotMap.DRIVE_ENCODER_RIGHT_B, false, Encoder.EncodingType.k4X);
-    
-    resetEncoders();
 		
 	}
 	
@@ -68,17 +63,7 @@ public class DriveTrain extends Subsystem {
 	public void stop() {
 		drive(0, 0);
 	}
-	
-	public double getDistance() {
-	    return ((encoders[Constants.kLeft].get() + encoders[Constants.kRight].get()) / (2 * TICKS_PER_INCH));
-	}
-	
-	public void resetEncoders() {
-	  for (Encoder encoder : encoders) {
-	    encoder.reset();
-	  }
-	}
-	
+
 	@Override
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(new DriveArcadeWithJoystick());		

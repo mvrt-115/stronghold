@@ -1,15 +1,11 @@
 
 package org.usfirst.frc.team115.robot;
 
-import org.usfirst.frc.team115.robot.subsystems.Angler;
+
 import org.usfirst.frc.team115.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team115.robot.subsystems.CompressorSystem;
-import org.usfirst.frc.team115.robot.subsystems.FlyWheels;
-import org.usfirst.frc.team115.robot.subsystems.Punch;
-import org.usfirst.frc.team115.robot.subsystems.Winch;
+
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI;
@@ -27,13 +23,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
   
 	public static DriveTrain drive;
-	public static CompressorSystem compressor;
-	public static Punch punch;
-	public static Winch winch;
-	public static Angler angler;
-	public static FlyWheels flyWheels;
 	public static OI oi;
-	public static AHRS navx;
 
 
   /**
@@ -42,12 +32,6 @@ public class Robot extends IterativeRobot {
    */
   public void robotInit() {
     drive = new DriveTrain();
-		compressor = new CompressorSystem();
-		punch = new Punch();
-		winch = new Winch();
-		angler = new Angler();
-		navx = new AHRS(SPI.Port.kMXP);
-		flyWheels = new FlyWheels();
 		oi = new OI();
   }
 	
