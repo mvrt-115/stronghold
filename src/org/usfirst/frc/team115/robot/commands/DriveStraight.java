@@ -87,7 +87,6 @@ public class DriveStraight extends PIDCommand {
   @Override
   protected void interrupted() {
     end();
-    
   }
 
 }

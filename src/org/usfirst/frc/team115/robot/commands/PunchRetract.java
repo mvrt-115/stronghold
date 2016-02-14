@@ -32,7 +32,7 @@ public class PunchRetract extends Command {
 
   @Override
   protected void interrupted() {
-    
+    end();
   }
 
 }

@@ -38,7 +38,7 @@ public class WinchStop extends Command {
 
 	@Override
 	protected void interrupted() {
-		
+		end();
 	}
 
 }

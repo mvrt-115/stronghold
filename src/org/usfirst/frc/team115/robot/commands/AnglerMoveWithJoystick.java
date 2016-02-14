@@ -1,5 +1,6 @@
 package org.usfirst.frc.team115.robot.commands;
 
+import org.usfirst.frc.team115.robot.Constants;
 import org.usfirst.frc.team115.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -11,9 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 
 
-public class AnglerStop extends Command {
+public class AnglerMoveWithJoystick extends Command {
 
-	public AnglerStop() {
+	public AnglerMoveWithJoystick() {
 		requires(Robot.angler);
 	}
 
@@ -24,22 +25,23 @@ public class AnglerStop extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.angler.stop();
+		Robot.angler.setOutput(Robot.oi.getJoystick().getThrottle());
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return Robot.angler.isHallEffectTrue(Constants.kBottom)||Robot.angler.isHallEffectTrue(Constants.kTop);
 	}
 
 	@Override
 	protected void end() {
+		Robot.angler.stop();
 		
 	}
 
 	@Override
 	protected void interrupted() {
-		
+		end();
 	}
 
 }

@@ -33,7 +33,7 @@ public class PunchPunch extends Command {
 
   @Override
   protected void interrupted() {
-    
+    end();
   }
 
 }

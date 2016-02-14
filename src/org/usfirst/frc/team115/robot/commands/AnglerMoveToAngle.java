@@ -1,5 +1,6 @@
 package org.usfirst.frc.team115.robot.commands;
 
+import org.usfirst.frc.team115.robot.Constants;
 import org.usfirst.frc.team115.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
@@ -12,16 +13,18 @@ public class AnglerMoveToAngle extends PIDCommand {
   private static final double D = 0;
   
   private final double THRESHOLD = 0.05;
+  
+  private double angle;
 
 	public AnglerMoveToAngle(double angle) {
 		super(P, I, D);
 		requires(Robot.angler);
-		setSetpoint(angle);
+		this.angle = angle;
 	}
 
 	@Override
 	protected double returnPIDInput() {
-		return (getSetpoint() - Robot.angler.getAngle());
+		return Robot.angler.getAngle();
 	}
 
 	@Override
@@ -33,8 +36,12 @@ public class AnglerMoveToAngle extends PIDCommand {
 	@Override
 	protected void initialize() {
 		getPIDController().setInputRange(0, 90);
-		getPIDController().setAbsoluteTolerance(5);
-		getPIDController().enable();
+		getPIDController().setOutputRange(-0.6, 0.6);
+		setSetpoint(angle);
+	}
+	
+	protected double getAngleLeft() {
+	  return Math.abs(angle - Robot.angler.getAngle());
 	}
 
 	@Override
@@ -42,7 +49,7 @@ public class AnglerMoveToAngle extends PIDCommand {
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.angler.getAngle() == getSetpoint();
+		return (getAngleLeft() <= THRESHOLD)||(Robot.angler.isHallEffectTrue(Constants.kBottom)||Robot.angler.isHallEffectTrue(Constants.kTop));
 	}
 
 	@Override
@@ -51,6 +58,8 @@ public class AnglerMoveToAngle extends PIDCommand {
 	}
 
 	@Override
-	protected void interrupted() {}
+	protected void interrupted() {
+	  end();
+	}
 
 }

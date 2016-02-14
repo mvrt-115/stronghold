@@ -8,16 +8,16 @@ public class RobotMap {
   public static final int JOYSTICK = 0;
   
   // Motors
-  public static final int ANGLER_MOTOR_LEFT = 4;
-  public static final int ANGLER_MOTOR_RIGHT = 5;
-	public static final int DRIVE_MOTOR_LEFT_FRONT = 1;
+  public static final int ANGLER_MOTOR_LEFT = 1;
+  public static final int ANGLER_MOTOR_RIGHT = 2;
+	public static final int DRIVE_MOTOR_LEFT_FRONT = 3;
 	public static final int DRIVE_MOTOR_RIGHT_FRONT = 4;
-	public static final int DRIVE_MOTOR_LEFT_BACK = 2;
-	public static final int DRIVE_MOTOR_RIGHT_BACK = 3;
-	public static final int FLYWHEEL_MOTOR_LEFT = 6;
-	public static final int FLYWHEEL_MOTOR_RIGHT = 7;
-	public static final int WINCH_MOTOR_LEFT = 8;
-	public static final int WINCH_MOTOR_RIGHT = 9;
+	public static final int DRIVE_MOTOR_LEFT_BACK = 5;
+	public static final int DRIVE_MOTOR_RIGHT_BACK = 6;
+	public static final int FLYWHEEL_MOTOR_LEFT = 7;
+	public static final int FLYWHEEL_MOTOR_RIGHT = 8;
+	public static final int WINCH_MOTOR_LEFT = 9;
+	public static final int WINCH_MOTOR_RIGHT = 10;
 	
 	// Compressor
 	public static final int PCM = 1;
