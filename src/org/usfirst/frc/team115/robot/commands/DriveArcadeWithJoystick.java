@@ -12,33 +12,34 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 public class DriveArcadeWithJoystick extends Command {
-
-	public DriveArcadeWithJoystick() {
-		requires(Robot.drive);
-	}
-	
-	@Override
-	protected void initialize() {
-	}
-
-	@Override
-	protected void execute() {
-		Robot.drive.drive(Robot.oi.getJoystick());		
-	}
-
-	@Override
-	protected boolean isFinished() {
-		return false;
-	}
-
-	@Override
-	protected void end() {
-		Robot.drive.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
-	}
-
+  
+  public DriveArcadeWithJoystick() {
+    requires(Robot.drive);
+  }
+  
+  @Override
+  protected void initialize() {
+    
+  }
+  
+  @Override
+  protected void execute() {
+    Robot.drive.drive(Robot.oi.getJoystick());		
+  }
+  
+  @Override
+  protected boolean isFinished() {
+    return false;
+  }
+  
+  @Override
+  protected void end() {
+    Robot.drive.stop();
+  }
+  
+  @Override
+  protected void interrupted() {
+    end();
+  }
+  
 }

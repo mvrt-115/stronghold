@@ -13,35 +13,34 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 public class AnglerMoveWithJoystick extends Command {
-
-	public AnglerMoveWithJoystick() {
-		requires(Robot.angler);
-	}
-
-	@Override
-	protected void initialize() {
-		
-	}
-
-	@Override
-	protected void execute() {
-		Robot.angler.setOutput(Robot.oi.getJoystick().getThrottle());
-	}
-
-	@Override
-	protected boolean isFinished() {
-		return Robot.angler.isHallEffectTrue(Constants.kBottom)||Robot.angler.isHallEffectTrue(Constants.kTop);
-	}
-
-	@Override
-	protected void end() {
-		Robot.angler.stop();
-		
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
-	}
-
+  
+  public AnglerMoveWithJoystick() {
+    requires(Robot.angler);
+  }
+  
+  @Override
+  protected void initialize() {
+    	
+  }
+  
+  @Override
+  protected void execute() {
+    Robot.angler.setOutput(Robot.oi.getJoystick().getThrottle());
+  }
+  
+  @Override
+  protected boolean isFinished() {
+    return Robot.angler.isHallEffectTrue(Constants.kBottom)||Robot.angler.isHallEffectTrue(Constants.kTop);
+  }
+  
+  @Override
+  protected void end() {
+    Robot.angler.stop();	
+  }
+  
+  @Override
+  protected void interrupted() {
+    end();
+  }
+  
 }

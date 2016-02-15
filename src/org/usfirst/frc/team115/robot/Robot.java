@@ -26,68 +26,70 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
   
-	public static DriveTrain drive;
-	public static CompressorSystem compressor;
-	public static Punch punch;
-	public static Winch winch;
-	public static Angler angler;
-	public static FlyWheels flyWheels;
-	public static OI oi;
-	public static AHRS navx;
-
-
+  public static DriveTrain drive;
+  public static CompressorSystem compressor;
+  public static Punch punch;
+  public static Winch winch;
+  public static Angler angler;
+  public static FlyWheels flyWheels;
+  public static OI oi;
+  public static AHRS navx;
+  
+  
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   public void robotInit() {
     drive = new DriveTrain();
-		compressor = new CompressorSystem();
-		punch = new Punch();
-		winch = new Winch();
-		angler = new Angler();
-		navx = new AHRS(SPI.Port.kMXP);
-		flyWheels = new FlyWheels();
-		oi = new OI();
+    compressor = new CompressorSystem();
+    punch = new Punch();
+    winch = new Winch();
+    angler = new Angler();
+    navx = new AHRS(SPI.Port.kMXP);
+    flyWheels = new FlyWheels();
+    oi = new OI();
   }
-	
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-	}
-
-	public void autonomousInit() {
-	}
-
-	/**
-	 * This function is called periodically during autonomous
-	 */
-	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
-	}
-
+  
+  public void disabledPeriodic() {
+    Scheduler.getInstance().run();
+  }
+  
+  public void autonomousInit() {
+    
+  }
+  
+  /**
+   * This function is called periodically during autonomous
+   */
+  public void autonomousPeriodic() {
+    Scheduler.getInstance().run();
+  }
+  
   public void teleopInit() {
     
-	}
+  }
+  
+  /**
+   * This function is called when the disabled button is hit. You can use it
+   * to reset subsystems before shutting down.
+   */
+  public void disabledInit() {
+    
+  }
+  
+  /**
+   * This function is called periodically during operator control
+   */
+  public void teleopPeriodic() {
+    Scheduler.getInstance().run();
+  }
+  
+  /**
+   * This function is called periodically during test mode
+   */
+  public void testPeriodic() {
+    LiveWindow.run();
+  }
 
-	/**
-	 * This function is called when the disabled button is hit. You can use it
-	 * to reset subsystems before shutting down.
-	 */
-	public void disabledInit() {
-
-	}
-
-	/**
-	 * This function is called periodically during operator control
-	 */
-	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
-	}
-
-	/**
-	 * This function is called periodically during test mode
-	 */
-	public void testPeriodic() {
-		LiveWindow.run();
-	}
 }

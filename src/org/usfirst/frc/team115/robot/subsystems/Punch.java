@@ -13,17 +13,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 public class Punch extends Subsystem {
-
+  
   private DoubleSolenoid punchSolenoid;
   
   public Punch() {
     punchSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PUNCH_SOLENOID_A, RobotMap.PUNCH_SOLENOID_B);
   }
-
+  
   public void punch() {
     punchSolenoid.set(DoubleSolenoid.Value.kForward);
   }
-    
+  
   public void retract() {
     punchSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
@@ -32,5 +32,5 @@ public class Punch extends Subsystem {
   protected void initDefaultCommand() {
     
   }
-
+  
 }

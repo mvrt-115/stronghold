@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 
 public class DriveStraight extends PIDCommand {
-
+  
   protected final static double DEFAULT_SPEED = 0.75;
   private final static double P = 0;
   private final static int I = 0;
@@ -66,7 +66,6 @@ public class DriveStraight extends PIDCommand {
     getPIDController().setOutputRange(-0.6, 0.6); // Value to pass to output for driving.
     getPIDController().setContinuous(true);
     setSetpoint(Robot.navx.getYaw()); // Set the current location to goal to keep on track
-    
   }
 
   @Override

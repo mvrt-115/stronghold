@@ -10,35 +10,37 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Rithvik Chuppala and Heather Baker
  */
 
+
 public class WinchArmLift extends Command {
-	
-	public WinchArmLift() {
-		requires(Robot.winch);
-	}
-
-	@Override
-	protected void initialize() {
-		Robot.winch.releaseBrake();
-	}
-
-	@Override
-	protected void execute() {
-	  Robot.winch.liftArm();
-		Robot.winch.driveWinch(0.5);
-	}
-
-	@Override
-	protected boolean isFinished() {
-		return false;
-	}
-
-	@Override
-	protected void end() {
-		Robot.winch.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
-	}
+  
+  public WinchArmLift() {
+    requires(Robot.winch);
+  }
+  
+  @Override
+  protected void initialize() {
+    Robot.winch.releaseBrake();
+  }
+  
+  @Override
+  protected void execute() {
+    Robot.winch.liftArm();
+    Robot.winch.driveWinch(0.5);
+  }
+  
+  @Override
+  protected boolean isFinished() {
+    return false;
+  }
+  
+  @Override
+  protected void end() {
+    Robot.winch.stop();
+  }
+  
+  @Override
+  protected void interrupted() {
+    end();
+  }
+  
 }

@@ -1,7 +1,7 @@
 package org.usfirst.frc.team115.robot;
 
 public class Constants {
-
+  
   // For motor arrays
   public static final int kLeft = 0;
   public static final int kRight = 1;

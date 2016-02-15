@@ -12,33 +12,34 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 public class WinchStop extends Command {
-	
-	public WinchStop() {
-		requires(Robot.winch);
-	}
-	@Override
-	protected void initialize() {
-		
-	}
-
-	@Override
-	protected void execute() {
-		Robot.winch.stop();
-	}
-
-	@Override
-	protected boolean isFinished() {
-		return true;
-	}
-
-	@Override
-	protected void end() {
-		
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
-	}
-
+  
+  public WinchStop() {
+    requires(Robot.winch);
+  }
+  
+  @Override
+  protected void initialize() {
+    	
+  }
+  
+  @Override
+  protected void execute() {
+    Robot.winch.stop();
+  }
+  
+  @Override
+  protected boolean isFinished() {
+    return true;
+  }
+  
+  @Override
+  protected void end() {
+    
+  }
+  
+  @Override
+  protected void interrupted() {
+    end();
+  }
+  
 }

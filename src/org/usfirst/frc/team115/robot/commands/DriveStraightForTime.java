@@ -7,7 +7,7 @@ package org.usfirst.frc.team115.robot.commands;
  */
 
 public class DriveStraightForTime extends DriveStraight {
-
+  
   private double seconds;
   
   public DriveStraightForTime(double seconds) {

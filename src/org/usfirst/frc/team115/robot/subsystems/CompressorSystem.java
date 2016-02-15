@@ -16,21 +16,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CompressorSystem extends Subsystem {
   
-	private Compressor compressor;
-	
-	public CompressorSystem() {
-		compressor = new Compressor(RobotMap.PCM);
-		compressor.setClosedLoopControl(true);
-		compressor.start();
-	}
+  private Compressor compressor;
+  
+  public CompressorSystem() {
+    compressor = new Compressor(RobotMap.PCM);
+    compressor.setClosedLoopControl(true);
+    compressor.start();
+  }
 
-	public void log() {
-		SmartDashboard.putBoolean("Compressor Enabled? ", compressor.enabled());
-		SmartDashboard.putNumber("Compressor Current: ", compressor.getCompressorCurrent());
-		SmartDashboard.putBoolean("Pressure Switch Value: ", compressor.getPressureSwitchValue());
-	}
-
-	protected void initDefaultCommand() {
+  public void log() {
+    SmartDashboard.putBoolean("Compressor Enabled? ", compressor.enabled());
+    SmartDashboard.putNumber("Compressor Current: ", compressor.getCompressorCurrent());
+    SmartDashboard.putBoolean("Pressure Switch Value: ", compressor.getPressureSwitchValue());
+  }
+  
+  protected void initDefaultCommand() {
 	
-	}
+  }
+
 }

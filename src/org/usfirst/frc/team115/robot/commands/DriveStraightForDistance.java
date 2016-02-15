@@ -9,7 +9,7 @@ import org.usfirst.frc.team115.robot.Robot;
  */
 
 public class DriveStraightForDistance extends DriveStraight {
-
+  
   private final double THRESHOLD = 0.05;
   private final double TICKS_PER_ROTATION = 1444;
   private final double TICKS_PER_INCH = (1 / (Math.PI * 8)) * 2 * TICKS_PER_ROTATION;
@@ -33,15 +33,15 @@ public class DriveStraightForDistance extends DriveStraight {
   }
   
   protected double absoluteDistanceLeft() {
-	  distLeft = distance - Robot.drive.getDistance();
-	  if (distLeft < 0)
-		  return -distLeft;
-	  return distLeft;
+    distLeft = distance - Robot.drive.getDistance();
+    if (distLeft < 0)
+      return -distLeft;
+    return distLeft;
   }
   
   @Override
   protected boolean isFinished() {
     return absoluteDistanceLeft() <= THRESHOLD;
   }
-
+  
 }

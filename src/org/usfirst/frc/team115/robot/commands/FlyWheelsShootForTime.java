@@ -23,5 +23,5 @@ public class FlyWheelsShootForTime extends FlyWheelsShootForSpeed {
   protected boolean isFinished() {
     return isTimedOut();
   }
-
+  
 }
