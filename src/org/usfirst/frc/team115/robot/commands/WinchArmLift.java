@@ -5,40 +5,38 @@ import org.usfirst.frc.team115.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * 
- * 
  * @author Rithvik Chuppala and Heather Baker
  */
 
 public class WinchArmLift extends Command {
-	
-	public WinchArmLift() {
-		requires(Robot.winch);
-	}
 
-	@Override
-	protected void initialize() {
-		Robot.winch.releaseBrake();
-	}
+  public WinchArmLift() {
+    requires(Robot.winch);
+  }
 
-	@Override
-	protected void execute() {
-	  Robot.winch.liftArm();
-		Robot.winch.driveWinch(0.5);
-	}
+  @Override
+  protected void initialize() {
+    Robot.winch.releaseBrake();
+  }
 
-	@Override
-	protected boolean isFinished() {
-		return false;
-	}
+  @Override
+  protected void execute() {
+    Robot.winch.liftArm();
+    Robot.winch.driveWinch(0.5);
+  }
 
-	@Override
-	protected void end() {
-		Robot.winch.stop();
-	}
+  @Override
+  protected boolean isFinished() {
+    return false;
+  }
 
-	@Override
-	protected void interrupted() {
-		end();
-	}
+  @Override
+  protected void end() {
+    Robot.winch.stop();
+  }
+
+  @Override
+  protected void interrupted() {
+    end();
+  }
 }

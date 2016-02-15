@@ -8,11 +8,11 @@ public class FlyWheelsShootForSpeed extends Command {
 
   private double speed;
   protected final static double DEFAULT_SPEED = 0.6;
-  
+
   public FlyWheelsShootForSpeed() {
     this(DEFAULT_SPEED);
   }
-  
+
   public FlyWheelsShootForSpeed(double speed) {
     requires(Robot.flyWheels);
     this.speed = speed;
@@ -25,7 +25,7 @@ public class FlyWheelsShootForSpeed extends Command {
 
   @Override
   protected void execute() {
-    
+
   }
 
   @Override

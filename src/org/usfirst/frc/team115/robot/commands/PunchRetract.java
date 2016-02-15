@@ -12,7 +12,7 @@ public class PunchRetract extends Command {
 
   @Override
   protected void initialize() {
-        
+
   }
 
   @Override
@@ -27,7 +27,7 @@ public class PunchRetract extends Command {
 
   @Override
   protected void end() {
-    
+
   }
 
   @Override

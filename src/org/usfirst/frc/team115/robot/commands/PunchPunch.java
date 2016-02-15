@@ -12,13 +12,13 @@ public class PunchPunch extends Command {
 
   @Override
   protected void initialize() {
-    
+
   }
 
   @Override
   protected void execute() {
     Robot.punch.punch();
-    
+
   }
 
   @Override
@@ -28,7 +28,7 @@ public class PunchPunch extends Command {
 
   @Override
   protected void end() {
-    
+
   }
 
   @Override

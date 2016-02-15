@@ -12,7 +12,7 @@ public class FlyWheelsIntake extends Command {
 
   @Override
   protected void initialize() {
-    
+
   }
 
   @Override

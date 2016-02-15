@@ -5,40 +5,39 @@ import org.usfirst.frc.team115.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * 
- * 
  * @author Rithvik Chuppala and Heather Baker
  */
 
 
 public class WinchStop extends Command {
-	
-	public WinchStop() {
-		requires(Robot.winch);
-	}
-	@Override
-	protected void initialize() {
-		
-	}
 
-	@Override
-	protected void execute() {
-		Robot.winch.stop();
-	}
+  public WinchStop() {
+    requires(Robot.winch);
+  }
 
-	@Override
-	protected boolean isFinished() {
-		return true;
-	}
+  @Override
+  protected void initialize() {
 
-	@Override
-	protected void end() {
-		
-	}
+  }
 
-	@Override
-	protected void interrupted() {
-		end();
-	}
+  @Override
+  protected void execute() {
+    Robot.winch.stop();
+  }
+
+  @Override
+  protected boolean isFinished() {
+    return true;
+  }
+
+  @Override
+  protected void end() {
+
+  }
+
+  @Override
+  protected void interrupted() {
+    end();
+  }
 
 }
