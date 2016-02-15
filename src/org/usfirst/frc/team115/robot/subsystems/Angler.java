@@ -25,14 +25,18 @@ public class Angler extends Subsystem {
 	
 	private RobotDrive angler;
 	
+	private double resetVoltage = 1.00;
+	
 	private AnalogInput[] hallEffects = new AnalogInput[3];
 	
+	private AnalogInput[] encoders = new AnalogInput[2];
+	
 	private static final double HALL_EFFECT_ACTIVE = 3.00; // TODO
-	private final static double TICKS_PER_DEGREE = 1.00; // TODO
+	private final static double VOLTAGE_PER_DEGREE = 1.00; // TODO
 
-  public static final double PRESET_INTAKE = 0;
-  public static final double PRESET_SHOOT_BATTER = 90 * TICKS_PER_DEGREE;
-  public static final double PRESET_LOW_BAR = 45 * TICKS_PER_DEGREE;
+  private static final double PRESET_INTAKE = 0;
+  private static final double PRESET_SHOOT_BATTER = 90 * VOLTAGE_PER_DEGREE;
+  private static final double PRESET_LOW_BAR = 45 * VOLTAGE_PER_DEGREE;
   public static final double[] presets = {PRESET_INTAKE, PRESET_SHOOT_BATTER, PRESET_LOW_BAR};
     
 	public Angler() {
@@ -44,6 +48,9 @@ public class Angler extends Subsystem {
     hallEffects[Constants.kBottom] = new AnalogInput(RobotMap.ANGLER_HALL_BOTTOM);
     hallEffects[Constants.kMiddle] = new AnalogInput(RobotMap.ANGLER_HALL_MIDDLE);
     hallEffects[Constants.kTop] = new AnalogInput(RobotMap.ANGLER_HALL_TOP);
+    
+    encoders[Constants.kLeft] = new AnalogInput(RobotMap.ANGLER_ENCODERS_LEFT);
+    encoders[Constants.kRight] = new AnalogInput(RobotMap.ANGLER_ENCODERS_RIGHT);
 
 		resetEncoders();
 	}
@@ -57,15 +64,16 @@ public class Angler extends Subsystem {
 	}
 
 	public void resetEncoders() {
-		for(CANTalon angler : anglers) {
-			angler.reset();
+		resetVoltage = (encoders[Constants.kLeft].getVoltage() + encoders[Constants.kRight].getVoltage())/2;
 		}
-	}
 
 	public double getAngle() {
-	  return ((anglers[Constants.kLeft].getPosition() + anglers[Constants.kRight].getPosition()) / (2 * TICKS_PER_DEGREE));
+	  return ((getVoltage() - resetVoltage) / (VOLTAGE_PER_DEGREE));
 	}
 	
+	public double getVoltage(){
+		return ((encoders[Constants.kLeft].getVoltage() * 0.5)+ (encoders[Constants.kRight].getVoltage() * 0.5));
+	}
 	/** 
 	 * The hallEffect parameter number is how many hall effects are under the hall effect that is trying to be read.
 	 * Example: the number for bottom most hall effect is 0. There are no other hall effects underneath it.
