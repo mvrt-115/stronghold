@@ -34,9 +34,9 @@ public class Angler extends Subsystem {
   private static final double HALL_EFFECT_ACTIVE = 3.00; // TODO
   private final static double VOLTAGE_PER_DEGREE = 1.00; // TODO
   
-  private static final double PRESET_INTAKE = 0;
-  private static final double PRESET_SHOOT_BATTER = 90 * VOLTAGE_PER_DEGREE;
-  private static final double PRESET_LOW_BAR = 45 * VOLTAGE_PER_DEGREE;
+  public static final double PRESET_INTAKE = 0;
+  public static final double PRESET_SHOOT_BATTER = 90 * VOLTAGE_PER_DEGREE;
+  public static final double PRESET_LOW_BAR = 45 * VOLTAGE_PER_DEGREE;
   public static final double[] presets = {PRESET_INTAKE, PRESET_SHOOT_BATTER, PRESET_LOW_BAR};
   
   public Angler() {
