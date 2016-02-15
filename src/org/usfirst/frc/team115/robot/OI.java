@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
 
-   Joystick joystick;
-   
-   public OI() {
-	   joystick = new Joystick(RobotMap.JOYSTICK);
-   }
-   
-   public Joystick getJoystick() {
-	   return joystick;
-   }
+  Joystick joystick;
+
+  public OI() {
+    joystick = new Joystick(RobotMap.JOYSTICK);
+  }
+
+  public Joystick getJoystick() {
+    return joystick;
+  }
 }

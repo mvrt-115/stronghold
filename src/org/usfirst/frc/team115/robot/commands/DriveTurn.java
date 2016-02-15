@@ -6,8 +6,6 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * 
- * 
  * @author Heather Baker
  */
 
@@ -23,11 +21,11 @@ public class DriveTurn extends PIDCommand {
   private double angle;
   private double destination = 0.0;
   private double distLeft;
-  
+
   public DriveTurn(double angle) {
     this(DEFAULT_SPEED, angle);
   }
-  
+
   public DriveTurn(double speed, double angle) {
     super(P, I, D);
     this.speed = speed;
@@ -55,19 +53,19 @@ public class DriveTurn extends PIDCommand {
     getPIDController().setOutputRange(-0.6, 0.6); // Value to pass to output for driving.
     getPIDController().setContinuous(true);
     setSetpoint(destination); // Set the current location to goal to keep on track
-    
+
   }
 
   @Override
   protected void execute() {
     // No code in here, all done in usePIDOutput
   }
-  
+
   protected double absoluteDistanceLeft() {
-	  distLeft = destination - Robot.navx.getYaw();
-	  if (distLeft < 0)
-		  return -distLeft;
-	  return distLeft;
+    distLeft = destination - Robot.navx.getYaw();
+    if (distLeft < 0)
+      return -distLeft;
+    return distLeft;
   }
 
   @Override

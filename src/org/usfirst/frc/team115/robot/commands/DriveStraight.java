@@ -6,8 +6,6 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * 
- * 
  * @author Heather Baker
  */
 
@@ -17,20 +15,22 @@ public class DriveStraight extends PIDCommand {
   private final static double P = 0;
   private final static int I = 0;
   private final static int D = 0;
-  
+
   private boolean joystick;
   private double speed;
-  
+
   /**
    * Drives with a default speed. If the joystick is true, drives using the y-axis. Else goes forward at default speed
+   *
    * @param joystick
    */
   public DriveStraight(boolean joystick) {
     this(DEFAULT_SPEED, joystick);
   }
-  
+
   /**
    * Drives using the speed set from the parameter.
+   *
    * @param speed
    * @param joystick
    */
@@ -66,12 +66,12 @@ public class DriveStraight extends PIDCommand {
     getPIDController().setOutputRange(-0.6, 0.6); // Value to pass to output for driving.
     getPIDController().setContinuous(true);
     setSetpoint(Robot.navx.getYaw()); // Set the current location to goal to keep on track
-    
+
   }
 
   @Override
   protected void execute() {
-    
+
   }
 
   @Override

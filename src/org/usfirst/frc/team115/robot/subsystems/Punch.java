@@ -6,8 +6,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * 
- * 
  * @author Nolan Nyugen and Heather Baker
  */
 
@@ -15,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Punch extends Subsystem {
 
   private DoubleSolenoid punchSolenoid;
-  
+
   public Punch() {
     punchSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.PUNCH_SOLENOID_A, RobotMap.PUNCH_SOLENOID_B);
   }
@@ -23,14 +21,14 @@ public class Punch extends Subsystem {
   public void punch() {
     punchSolenoid.set(DoubleSolenoid.Value.kForward);
   }
-    
+
   public void retract() {
     punchSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
-  
+
   @Override
   protected void initDefaultCommand() {
-    
+
   }
 
 }
