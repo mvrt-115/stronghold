@@ -17,26 +17,24 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 public class Winch extends Subsystem {
-  
-  private CANTalon[] motors = new CANTalon[2];
-  
-  private RobotDrive winch;
+	
+  private CANTalon winch, winchFollower;
   
   private DoubleSolenoid armSolenoid, brakeSolenoid;
   
-  private final double TICKS_PER_INCH = 1.00; //TODO
-  
   public Winch() {
-    motors[Constants.kLeft] = new CANTalon(RobotMap.WINCH_MOTOR_LEFT);
-    motors[Constants.kRight] = new CANTalon(RobotMap.WINCH_MOTOR_RIGHT);
-    winch = new RobotDrive(motors[Constants.kLeft], motors[Constants.kRight]);
+    winch = new CANTalon(RobotMap.WINCH_MOTOR_LEFT);
+    winchFollower = new CANTalon(RobotMap.WINCH_MOTOR_RIGHT);
+    
+    winchFollower.changeControlMode(CANTalon.TalonControlMode.Follower);
+    winchFollower.set(winch.getDeviceID());
     
     armSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.ARM_SOLENOID_A, RobotMap.ARM_SOLENOID_B);
     brakeSolenoid = new DoubleSolenoid(RobotMap.PCM, RobotMap.BRAKE_SOLENOID_A, RobotMap.BRAKE_SOLENOID_B);
   }
-  
+
   public void driveWinch(double move) {
-    winch.arcadeDrive(move,0);
+    winch.set(move);
   }
   
   public void brake() {
@@ -56,10 +54,6 @@ public class Winch extends Subsystem {
     driveWinch(0);
   }
   
-  public double getDistance() {
-    return ((motors[Constants.kLeft].getPosition() + motors[Constants.kRight].getPosition()) / (2 * TICKS_PER_INCH));
-  }
-	
   @Override
   protected void initDefaultCommand() {
     
