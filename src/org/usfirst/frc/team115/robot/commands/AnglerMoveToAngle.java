@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team115.robot.commands;
 
 import org.usfirst.frc.team115.robot.Constants;
@@ -6,6 +7,11 @@ import org.usfirst.frc.team115.robot.Robot;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * 
+ * 
+ * @author Rithvik Chuppala
+ */
 public class AnglerMoveToAngle extends PIDCommand {
   
   private static final double P = 0;
@@ -51,7 +57,7 @@ public class AnglerMoveToAngle extends PIDCommand {
   
   @Override
   protected boolean isFinished() {
-    return (getAngleLeft() <= THRESHOLD)||(Robot.angler.isHallEffectTrue(Constants.kBottom)||Robot.angler.isHallEffectTrue(Constants.kTop));
+    return (getAngleLeft() <= THRESHOLD)||(Robot.angler.isHallEffectActive(Constants.kBottom)||Robot.angler.isHallEffectActive(Constants.kTop));
   }
   
   @Override

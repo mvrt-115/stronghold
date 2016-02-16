@@ -15,21 +15,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *Code for the motors that control the angle of the shooter.
  *
- *@author Ben Cuan, Nolan Nguyen, and Heather Baker
+ *@author Ben Cuan, Nolan Nguyen, Rithvik Chuppala, and Heather Baker
  */
 
 
 public class Angler extends Subsystem {
   
-  private CANTalon[] anglers = new CANTalon[2];
-  
-  private RobotDrive angler;
+  private CANTalon lead, follower;
   
   private double resetVoltage = 1.00;
   
-  private AnalogInput[] hallEffects = new AnalogInput[3];
+  private AnalogInput[] leftHallEffects = new AnalogInput[3];
+  private AnalogInput[] rightHallEffects = new AnalogInput[3];
   
-  private AnalogInput[] encoders = new AnalogInput[2];
+  private AnalogInput encoder;
   
   private static final double HALL_EFFECT_ACTIVE = 3.00; // TODO
   private final static double VOLTAGE_PER_DEGREE = 1.00; // TODO
@@ -40,23 +39,27 @@ public class Angler extends Subsystem {
   public static final double[] presets = {PRESET_INTAKE, PRESET_SHOOT_BATTER, PRESET_LOW_BAR};
   
   public Angler() {
-    anglers[Constants.kLeft] = new CANTalon(RobotMap.ANGLER_MOTOR_LEFT);
-    anglers[Constants.kRight] = new CANTalon(RobotMap.ANGLER_MOTOR_RIGHT);
+    lead = new CANTalon(RobotMap.ANGLER_MOTOR_LEFT);
+    follower = new CANTalon(RobotMap.ANGLER_MOTOR_RIGHT);
     
-    angler = new RobotDrive(anglers[Constants.kLeft], anglers[Constants.kRight]);
+    follower.changeControlMode(CANTalon.TalonControlMode.Follower);
+    follower.set(lead.getDeviceID());
     
-    hallEffects[Constants.kBottom] = new AnalogInput(RobotMap.ANGLER_HALL_BOTTOM);
-    hallEffects[Constants.kMiddle] = new AnalogInput(RobotMap.ANGLER_HALL_MIDDLE);
-    hallEffects[Constants.kTop] = new AnalogInput(RobotMap.ANGLER_HALL_TOP);
+    leftHallEffects[Constants.kBottom] = new AnalogInput(RobotMap.LEFT_ANGLER_HALL_BOTTOM);
+    leftHallEffects[Constants.kMiddle] = new AnalogInput(RobotMap.LEFT_ANGLER_HALL_MIDDLE);
+    leftHallEffects[Constants.kTop] = new AnalogInput(RobotMap.LEFT_ANGLER_HALL_TOP);  
     
-    encoders[Constants.kLeft] = new AnalogInput(RobotMap.ANGLER_ENCODERS_LEFT);
-    encoders[Constants.kRight] = new AnalogInput(RobotMap.ANGLER_ENCODERS_RIGHT);
+    rightHallEffects[Constants.kBottom]= new AnalogInput(RobotMap.RIGHT_ANGLER_HALL_BOTTOM);
+    rightHallEffects[Constants.kMiddle] = new AnalogInput(RobotMap.RIGHT_ANGLER_HALL_MIDDLE);
+    rightHallEffects[Constants.kBottom] = new AnalogInput(RobotMap.RIGHT_ANGLER_HALL_BOTTOM);
+    
+    encoder = new AnalogInput(RobotMap.ANGLER_ENCODER); 
     
     resetEncoders();
   }
   
   public void setOutput(double speed) {
-    angler.arcadeDrive(speed, 0);
+	lead.set(speed);
   }
   
   public void stop() {
@@ -64,7 +67,7 @@ public class Angler extends Subsystem {
   }
   
   public void resetEncoders() {
-    resetVoltage = (encoders[Constants.kLeft].getVoltage() + encoders[Constants.kRight].getVoltage())/2;
+    resetVoltage = (encoder.getVoltage());
   }
   
   public double getAngle() {
@@ -72,7 +75,7 @@ public class Angler extends Subsystem {
   }
   
   public double getVoltage(){
-    return ((encoders[Constants.kLeft].getVoltage() * 0.5)+ (encoders[Constants.kRight].getVoltage() * 0.5));
+    return (encoder.getVoltage());
   }
   
   /** 
@@ -81,10 +84,9 @@ public class Angler extends Subsystem {
   * @param hallEffect
   * @return
   */
-  public boolean isHallEffectTrue(int hallEffect) {
-    if(hallEffects[hallEffect].getVoltage() >= HALL_EFFECT_ACTIVE)
-      return true;
-    return false;
+  public boolean isHallEffectActive(int hallEffect) {
+    return (leftHallEffects[hallEffect].getVoltage() >= HALL_EFFECT_ACTIVE) ||
+    		(rightHallEffects[hallEffect].getVoltage()>= HALL_EFFECT_ACTIVE);
   }
   
   public void initDefaultCommand() {
