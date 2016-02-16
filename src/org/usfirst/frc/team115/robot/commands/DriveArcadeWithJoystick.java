@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 public class DriveArcadeWithJoystick extends Command {
-
+  
   private double scalar = 1.0;
   private static final double DEFAULT_PRECISION = 0.75;
   

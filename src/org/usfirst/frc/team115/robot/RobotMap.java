@@ -52,5 +52,5 @@ public class RobotMap {
   public static final int FLYWHEEL_ENCODER_LEFT_B = 5;
   public static final int FLYWHEEL_ENCODER_RIGHT_A = 6;
   public static final int FLYWHEEL_ENCODER_RIGHT_B = 6;
-
+  
 }
