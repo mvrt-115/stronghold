@@ -23,49 +23,50 @@ public class DriveTrain extends Subsystem {
   
   private CANTalon backLeft;
   private CANTalon backRight;
-	private CANTalon[] motors = new CANTalon[2];
+  private CANTalon[] motors = new CANTalon[2];
+  
+  private RobotDrive drive;
+  
+  private final double TICKS_PER_INCH = 1.00; // TODO
+  
+  public DriveTrain() {
+    motors[Constants.kLeft] = new CANTalon(RobotMap.DRIVE_MOTOR_LEFT_FRONT);
+    motors[Constants.kRight] = new CANTalon(RobotMap.DRIVE_MOTOR_RIGHT_FRONT);
+    backLeft = new CANTalon(RobotMap.DRIVE_MOTOR_LEFT_BACK);
+    backRight = new CANTalon(RobotMap.DRIVE_MOTOR_RIGHT_BACK);
+    
+    //Makes talons follow the front
+    backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
+    backLeft.set(motors[Constants.kLeft].getDeviceID());
+    backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
+    backRight.set(motors[Constants.kRight].getDeviceID());
+    
+    motors[Constants.kRight].setInverted(true);
+    motors[Constants.kLeft].setInverted(true);
+    
+    drive = new RobotDrive(motors[Constants.kLeft], motors[Constants.kRight]);
+    
+  }
+  
+  public void drive(double move, double rotate) {
+    drive.arcadeDrive(move, rotate);
+  }
+  
+  public void drive(Joystick joystick) {
+    drive.arcadeDrive(joystick);
+  }
+  
+  public void control(double leftOutput, double rightOutput) {
+    drive.setLeftRightMotorOutputs(leftOutput, rightOutput);
+  }
+  
+  public void stop() {
+    drive(0, 0);
+  }
 
-	private RobotDrive drive;
-	
-	private final double TICKS_PER_INCH = 1.00; // TODO
-	
-	public DriveTrain() {
-		motors[Constants.kLeft] = new CANTalon(RobotMap.DRIVE_MOTOR_LEFT_FRONT);
-		motors[Constants.kRight] = new CANTalon(RobotMap.DRIVE_MOTOR_RIGHT_FRONT);
-		backLeft = new CANTalon(RobotMap.DRIVE_MOTOR_LEFT_BACK);
-		backRight = new CANTalon(RobotMap.DRIVE_MOTOR_RIGHT_BACK);
-		
-		//Makes talons follow the front
-		backLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
-		backLeft.set(motors[Constants.kLeft].getDeviceID());
-		backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
-		backRight.set(motors[Constants.kRight].getDeviceID());
-		
-		motors[Constants.kRight].setInverted(true);
-		motors[Constants.kLeft].setInverted(true);
-		
-		drive = new RobotDrive(motors[Constants.kLeft], motors[Constants.kRight]);
-		
-	}
-	
-	public void drive(double move, double rotate) {
-		drive.arcadeDrive(move, rotate);
-	}
-	
-	public void drive(Joystick joystick) {
-		drive.arcadeDrive(joystick);
-	}
-	
-	public void control(double leftOutput, double rightOutput) {
-		drive.setLeftRightMotorOutputs(leftOutput, rightOutput);
-	}
-	
-	public void stop() {
-		drive(0, 0);
-	}
-
-	@Override
-	protected void initDefaultCommand() {
-		this.setDefaultCommand(new DriveArcadeWithJoystick());		
-	}
+  @Override
+  protected void initDefaultCommand() {
+    this.setDefaultCommand(new DriveArcadeWithJoystick());		
+  }
+  
 }

@@ -11,19 +11,21 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-
-   Joystick joystick;
-   JoystickButton ds, ps;
+  
+  Joystick joystick;
+  JoystickButton driveStraight, drivePrecision;
    
-   public OI() {
-	   joystick = new Joystick(RobotMap.JOYSTICK);
-	   ds= new JoystickButton(joystick, 1);
-	   ps = new JoystickButton(joystick, 2);
-	   ds.whileHeld(new DriveStraightWithJoystick());
-	   ps.whileHeld(new DriveArcadeWithJoystick(true));
-   }
+  public OI() {
+    joystick = new Joystick(RobotMap.JOYSTICK);
+    
+    driveStraight = new JoystickButton(joystick, RobotMap.DRIVE_STRAIGHT_BUTTON);
+    drivePrecision = new JoystickButton(joystick, RobotMap.DRIVE_PRECISION_BUTTON);
+    
+    driveStraight.whileHeld(new DriveStraightWithJoystick());
+    drivePrecision.whileHeld(new DriveArcadeWithJoystick(true));
+  }
    
-   public Joystick getJoystick() {
-	   return joystick;
-   }
+  public Joystick getJoystick() {
+     return joystick;
+  }
 }
