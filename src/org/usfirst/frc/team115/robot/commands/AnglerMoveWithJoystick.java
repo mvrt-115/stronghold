@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * 
  * 
- * @author Heather Baker
+ * @author Heather Baker and Rithvik Chuppala
  */
 
 
@@ -30,7 +30,7 @@ public class AnglerMoveWithJoystick extends Command {
   
   @Override
   protected boolean isFinished() {
-    return Robot.angler.isHallEffectTrue(Constants.kBottom)||Robot.angler.isHallEffectTrue(Constants.kTop);
+    return Robot.angler.isHallEffectActive(Constants.kBottom)||Robot.angler.isHallEffectActive(Constants.kTop);
   }
   
   @Override

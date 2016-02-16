@@ -31,9 +31,13 @@ public class RobotMap {
   public static final int PUNCH_SOLENOID_B = 2;
   
   // Hall Effects
-  public static final int ANGLER_HALL_BOTTOM = 0;
-  public static final int ANGLER_HALL_MIDDLE = 1;
-  public static final int ANGLER_HALL_TOP = 2;
+  public static final int LEFT_ANGLER_HALL_BOTTOM = 0;
+  public static final int LEFT_ANGLER_HALL_MIDDLE = 1;
+  public static final int LEFT_ANGLER_HALL_TOP = 2;
+  
+  public static final int RIGHT_ANGLER_HALL_BOTTOM = 3;
+  public static final int RIGHT_ANGLER_HALL_MIDDLE = 4;
+  public static final int RIGHT_ANGLER_HALL_TOP = 5;
   
   // Encoders
   public static final int ANGLER_ENCODER_LEFT_A = 1;
@@ -48,7 +52,7 @@ public class RobotMap {
   public static final int FLYWHEEL_ENCODER_LEFT_B = 5;
   public static final int FLYWHEEL_ENCODER_RIGHT_A = 6;
   public static final int FLYWHEEL_ENCODER_RIGHT_B = 6;
-  public static final int ANGLER_ENCODERS_LEFT = 0;
-  public static final int ANGLER_ENCODERS_RIGHT = 1;
+  public static final int ANGLER_ENCODER = 0;
+  
   
 }
