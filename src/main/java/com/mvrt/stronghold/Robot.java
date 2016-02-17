@@ -4,6 +4,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.mvrt.stronghold.subsystems.Angler;
 import com.mvrt.stronghold.subsystems.DriveTrain;
 import com.mvrt.stronghold.web.WebServer;
+import com.mvrt.stronghold.subsystems.Flywheel;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI;
@@ -23,6 +24,8 @@ public class Robot extends IterativeRobot {
   public static AHRS navx;
   public static DriveTrain drive;
   public static Angler angler;
+  public static Flywheel leftFlywheel;
+  public static Flywheel rightFlywheel;
 
 
   /**
@@ -33,6 +36,14 @@ public class Robot extends IterativeRobot {
     drive = new DriveTrain();
     angler = new Angler();
     navx = new AHRS(SPI.Port.kMXP);
+    leftFlywheel =
+        new Flywheel("Left Flywheel", Constants.kFlywheelLeftId, Constants.kFlywheelEncoderLeftA,
+            Constants.kFlywheelEncoderLeftB, Constants.kFlywheelKp, Constants.kFlywheelKi,
+            Constants.kFlywheelKd);
+    rightFlywheel =
+        new Flywheel("Right Flywheel", Constants.kFlywheelRightId, Constants.kFlywheelEncoderRightA,
+            Constants.kFlywheelEncoderRightB, Constants.kFlywheelKp, Constants.kFlywheelKi,
+            Constants.kFlywheelKd);
     operatorInterface = new OperatorInterface();
     WebServer.startServer();
     new Compressor().start();
