@@ -8,6 +8,12 @@ public class Constants extends ConstantsBase {
 
   public static double kAnglerVoltsPerDegree = 360.0 / 5.0;
 
+  public static double kFlywheelRotationsPerTick = 1.0 / 1024.0;
+
+  public static double kFlywheelKp = 0;
+  public static double kFlywheelKi = 0;
+  public static double kFlywheelKd = 0;
+
   public static int kEndEditableArea = 0;
 
   public static final int kDriveJoystick = 0;
