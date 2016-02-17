@@ -15,8 +15,6 @@ public class DriveTrain extends Subsystem {
   private CANTalon frontLeft, frontRight, backLeft, backRight;
   private Encoder leftEncoder, rightEncoder;
 
-  private final double TICKS_PER_INCH = 8 * Math.PI / 250;
-
   private RobotDrive drive;
 
   public DriveTrain() {

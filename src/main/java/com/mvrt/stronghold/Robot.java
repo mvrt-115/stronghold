@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
 
-  public static OI oi;
+  public static OperatorInterface operatorInterface;
   public static AHRS navx;
   public static DriveTrain drive;
   public static Angler angler;
@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
     drive = new DriveTrain();
     angler = new Angler();
     navx = new AHRS(SPI.Port.kMXP);
-    oi = new OI();
+    operatorInterface = new OperatorInterface();
 
     new Compressor().start();
   }
@@ -45,7 +45,7 @@ public class Robot extends IterativeRobot {
   }
 
   /**
-   * This function is called periodically during autonomous
+   * This function is called periodically during autonomous.
    */
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
@@ -63,14 +63,14 @@ public class Robot extends IterativeRobot {
   }
 
   /**
-   * This function is called periodically during operator control
+   * This function is called periodically during operator control.
    */
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
   }
 
   /**
-   * This function is called periodically during test mode
+   * This function is called periodically during test mode.
    */
   public void testPeriodic() {
     LiveWindow.run();

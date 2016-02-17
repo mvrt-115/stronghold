@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AnglerMoveWithJoystick extends Command {
 
-  public AnglerMoveWithJoystick(){
+  public AnglerMoveWithJoystick() {
     requires(Robot.angler);
   }
 
