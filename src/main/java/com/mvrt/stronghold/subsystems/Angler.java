@@ -25,18 +25,18 @@ public class Angler extends Subsystem {
    * @author Marcus Plutowski
    */
   public Angler() {
-    anglerOne = new CANTalon(Constants.kAnglerTalonTwo);
+    anglerOne = new CANTalon(Constants.kAnglerTalonOne);
     anglerTwo = new CANTalon(Constants.kAnglerTalonTwo);
 
     anglerTwo.setInverted(true);
 
     brake = new DoubleSolenoid(Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo);
 
-    hallEffects[0] =
+    hallEffects[Constants.kTopAnglerHallEffect] =
         new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsBottomLimit]);
-    hallEffects[1] =
+    hallEffects[Constants.kBatterAnglerHallEffect] =
         new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsBatter]);
-    hallEffects[2] =
+    hallEffects[Constants.kBottomAnglerHallEffect] =
         new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsTopLimit]);
 
     encoder = new AnalogInput(Constants.kAnglerEncoder);

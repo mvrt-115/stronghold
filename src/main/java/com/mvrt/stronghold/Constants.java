@@ -49,13 +49,18 @@ public class Constants extends ConstantsBase {
   public static int kFlywheelEncoderLeftB = 5;
   public static int kFlywheelEncoderRightA = 6;
   public static int kFlywheelEncoderRightB = 7;
-
+  
   public static int kAnglerHallEffectsBottomLimit = 10;
   public static int kAnglerHallEffectsBatter = 11;
   public static int kAnglerHallEffectsTopLimit = 12;
 
   public static int[] kAnglerHallEffects =
       {kAnglerHallEffectsBottomLimit, kAnglerHallEffectsBatter, kAnglerHallEffectsTopLimit};
+
+  public static int kTopAnglerHallEffect = 0;
+  public static int kBatterAnglerHallEffect = 0;
+  public static int kBottomAnglerHallEffect = 0;
+
 
   public static int kAnglerBrakePortOne;
   public static int kAnglerBrakePortTwo;
