@@ -4,6 +4,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.mvrt.stronghold.subsystems.Angler;
 import com.mvrt.stronghold.subsystems.DriveTrain;
 import com.mvrt.stronghold.subsystems.Flywheel;
+import com.mvrt.stronghold.subsystems.Punch;
 import com.mvrt.stronghold.web.WebServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -26,7 +27,7 @@ public class Robot extends IterativeRobot {
   public static Angler angler;
   public static Flywheel leftFlywheel;
   public static Flywheel rightFlywheel;
-
+  public static Punch punch;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -36,6 +37,8 @@ public class Robot extends IterativeRobot {
     drive = new DriveTrain();
     angler = new Angler();
     navx = new AHRS(SPI.Port.kMXP);
+    punch = new Punch();
+    
     leftFlywheel =
         new Flywheel("Left Flywheel", Constants.kFlywheelLeftId, Constants.kFlywheelEncoderLeftA,
             Constants.kFlywheelEncoderLeftB, Constants.kFlywheelKp, Constants.kFlywheelKi,
