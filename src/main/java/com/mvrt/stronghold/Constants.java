@@ -6,7 +6,8 @@ public class Constants extends ConstantsBase {
 
   public static double kDriveDistancePerTick = 8 * Math.PI / 250;
 
-  public static double kAnglerVoltsPerDegree = 360.0 / 5.0;
+  public static double kAnglerDegreesPerVolt = 360.0 / 5.0;
+  public static double kAnglerVoltsPerDegree = 5.0 / 360.0;
 
   public static double kFlywheelRotationsPerTick = 1.0 / 1024.0;
 
@@ -23,8 +24,8 @@ public class Constants extends ConstantsBase {
   public static int kDriveRightFrontId = 3;
   public static int kDriveRightRearId = 4;
 
-  public static int kAnglerOneId = 5;
-  public static int kAnglerTwoId = 6;
+  public static int kAnglerTalonOne = 5;
+  public static int kAnglerTalonTwo = 6;
 
   public static int kFlywheelLeftId = 7;
   public static int kFlywheelRightId = 8;
@@ -49,9 +50,16 @@ public class Constants extends ConstantsBase {
   public static int kFlywheelEncoderRightA = 6;
   public static int kFlywheelEncoderRightB = 7;
 
-  public static int kAnglerHallBottom = 10;
-  public static int kAnglerHallMiddle = 11;
-  public static int kAnglerHallTop = 12;
+  public static int kAnglerHallEffectsBottomLimit = 10;
+  public static int kAnglerHallEffectsBatter = 11;
+  public static int kAnglerHallEffectsTopLimit = 12;
+  
+  public static int[] kAnglerHallEffects
+  			= {kAnglerHallEffectsBottomLimit, kAnglerHallEffectsBatter, kAnglerHallEffectsTopLimit};
+
+  public static int kAnglerBrakePortOne;
+  public static int kAnglerBrakePortTwo;
+
 
 
   @Override
