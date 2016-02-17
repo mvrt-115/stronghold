@@ -14,11 +14,11 @@ public class Angler extends Subsystem {
   private CANTalon anglerTwo;
 
   private DigitalInput[] hallEffects;
-  
+
   private boolean isBraked;
   private AnalogInput encoder;
   DoubleSolenoid brake;
-  
+
   private double resetVoltage = 0.00;
 
   /*
@@ -30,14 +30,17 @@ public class Angler extends Subsystem {
 
     anglerTwo.setInverted(true);
 
-    brake = new DoubleSolenoid(Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo); 
-    
-    hallEffects[0] = new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsBottomLimit]);
-    hallEffects[1] = new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsBatter]);
-    hallEffects[2] = new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsTopLimit]);
+    brake = new DoubleSolenoid(Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo);
+
+    hallEffects[0] =
+        new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsBottomLimit]);
+    hallEffects[1] =
+        new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsBatter]);
+    hallEffects[2] =
+        new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsTopLimit]);
 
     encoder = new AnalogInput(Constants.kAnglerEncoder);
-    
+
     isBraked = false;
   }
 
@@ -45,26 +48,27 @@ public class Angler extends Subsystem {
     anglerOne.set(speed);
     anglerTwo.set(speed);
   }
-  
-  public void brakeOff(){
-	  brake.set(DoubleSolenoid.Value.kReverse);
-      isBraked = false;
+
+  public void brakeOff() {
+    brake.set(DoubleSolenoid.Value.kReverse);
+    isBraked = false;
   }
-  public void brakeOn(){
-	  brake.set(DoubleSolenoid.Value.kForward);
-	  isBraked = true;
+
+  public void brakeOn() {
+    brake.set(DoubleSolenoid.Value.kForward);
+    isBraked = true;
   }
-  public void toggleBrake(){
-	  if(isBraked){
-	      brakeOff();
-	  }
-	  else{
-		  brakeOn();
-	  }
+
+  public void toggleBrake() {
+    if (isBraked) {
+      brakeOff();
+    } else {
+      brakeOn();
+    }
   }
-  
+
   public void stop() {
-	brakeOn();
+    brakeOn();
     setOutput(0);
   }
 
@@ -82,11 +86,12 @@ public class Angler extends Subsystem {
   public boolean isBottomLimit() {
     return isHall(Constants.kAnglerHallEffectsBottomLimit);
   }
+
   public boolean isTopLimit() {
     return isHall(Constants.kAnglerHallEffectsTopLimit);
   }
-  
-  public boolean isHall(int index){
+
+  public boolean isHall(int index) {
     return hallEffects[index].get();
   }
 }

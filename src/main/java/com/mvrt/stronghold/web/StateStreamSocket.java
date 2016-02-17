@@ -20,6 +20,7 @@ public class StateStreamSocket extends WebSocketAdapter {
 
   /**
    * Show that the class can be updated.
+   *
    * @return that it is running and the hashmap isn't empty
    */
   public boolean canBeUpdated() {
@@ -28,8 +29,9 @@ public class StateStreamSocket extends WebSocketAdapter {
 
   /**
    * Connection will be closed.
+   *
    * @param statusCode the close status code
-   * @param reason optional reason for close.
+   * @param reason     optional reason for close.
    */
   public void onWebSocketClose(int statusCode, String reason) {
     super.onWebSocketClose(statusCode, reason);
@@ -38,6 +40,7 @@ public class StateStreamSocket extends WebSocketAdapter {
 
   /**
    * Session is successfully created and ready to use.
+   *
    * @param session the websocket session
    */
   public void onWebSocketConnect(Session session) {
@@ -47,6 +50,7 @@ public class StateStreamSocket extends WebSocketAdapter {
 
   /**
    * A WebSocket exception has occurred.
+   *
    * @param cause the cause for the error.
    */
   public void onWebSocketError(Throwable cause) {
@@ -56,6 +60,7 @@ public class StateStreamSocket extends WebSocketAdapter {
 
   /**
    * A WebSocket Text frame was received.
+   *
    * @param message the message
    */
   public void onWebSocketText(String message) {
@@ -95,6 +100,7 @@ public class StateStreamSocket extends WebSocketAdapter {
 
   /**
    * A WebSocket binary frame has been received.
+   *
    * @param arg0 dummy argument
    * @param arg1 dummy argument
    * @param arg2 dummy argument
@@ -118,6 +124,7 @@ public class StateStreamSocket extends WebSocketAdapter {
 
   /**
    * Put the given key in the hashmap to show subscription.
+   *
    * @param key in question
    */
   private void subscribe(String key) {
@@ -126,6 +133,7 @@ public class StateStreamSocket extends WebSocketAdapter {
 
   /**
    * Remove key from hashmap to show unsubscribed-ness.
+   *
    * @param key key to signal removal
    */
   private void unsubscribe(String key) {

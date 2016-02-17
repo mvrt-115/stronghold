@@ -53,9 +53,9 @@ public class Constants extends ConstantsBase {
   public static int kAnglerHallEffectsBottomLimit = 10;
   public static int kAnglerHallEffectsBatter = 11;
   public static int kAnglerHallEffectsTopLimit = 12;
-  
-  public static int[] kAnglerHallEffects
-  			= {kAnglerHallEffectsBottomLimit, kAnglerHallEffectsBatter, kAnglerHallEffectsTopLimit};
+
+  public static int[] kAnglerHallEffects =
+      {kAnglerHallEffectsBottomLimit, kAnglerHallEffectsBatter, kAnglerHallEffectsTopLimit};
 
   public static int kAnglerBrakePortOne;
   public static int kAnglerBrakePortTwo;

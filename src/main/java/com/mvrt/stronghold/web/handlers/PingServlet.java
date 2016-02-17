@@ -16,10 +16,11 @@ public class PingServlet extends HttpServlet {
 
   /**
    * Create the webpage.
-   * @param request what is sent
+   *
+   * @param request  what is sent
    * @param response what is received
    * @throws ServletException in case there's an error
-   * @throws IOException in case there's an error
+   * @throws IOException      in case there's an error
    */
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -20,6 +20,7 @@ public class ConstantsServlet extends HttpServlet {
 
   /**
    * method to show the actual webpage.
+   *
    * @param response object to manipulate the webpage
    * @throws IOException in case everything fails
    */
@@ -54,10 +55,11 @@ public class ConstantsServlet extends HttpServlet {
 
   /**
    * Create the webpage.
-   * @param request what is sent
+   *
+   * @param request  what is sent
    * @param response what is received
    * @throws ServletException in case there's an error
-   * @throws IOException in case there's an error
+   * @throws IOException      in case there's an error
    */
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -67,10 +69,11 @@ public class ConstantsServlet extends HttpServlet {
 
   /**
    * Allow for the changing of constants.
-   * @param request what is sent
+   *
+   * @param request  what is sent
    * @param response what is received
    * @throws ServletException in case there's an issue
-   * @throws IOException in case there's an issue
+   * @throws IOException      in case there's an issue
    */
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {

@@ -14,6 +14,7 @@ public class WebUtil implements Runnable {
 
   /**
    * Constructor of the class.
+   *
    * @param size - size for the ArrayBlockingQueue
    */
   public WebUtil(int size) {
@@ -66,6 +67,7 @@ public class WebUtil implements Runnable {
 
   /**
    * Add a process to a queue.
+   *
    * @param r the process
    * @return the queue with the added process.
    */

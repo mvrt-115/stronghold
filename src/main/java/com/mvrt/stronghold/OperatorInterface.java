@@ -22,8 +22,8 @@ public class OperatorInterface {
 
     // run one preset of the flywheels
     new JoystickButton(driveJoystick, 5).whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, 100));
-    new JoystickButton(driveJoystick, 5).whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel,
-        100));
+    new JoystickButton(driveJoystick, 5)
+        .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, 100));
   }
 
   public Joystick getDriveJoystick() {
