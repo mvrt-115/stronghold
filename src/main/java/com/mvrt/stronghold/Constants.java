@@ -56,6 +56,9 @@ public class Constants extends ConstantsBase {
   public static int kAnglerBrakePortOne;
   public static int kAnglerBrakePortTwo;
 
+  static {
+    new Constants().loadFromFile();
+  }
 
   @Override
   public String getFileLocation() {
