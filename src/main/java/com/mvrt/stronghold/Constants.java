@@ -24,7 +24,7 @@ public class Constants extends ConstantsBase {
   public static int kDriveRightFrontId = 3;
   public static int kDriveRightRearId = 4;
 
-  public static int kAnglerTalonOne = 5;
+  public static int kAnglerTalonOneId = 5;
   public static int kAnglerTalonTwo = 6;
 
   public static int kFlywheelLeftId = 7;
@@ -49,22 +49,13 @@ public class Constants extends ConstantsBase {
   public static int kFlywheelEncoderLeftB = 5;
   public static int kFlywheelEncoderRightA = 6;
   public static int kFlywheelEncoderRightB = 7;
-  
+
   public static int kAnglerHallEffectsBottomLimit = 10;
   public static int kAnglerHallEffectsBatter = 11;
   public static int kAnglerHallEffectsTopLimit = 12;
 
-  public static int[] kAnglerHallEffects =
-      {kAnglerHallEffectsBottomLimit, kAnglerHallEffectsBatter, kAnglerHallEffectsTopLimit};
-
-  public static int kTopAnglerHallEffect = 0;
-  public static int kBatterAnglerHallEffect = 0;
-  public static int kBottomAnglerHallEffect = 0;
-
-
   public static int kAnglerBrakePortOne;
   public static int kAnglerBrakePortTwo;
-
 
 
   @Override

@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
     angler = new Angler();
     navx = new AHRS(SPI.Port.kMXP);
     punch = new Punch();
-    
+
     leftFlywheel =
         new Flywheel("Left Flywheel", Constants.kFlywheelLeftId, Constants.kFlywheelEncoderLeftA,
             Constants.kFlywheelEncoderLeftB, Constants.kFlywheelKp, Constants.kFlywheelKi,

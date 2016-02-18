@@ -3,12 +3,9 @@ package com.mvrt.stronghold.commands;
 import com.mvrt.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- * Created by Samster on 2/16/2016.
- */
 public class Shoot extends Command {
 
-  public Shoot(){
+  public Shoot() {
     requires(Robot.punch);
   }
 
@@ -19,7 +16,8 @@ public class Shoot extends Command {
   }
 
   @Override
-  protected void execute() {}
+  protected void execute() {
+  }
 
   @Override
   protected boolean isFinished() {

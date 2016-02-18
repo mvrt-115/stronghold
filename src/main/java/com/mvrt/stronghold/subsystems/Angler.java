@@ -6,14 +6,15 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.networktables.ConnectionInfo;
 
 public class Angler extends Subsystem {
 
   private CANTalon anglerOne;
   private CANTalon anglerTwo;
 
-  private DigitalInput[] hallEffects;
+  private DigitalInput hallEffectsBottom;
+  private DigitalInput hallEffectsBatter;
+  private DigitalInput hallEffectsTop;
 
   private boolean isBraked;
   private AnalogInput encoder;
@@ -25,19 +26,16 @@ public class Angler extends Subsystem {
    * @author Marcus Plutowski
    */
   public Angler() {
-    anglerOne = new CANTalon(Constants.kAnglerTalonOne);
+    anglerOne = new CANTalon(Constants.kAnglerTalonOneId);
     anglerTwo = new CANTalon(Constants.kAnglerTalonTwo);
 
     anglerTwo.setInverted(true);
 
     brake = new DoubleSolenoid(Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo);
 
-    hallEffects[Constants.kTopAnglerHallEffect] =
-        new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsBottomLimit]);
-    hallEffects[Constants.kBatterAnglerHallEffect] =
-        new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsBatter]);
-    hallEffects[Constants.kBottomAnglerHallEffect] =
-        new DigitalInput(Constants.kAnglerHallEffects[Constants.kAnglerHallEffectsTopLimit]);
+    hallEffectsBottom = new DigitalInput(Constants.kAnglerHallEffectsBottomLimit);
+    hallEffectsBatter = new DigitalInput(Constants.kAnglerHallEffectsBatter);
+    hallEffectsTop = new DigitalInput(Constants.kAnglerHallEffectsTopLimit);
 
     encoder = new AnalogInput(Constants.kAnglerEncoder);
 
@@ -84,14 +82,14 @@ public class Angler extends Subsystem {
   }
 
   public boolean isBottomLimit() {
-    return isHall(Constants.kAnglerHallEffectsBottomLimit);
+    return hallEffectsBottom.get();
   }
 
   public boolean isTopLimit() {
-    return isHall(Constants.kAnglerHallEffectsTopLimit);
+    return hallEffectsTop.get();
   }
 
-  public boolean isHall(int index) {
-    return hallEffects[index].get();
+  public boolean isBatterLimit() {
+    return hallEffectsBatter.get();
   }
 }

@@ -5,15 +5,12 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- * Created by Michael Sandler on 2/16/16.
- */
 public class Punch extends Subsystem {
 
   private DoubleSolenoid punch;
 
   public Punch() {
-    punch  = new DoubleSolenoid(Constants.kPunchSolenoidA, Constants.kPunchSolenoidB);
+    punch = new DoubleSolenoid(Constants.kPunchSolenoidA, Constants.kPunchSolenoidB);
   }
 
   public void extend() {
