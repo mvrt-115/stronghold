@@ -1,6 +1,8 @@
 package com.mvrt.stronghold;
 
+import com.mvrt.lib.ConstantsBase;
 import com.mvrt.stronghold.commands.SetFlywheelSpeed;
+import com.mvrt.stronghold.commands.Shoot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -10,24 +12,41 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OperatorInterface {
   Joystick driveJoystick;
+  Joystick operatorJoystick;
 
   public OperatorInterface() {
     driveJoystick = new Joystick(Constants.kDriveJoystick);
+    operatorJoystick = new Joystick(Constants.kOperatorJoystick);
 
-    // TODO(achierius) add operator joystick and mapping
-
-    // stop the flywheels
-    new JoystickButton(driveJoystick, 4).whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, 0));
-    new JoystickButton(driveJoystick, 4).whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, 0));
+    // intake with the flywheels
+    new JoystickButton(operatorJoystick, Constants.kIntakeButton).
+        whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterIntake));
+    new JoystickButton(operatorJoystick, Constants.kIntakeButton).
+        whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterIntake));
 
     // run one preset of the flywheels
-    new JoystickButton(driveJoystick, 5).whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, 100));
-    new JoystickButton(driveJoystick, 5)
-        .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, 100));
+    new JoystickButton(operatorJoystick, Constants.kShootPresetButton1).
+        whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset1));
+    new JoystickButton(operatorJoystick, Constants.kShootPresetButton1)
+        .whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset1));
+
+    // run another preset of the flywheels
+    new JoystickButton(operatorJoystick, Constants.kShootPresetButton2).
+        whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset2));
+    new JoystickButton(operatorJoystick, Constants.kShootPresetButton2).
+        whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset2));
+
+    // shoot the ball
+    new JoystickButton(operatorJoystick, Constants.kExtendPistonButton).whenPressed(new Shoot());
+
   }
 
   public Joystick getDriveJoystick() {
     return driveJoystick;
+  }
+
+  public Joystick getOperatorJoystick() {
+    return operatorJoystick;
   }
 }
 

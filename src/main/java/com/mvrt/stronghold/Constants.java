@@ -18,6 +18,16 @@ public class Constants extends ConstantsBase {
   public static int kEndEditableArea = 0;
 
   public static final int kDriveJoystick = 0;
+  public static final int kOperatorJoystick = 1;
+
+  public static final int kIntakeButton = 4;
+  public static final int kShootPresetButton1 = 5;
+  public static final int kShootPresetButton2 = 6;
+  public static final int kExtendPistonButton = 1;
+
+  public static final int kShooterIntake = -50;
+  public static final int kShooterPreset1 = 100;
+  public static final int kShooterPreset2 = 50;
 
   public static int kDriveLeftFrontId = 1;
   public static int kDriveLeftRearId = 2;
