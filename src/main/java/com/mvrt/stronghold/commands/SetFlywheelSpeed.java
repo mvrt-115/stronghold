@@ -24,6 +24,7 @@ public class SetFlywheelSpeed extends Command {
   @Override
   protected void execute() {
     referenceFlywheel.setSetpoint(speed);
+    referenceFlywheel.enable();
     finished = true;
   }
 
