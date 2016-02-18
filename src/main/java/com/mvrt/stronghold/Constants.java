@@ -36,7 +36,6 @@ public class Constants extends ConstantsBase {
   public static int kPunchSolenoidA = 0;
   public static int kPunchSolenoidB = 1;
 
-
   public static int kAnglerEncoder = 0;
 
   public static int kDriveEncoderLeftA = 0;
