@@ -14,6 +14,8 @@ public class SetFlywheelSpeed extends Command {
   public SetFlywheelSpeed(Flywheel flywheel, double speed) {
     this.speed = speed;
     this.referenceFlywheel = flywheel;
+
+    requires(flywheel);
   }
 
   @Override
