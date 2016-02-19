@@ -15,6 +15,26 @@ public class Constants extends ConstantsBase {
   public static double kFlywheelKi = 0;
   public static double kFlywheelKd = 0;
 
+  public static double kAnglerBottomUpKp = 0;
+  public static double kAnglerBottomUpKi = 0;
+  public static double kAnglerBottomUpKd = 0;
+
+  public static double kAnglerBottomDownKp = 0;
+  public static double kAnglerBottomDownKi = 0;
+  public static double kAnglerBottomDownKd = 0;
+
+  public static double kAnglerMiddleUpKp = 0;
+  public static double kAnglerMiddleUpKi = 0;
+  public static double kAnglerMiddleUpKd = 0;
+
+  public static double kAnglerMiddleDownKp = 0;
+  public static double kAnglerMiddleDownKi = 0;
+  public static double kAnglerMiddleDownKd = 0;
+
+  public static double kAnglerTopKp = 0;
+  public static double kAnglerTopKi = 0;
+  public static double kAnglerTopKd = 0;
+
   public static int kEndEditableArea = 0;
 
   public static final int kDriveJoystick = 0;

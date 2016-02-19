@@ -38,6 +38,12 @@ public class SynchronousPid {
     this.kD = kD;
   }
 
+  public SynchronousPid(PidConstants constants) {
+    this.kP = constants.kP;
+    this.kI = constants.kI;
+    this.kD = constants.kD;
+  }
+
   public String getType() {
     return "PIDController";
   }
@@ -92,6 +98,12 @@ public class SynchronousPid {
     this.kP = kP;
     this.kI = kI;
     this.kD = kD;
+  }
+
+  public void setPid(PidConstants constants) {
+    this.kP = constants.kP;
+    this.kI = constants.kI;
+    this.kD = constants.kD;
   }
 
   /**

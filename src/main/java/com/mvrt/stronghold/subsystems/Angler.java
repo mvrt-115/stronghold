@@ -57,6 +57,10 @@ public class Angler extends Subsystem {
     isBraked = true;
   }
 
+  public boolean isBraked() {
+    return isBraked;
+  }
+
   public void toggleBrake() {
     if (isBraked) {
       brakeOff();

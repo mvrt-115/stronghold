@@ -27,7 +27,7 @@ public class Flywheel extends PIDSubsystem {
   @Override
   protected double returnPIDInput() {
     double velocity = encoder.getRate();
-    SmartDashboard.putBoolean(getName() + " On Goal", Math.abs(velocity - this.getSetpoint()) <= 5);
+    SmartDashboard.putBoolean(getName() + " On Goal", Math.abs(velocity - this.getSetpoint()) <= 3);
     return encoder.getRate();
   }
 
