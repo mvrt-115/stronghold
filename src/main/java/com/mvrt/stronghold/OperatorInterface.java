@@ -41,8 +41,10 @@ public class OperatorInterface {
     new JoystickButton(operatorJoystick, Constants.kExtendPistonButton).whenPressed(new Shoot());
 
     // move the shooter to a preset angle
-    new JoystickButton(operatorJoystick, Constants.kIntakePresetButton).whenPressed(new AnglerMoveToAngle(Constants.kIntakePreset));
-    new JoystickButton(operatorJoystick, Constants.kBatterPresetButton).whenPressed(new AnglerMoveToAngle(Constants.kBatterPreset));
+    new JoystickButton(operatorJoystick, Constants.kIntakePresetButton)
+        .whenPressed(new AnglerMoveToAngle(Constants.kIntakePreset));
+    new JoystickButton(operatorJoystick, Constants.kBatterPresetButton)
+        .whenPressed(new AnglerMoveToAngle(Constants.kBatterPreset));
   }
 
   public Joystick getDriveJoystick() {
