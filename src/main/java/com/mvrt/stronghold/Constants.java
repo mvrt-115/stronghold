@@ -15,15 +15,21 @@ public class Constants extends ConstantsBase {
   public static double kFlywheelKi = 0;
   public static double kFlywheelKd = 0;
 
+  public static double kAnglerKp = 0;
+  public static double kAnglerKi = 0;
+  public static double kAnglerKd = 0;
+
   public static int kEndEditableArea = 0;
 
   public static final int kDriveJoystick = 0;
   public static final int kOperatorJoystick = 1;
 
   public static final int kIntakeButton = 4;
-  public static final int kShootPresetButton1 = 5;
-  public static final int kShootPresetButton2 = 6;
+  public static final int kShootPresetButton1 = 2;
+  public static final int kShootPresetButton2 = 3;
   public static final int kExtendPistonButton = 1;
+  public static final int kIntakePresetButton = 11;
+  public static final int kBatterPresetButton = 9;
 
   public static final int kShooterIntake = -50;
   public static final int kShooterPreset1 = 100;
@@ -65,6 +71,9 @@ public class Constants extends ConstantsBase {
 
   public static int kAnglerBrakePortOne;
   public static int kAnglerBrakePortTwo;
+
+  public static int kIntakePreset = 0;
+  public static int kBatterPreset = 113;
 
   static {
     new Constants().loadFromFile();
