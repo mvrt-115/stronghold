@@ -69,4 +69,11 @@ public class Flywheel extends PIDSubsystem {
   protected void initDefaultCommand() {
     new SetFlywheelSpeed(this, 0);
   }
+  
+  public boolean isNearTarget() {
+	if(Math.abs(returnPIDInput() - this.getSetpoint()) <= Constants.kFlywheelOnTargetTolerance){
+		return true;
+	}
+	return false;
+  }
 }

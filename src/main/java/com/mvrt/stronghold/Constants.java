@@ -11,10 +11,14 @@ public class Constants extends ConstantsBase {
 
   public static double kFlywheelRotationsPerTick = 1.0 / 4096.0;
 
+  public static double kFlywheelOnTargetTolerance = 0.2; //RPM
   public static double kFlywheelKp = 0.8;
   public static double kFlywheelKi = 0;
   public static double kFlywheelKd = 0.008;
-
+  public static double kFlywheelKpOnTarget = 0.8;
+  public static double kFlywheelKiOnTarget = 0;
+  public static double kFlywheelKdOnTarget = 0.008;
+  
   public static double kAnglerBottomUpKp = 0;
   public static double kAnglerBottomUpKi = 0;
   public static double kAnglerBottomUpKd = 0;

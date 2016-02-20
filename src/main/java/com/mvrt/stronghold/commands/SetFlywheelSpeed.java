@@ -26,9 +26,15 @@ public class SetFlywheelSpeed extends Command {
 
   @Override
   protected void execute() {
+	if(referenceFlywheel.isNearTarget()){
+		referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKp, Constants.kFlywheelKi, Constants.kAnglerBottomDownKd);
+	}
+	else{
+		referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKpOnTarget, Constants.kFlywheelKiOnTarget, Constants.kFlywheelKdOnTarget);
+	}
     referenceFlywheel.setSetpoint(speed);
     referenceFlywheel.enable();
-    finished = true;
+    //finished = true;
   }
 
   @Override
