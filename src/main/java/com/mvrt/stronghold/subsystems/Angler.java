@@ -48,12 +48,12 @@ public class Angler extends Subsystem {
   }
 
   public void brakeOff() {
-    brake.set(DoubleSolenoid.Value.kReverse);
+    brake.set(DoubleSolenoid.Value.kForward);
     isBraked = false;
   }
 
   public void brakeOn() {
-    brake.set(DoubleSolenoid.Value.kForward);
+    brake.set(DoubleSolenoid.Value.kReverse);
     isBraked = true;
   }
 

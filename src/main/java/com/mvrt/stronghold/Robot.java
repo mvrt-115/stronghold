@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,12 +23,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
   public static OperatorInterface operatorInterface;
-  public static AHRS navx;
   public static DriveTrain drive;
-  public static Angler angler;
+  public static Punch punch;
   public static Flywheel leftFlywheel;
   public static Flywheel rightFlywheel;
-  public static Punch punch;
+  public static AHRS navx;
+  //public static Angler angler;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -35,21 +36,20 @@ public class Robot extends IterativeRobot {
    */
   public void robotInit() {
     drive = new DriveTrain();
-    angler = new Angler();
-    navx = new AHRS(SPI.Port.kMXP);
     punch = new Punch();
-
     leftFlywheel =
         new Flywheel("Left Flywheel", Constants.kFlywheelLeftId, Constants.kFlywheelEncoderLeftA,
             Constants.kFlywheelEncoderLeftB, Constants.kFlywheelKp, Constants.kFlywheelKi,
-            Constants.kFlywheelKd);
+            Constants.kFlywheelKd, false);
     rightFlywheel =
         new Flywheel("Right Flywheel", Constants.kFlywheelRightId, Constants.kFlywheelEncoderRightA,
             Constants.kFlywheelEncoderRightB, Constants.kFlywheelKp, Constants.kFlywheelKi,
-            Constants.kFlywheelKd);
+            Constants.kFlywheelKd, true);
+    navx = new AHRS(SPI.Port.kMXP);
+    //angler = new Angler();
     operatorInterface = new OperatorInterface();
-    WebServer.startServer();
     new Compressor().start();
+    //WebServer.startServer();
   }
 
   public void disabledPeriodic() {

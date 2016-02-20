@@ -1,4 +1,4 @@
-package com.mvrt.stronghold.commands;
+/*package com.mvrt.stronghold.commands;
 
 import com.mvrt.lib.ConstantsBase;
 import com.mvrt.lib.PidConstants;
@@ -12,7 +12,7 @@ public class AnglerMoveToAngle extends Command {
 
   boolean wantBrake = true;
 
-  private PidConstants bottomUpPid, bottomDownPid, middleUpPid, middleDownPid, topPid;
+  private PidConstants bottomUpPid, bottomDownPid, middleUpPid, middleDownPid;
   private SynchronousPid pidController;
 
   private final double goal;
@@ -28,8 +28,6 @@ public class AnglerMoveToAngle extends Command {
         Constants.kAnglerMiddleUpKd);
     middleDownPid = new PidConstants(Constants.kAnglerMiddleDownKp, Constants.kAnglerMiddleDownKi,
         Constants.kAnglerBottomUpKd);
-    topPid = new PidConstants(Constants.kAnglerTopKp, Constants.kAnglerTopKi,
-        Constants.kAnglerTopKd);
 
     pidController = new SynchronousPid(bottomUpPid);
 
@@ -57,10 +55,8 @@ public class AnglerMoveToAngle extends Command {
 
     if (angle >= -40 && angle < 50) {
       pidController.setPid(goingUp ? bottomUpPid : bottomDownPid);
-    } else if (angle >= 50 && angle < 100) {
+    } else if (angle >= 50 && angle < 113) {
       pidController.setPid(goingUp ? middleUpPid : middleDownPid);
-    } else if (angle >= 100) {
-      pidController.setPid(topPid);
     }
 
     pidController.calculate(angle);
@@ -87,4 +83,4 @@ public class AnglerMoveToAngle extends Command {
   protected void interrupted() {
     end();
   }
-}
+}*/

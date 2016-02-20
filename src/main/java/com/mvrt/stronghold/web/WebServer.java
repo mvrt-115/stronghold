@@ -31,8 +31,8 @@ public class WebServer {
     server.setHandler(context);
 
     // websocket servlet
-    ServletHolder wsHolder = new ServletHolder("echo", new StateStreamServlet());
-    context.addServlet(wsHolder, "/state");
+    //ServletHolder wsHolder = new ServletHolder("echo", new StateStreamServlet());
+    //context.addServlet(wsHolder, "/state");
 
     ServletHolder constantsHolder = new ServletHolder("constants", new ConstantsServlet());
     context.addServlet(constantsHolder, "/constants");

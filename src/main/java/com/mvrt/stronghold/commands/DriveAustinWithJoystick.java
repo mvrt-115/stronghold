@@ -15,10 +15,10 @@ public class DriveAustinWithJoystick extends Command {
 
   @Override
   protected void execute() {
-    double throttle = Robot.operatorInterface.getDriveJoystick().getThrottle();
+    double throttle = Robot.operatorInterface.getDriveJoystick().getY();
     double wheel = Robot.operatorInterface.getDriveJoystick().getX();
     boolean quickturn = Robot.operatorInterface.getDriveJoystick().getTrigger();
-    Robot.drive.drive(throttle, wheel, quickturn);
+    Robot.drive.drive(wheel, throttle, quickturn);
   }
 
   @Override

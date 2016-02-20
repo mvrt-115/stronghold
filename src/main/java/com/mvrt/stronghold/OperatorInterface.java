@@ -1,6 +1,8 @@
 package com.mvrt.stronghold;
 
 import com.mvrt.lib.ConstantsBase;
+//import com.mvrt.stronghold.commands.SetFlywheelSpeed;
+//import com.mvrt.stronghold.commands.Shoot;
 import com.mvrt.stronghold.commands.SetFlywheelSpeed;
 import com.mvrt.stronghold.commands.Shoot;
 import edu.wpi.first.wpilibj.Joystick;
@@ -19,22 +21,22 @@ public class OperatorInterface {
     operatorJoystick = new Joystick(Constants.kOperatorJoystick);
 
     // intake with the flywheels
-    new JoystickButton(operatorJoystick, Constants.kIntakeButton).
-        whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterIntake));
-    new JoystickButton(operatorJoystick, Constants.kIntakeButton).
-        whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterIntake));
+    new JoystickButton(operatorJoystick, Constants.kIntakeButton)
+        .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterIntake));
+    new JoystickButton(operatorJoystick, Constants.kIntakeButton)
+        .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterIntake));
 
     // run one preset of the flywheels
-    new JoystickButton(operatorJoystick, Constants.kShootPresetButton1).
-        whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset1));
+    /*new JoystickButton(operatorJoystick, Constants.kShootPresetButton1)
+        .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset1));
     new JoystickButton(operatorJoystick, Constants.kShootPresetButton1)
-        .whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset1));
+        .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset1));
 
     // run another preset of the flywheels
-    new JoystickButton(operatorJoystick, Constants.kShootPresetButton2).
-        whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset2));
-    new JoystickButton(operatorJoystick, Constants.kShootPresetButton2).
-        whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset2));
+    new JoystickButton(operatorJoystick, Constants.kShootPresetButton2)
+        .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset2));
+    new JoystickButton(operatorJoystick, Constants.kShootPresetButton2)
+        .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset2));*/
 
     // shoot the ball
     new JoystickButton(operatorJoystick, Constants.kExtendPistonButton).whenPressed(new Shoot());
@@ -48,5 +50,5 @@ public class OperatorInterface {
   public Joystick getOperatorJoystick() {
     return operatorJoystick;
   }
-}
+ }
 

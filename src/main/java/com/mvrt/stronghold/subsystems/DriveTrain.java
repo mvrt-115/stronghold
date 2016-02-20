@@ -32,7 +32,7 @@ public class DriveTrain extends Subsystem {
     drive = new RobotDrive(frontLeft, frontRight);
 
     leftEncoder = new Encoder(Constants.kDriveEncoderLeftA, Constants.kDriveEncoderLeftB);
-    rightEncoder = new Encoder(Constants.kDriveEncoderLeftA, Constants.kDriveEncoderRightB);
+    rightEncoder = new Encoder(Constants.kDriveEncoderRightA, Constants.kDriveEncoderRightB);
 
     leftEncoder.setDistancePerPulse(Constants.kDriveDistancePerTick);
     rightEncoder.setDistancePerPulse(Constants.kDriveDistancePerTick);
@@ -41,7 +41,7 @@ public class DriveTrain extends Subsystem {
   }
 
   public void drive(double throttle, double rotate, boolean quickturn) {
-    DriveSignal signal = DriveInterpreter.austinDrive(throttle, rotate, quickturn);
+    DriveSignal signal = DriveInterpreter.arcade(throttle, rotate, quickturn);
     drive.setLeftRightMotorOutputs(signal.leftMotor, signal.rightMotor);
   }
 
