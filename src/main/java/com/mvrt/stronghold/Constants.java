@@ -18,6 +18,7 @@ public class Constants extends ConstantsBase {
   public static double kFlywheelKpOnTarget = 0.8;
   public static double kFlywheelKiOnTarget = 0;
   public static double kFlywheelKdOnTarget = 0.008;
+  public static double kFlywheelOvercompensation = 0.01;
   
   public static double kAnglerBottomUpKp = 0;
   public static double kAnglerBottomUpKi = 0;

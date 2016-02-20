@@ -18,6 +18,7 @@ public class Flywheel extends PIDSubsystem {
 
   private CsvWriter writer;
   private double velocity;
+  private double overCompensation = 0;
 
   public Flywheel(String name, int motorId, int encoderA, int encoderB, double kP, double kI,
       double kD, boolean invert) {
@@ -61,7 +62,7 @@ public class Flywheel extends PIDSubsystem {
   @Override
   protected void usePIDOutput(double output) {
     SmartDashboard.putNumber(getName() + " Output", output);
-    motor.set(output);
+    motor.set(output+Math.signum(output)*overCompensation);
     writer.writeLine(velocity, output, (velocity - getSetpoint()));
   }
 
@@ -75,5 +76,8 @@ public class Flywheel extends PIDSubsystem {
 		return true;
 	}
 	return false;
+  }
+  public void overCompensate(double overCompensation) {
+	  this.overCompensation = Math.abs(overCompensation);
   }
 }

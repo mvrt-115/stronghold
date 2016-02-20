@@ -9,12 +9,12 @@ public class SetFlywheelSpeed extends Command {
   private Flywheel referenceFlywheel;
 
   private final double speed;
-
+  
   private boolean finished = false;
-
   public SetFlywheelSpeed(Flywheel flywheel, double speed) {
     this.speed = speed;
     this.referenceFlywheel = flywheel;
+    this.referenceFlywheel.overCompensate(0);
 
     requires(flywheel);
   }
@@ -28,9 +28,11 @@ public class SetFlywheelSpeed extends Command {
   protected void execute() {
 	if(referenceFlywheel.isNearTarget()){
 		referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKp, Constants.kFlywheelKi, Constants.kAnglerBottomDownKd);
+		referenceFlywheel.overCompensate(Constants.kFlywheelOvercompensation);
 	}
 	else{
 		referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKpOnTarget, Constants.kFlywheelKiOnTarget, Constants.kFlywheelKdOnTarget);
+	    referenceFlywheel.overCompensate(0);
 	}
     referenceFlywheel.setSetpoint(speed);
     referenceFlywheel.enable();
