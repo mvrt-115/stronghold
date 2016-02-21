@@ -45,6 +45,11 @@ public class DriveTrain extends Subsystem {
     drive.setLeftRightMotorOutputs(signal.leftMotor, signal.rightMotor);
   }
 
+  public void drive(double driveSpeed, double turnSpeed) {
+    DriveSignal signal = DriveInterpreter.arcade(driveSpeed, turnSpeed);
+    drive.setLeftRightMotorOutputs(signal.leftMotor, signal.rightMotor);
+  }
+
   public void stop() {
     DriveSignal signal = DriveInterpreter.stop();
     drive.setLeftRightMotorOutputs(signal.leftMotor, signal.rightMotor);
@@ -60,6 +65,10 @@ public class DriveTrain extends Subsystem {
 
   public double getDistanceRight() {
     return rightEncoder.get();
+  }
+
+  public double getAverageDistance() {
+    return ((getDistanceLeft() + getDistanceRight()) / 2);
   }
 
   public void resetEncoders() {
