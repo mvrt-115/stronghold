@@ -40,6 +40,11 @@ public class OperatorInterface {
     new JoystickButton(operatorJoystick, Constants.kExtendPistonButton).whenPressed(new Shoot());
 
   }
+  
+  public double getAnglerPreset() {
+    double location = operatorJoystick.getThrottle(); // TODO get the correct axis
+    return Constants.kAnglerPresets[(int)(location * Constants.kAnglerPresets.length)];
+  }
 
   public Joystick getDriveJoystick() {
     return driveJoystick;
