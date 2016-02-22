@@ -19,22 +19,22 @@ public class OperatorInterface {
     operatorJoystick = new Joystick(Constants.kOperatorJoystick);
 
     // intake with the flywheels
-    new JoystickButton(operatorJoystick, Constants.kIntakeButton).
-        whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterIntake));
-    new JoystickButton(operatorJoystick, Constants.kIntakeButton).
-        whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterIntake));
+    new JoystickButton(operatorJoystick, Constants.kIntakeButton)
+        .whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterIntake));
+    new JoystickButton(operatorJoystick, Constants.kIntakeButton)
+        .whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterIntake));
 
     // run one preset of the flywheels
-    new JoystickButton(operatorJoystick, Constants.kShootPresetButton1).
-        whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset1));
+    new JoystickButton(operatorJoystick, Constants.kShootPresetButton1)
+        .whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset1));
     new JoystickButton(operatorJoystick, Constants.kShootPresetButton1)
         .whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset1));
 
     // run another preset of the flywheels
-    new JoystickButton(operatorJoystick, Constants.kShootPresetButton2).
-        whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset2));
-    new JoystickButton(operatorJoystick, Constants.kShootPresetButton2).
-        whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset2));
+    new JoystickButton(operatorJoystick, Constants.kShootPresetButton2)
+        .whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset2));
+    new JoystickButton(operatorJoystick, Constants.kShootPresetButton2)
+        .whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset2));
 
     // shoot the ball
     new JoystickButton(operatorJoystick, Constants.kExtendPistonButton).whenPressed(new Shoot());
