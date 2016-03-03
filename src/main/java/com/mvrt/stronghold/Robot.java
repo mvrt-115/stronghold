@@ -6,11 +6,13 @@ import com.mvrt.stronghold.subsystems.DriveTrain;
 import com.mvrt.stronghold.subsystems.Flywheel;
 import com.mvrt.stronghold.subsystems.Punch;
 import com.mvrt.stronghold.web.WebServer;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import src.main.java.com.mvrt.stronghold.subsystems.Climber;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +30,7 @@ public class Robot extends IterativeRobot {
   public static Flywheel leftFlywheel;
   public static Flywheel rightFlywheel;
   public static Punch punch;
+  public static Climber climber;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -48,6 +51,7 @@ public class Robot extends IterativeRobot {
             Constants.kFlywheelEncoderRightB, Constants.kFlywheelKp, Constants.kFlywheelKi,
             Constants.kFlywheelKd);
     operatorInterface = new OperatorInterface();
+    climber = new Climber();
     WebServer.startServer();
     new Compressor().start();
   }

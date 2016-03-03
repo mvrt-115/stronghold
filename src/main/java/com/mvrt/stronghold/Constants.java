@@ -36,6 +36,8 @@ public class Constants extends ConstantsBase {
   public static double kAnglerTopKd = 0;
 
   public static int kEndEditableArea = 0;
+  
+  public static final int kPcmId = 1;
 
   public static final int kDriveJoystick = 0;
   public static final int kOperatorJoystick = 1;
@@ -44,6 +46,8 @@ public class Constants extends ConstantsBase {
   public static final int kShootPresetButton1 = 5;
   public static final int kShootPresetButton2 = 6;
   public static final int kExtendPistonButton = 1;
+  public static final int kExtendClimberButton = 2;
+  public static final int kClimbButton = 3;
 
   public static final int kShooterIntake = -50;
   public static final int kShooterPreset1 = 100;
@@ -60,8 +64,10 @@ public class Constants extends ConstantsBase {
   public static int kFlywheelLeftId = 7;
   public static int kFlywheelRightId = 8;
 
-  public static int kArmSolenoidA = 5;
-  public static int kArmSolenoidB = 6;
+  public static int kLeftArmSolenoidA = 5;
+  public static int kLeftArmSolenoidB = 6;
+  public static int kRightArmSolenoidA = 7;
+  public static int kRightArmSolenoidB = 8;
 
   public static int kPunchSolenoidA = 0;
   public static int kPunchSolenoidB = 1;
@@ -85,6 +91,12 @@ public class Constants extends ConstantsBase {
 
   public static int kAnglerBrakePortOne;
   public static int kAnglerBrakePortTwo;
+  
+  public static int kClimberBrakeA;
+  public static int kClimberBrakeB;
+  
+  public static int kClimberMotor1 = 9;
+  public static int kClimberMotor2 = 10;
 
   static {
     new Constants().loadFromFile();
