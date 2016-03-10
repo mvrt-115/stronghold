@@ -45,6 +45,11 @@ public class OperatorInterface {
     
     new JoystickButton(operatorJoystick, Constants.kClimbButton).whenPressed(new Climb());
   }
+  
+  public double getAnglerPreset() {
+    double location = operatorJoystick.getThrottle(); // TODO get the correct axis
+    return Constants.kAnglerPresets[(int)(location * (Constants.kAnglerPresets.length - 1))];
+  }
 
   public Joystick getDriveJoystick() {
     return driveJoystick;
