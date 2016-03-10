@@ -83,6 +83,16 @@ public class Constants extends ConstantsBase {
   public static int kAnglerHallEffectsBatter = 11;
   public static int kAnglerHallEffectsTopLimit = 12;
 
+  public static double kAnglerBatterPreset = 45;
+  public static double kAnglerTopPreset = 90;
+  public static double kAnglerBottomPreset = 0;
+
+  public static double kAnglerError = 3;
+
+  public static double[] kAnglerPresets = {kAnglerBatterPreset,
+                                           kAnglerTopPreset,
+                                           kAnglerBottomPreset};
+
   public static int kAnglerBrakePortOne;
   public static int kAnglerBrakePortTwo;
 
