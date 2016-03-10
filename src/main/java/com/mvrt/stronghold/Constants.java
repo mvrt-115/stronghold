@@ -6,6 +6,13 @@ public class Constants extends ConstantsBase {
 
   public static double kDriveDistancePerTick = 8 * Math.PI / 250;
 
+  public static double kDrivekp = 0;
+  public static double kDriveki = 0;
+  public static double kDrivekd = 0;
+
+  public static double kDriveDefaultSpeed = 1.0;
+  public static double kDrivePrecision = 0.75;
+
   public static double kAnglerDegreesPerVolt = 360.0 / 5.0;
   public static double kAnglerVoltsPerDegree = 5.0 / 360.0;
 
