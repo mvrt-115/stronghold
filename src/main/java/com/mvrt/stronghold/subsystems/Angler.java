@@ -18,7 +18,7 @@ public class Angler extends Subsystem {
 
   private boolean isBraked;
   private AnalogInput encoder;
-  DoubleSolenoid brake;
+  private DoubleSolenoid brake;
 
   private double resetVoltage = 0.00;
 
@@ -74,6 +74,10 @@ public class Angler extends Subsystem {
     setOutput(0);
   }
 
+  public double getAverageSpeed() {
+    return (anglerOne.getSpeed() + anglerTwo.getSpeed()) / 2;
+  }
+
   public double getVoltage() {
     return encoder.getVoltage();
   }
@@ -82,8 +86,7 @@ public class Angler extends Subsystem {
     return (getVoltage() - resetVoltage) * Constants.kAnglerDegreesPerVolt;
   }
 
-  public void initDefaultCommand() {
-  }
+  public void initDefaultCommand() {}
 
   public boolean isBottomLimit() {
     return hallEffectsBottom.get();
@@ -95,5 +98,31 @@ public class Angler extends Subsystem {
 
   public boolean isBatterLimit() {
     return hallEffectsBatter.get();
+  }
+
+  public double getZeroedAngle() {
+    double speed = getAverageSpeed();
+    double lastVoltage = 0.00;
+    double lastPassedPreset = 0.00;
+    if (speed > 0) {
+      lastVoltage = encoder.getVoltage() * Constants.kAnglerDegreesPerVolt - Constants.kAnglerError;
+      if (isBatterLimit()) {
+        lastPassedPreset = Constants.kAnglerBatterPreset;
+      } else if (isBottomLimit()) {
+        lastPassedPreset = Constants.kAnglerBottomPreset;
+      } else if (isTopLimit()) {
+        lastPassedPreset = Constants.kAnglerTopPreset;
+      }
+    } else {
+      lastVoltage = encoder.getVoltage() * Constants.kAnglerDegreesPerVolt + Constants.kAnglerError;
+      if (isBatterLimit()) {
+        lastPassedPreset = Constants.kAnglerBatterPreset;
+      } else if (isBottomLimit()) {
+        lastPassedPreset = Constants.kAnglerBottomPreset;
+      } else if (isTopLimit()) {
+        lastPassedPreset = Constants.kAnglerTopPreset;
+      }
+    }
+    return (getVoltage() - lastVoltage) * Constants.kAnglerDegreesPerVolt + lastPassedPreset;
   }
 }
