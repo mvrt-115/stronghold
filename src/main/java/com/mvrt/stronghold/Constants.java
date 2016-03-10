@@ -13,6 +13,7 @@ public class Constants extends ConstantsBase {
   public static double kDriveDefaultSpeed = 0.75;
 
   public static double kDriveDistanceThreshold = 0.05;
+  public static double kDrivePrecision = 0.75;
 
   public static double kAnglerDegreesPerVolt = 360.0 / 5.0;
   public static double kAnglerVoltsPerDegree = 5.0 / 360.0;

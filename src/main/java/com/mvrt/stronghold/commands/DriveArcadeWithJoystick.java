@@ -4,15 +4,15 @@ import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveAustinWithJoystick extends Command {
+public class DriveArcadeWithJoystick extends Command {
 
   private double scalar = 1.0;
 
-  public DriveAustinWithJoystick() {
+  public DriveArcadeWithJoystick() {
     this(false, false);
   }
 
-  public DriveAustinWithJoystick(boolean invert, boolean precision) {
+  public DriveArcadeWithJoystick(boolean invert, boolean precision) {
     requires(Robot.drive);
     if (precision) {
       scalar = Constants.kDrivePrecision;
@@ -23,15 +23,14 @@ public class DriveAustinWithJoystick extends Command {
   }
 
   @Override
-  protected void initialize() {
+    protected void initialize() {
   }
 
   @Override
   protected void execute() {
-    double throttle = scalar * Robot.operatorInterface.getDriveJoystick().getThrottle();
-    double wheel = scalar * Robot.operatorInterface.getDriveJoystick().getX();
-    boolean quickturn = Robot.operatorInterface.getDriveJoystick().getTrigger();
-    Robot.drive.drive(throttle, wheel, quickturn);
+    double move = scalar * Robot.operatorInterface.getDriveJoystick().getY();
+    double rotate = scalar * Robot.operatorInterface.getDriveJoystick().getX();
+    Robot.drive.drive(move, rotate);
   }
 
   @Override
@@ -40,7 +39,7 @@ public class DriveAustinWithJoystick extends Command {
   }
 
   @Override
-  protected void end() {
+    protected void end() {
     Robot.drive.stop();
   }
 
