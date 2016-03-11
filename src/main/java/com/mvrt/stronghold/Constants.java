@@ -86,6 +86,31 @@ public class Constants extends ConstantsBase {
   public static int kAnglerBrakePortOne;
   public static int kAnglerBrakePortTwo;
 
+  public static final int kJoystickA = 2;
+  public static final int kJoystickB = 3;
+  public static final int kJoystickY = 4;
+  public static final int kJoystickX = 1;
+  public static final int kJoystickLB = 5;
+  public static final int kJoystickRB = 6;
+  public static final int kJoystickBACK = 9;
+  public static final int kJoystickSTART = 10;
+  public static final int kJoystickLAXIS_PRESS = 11;
+  public static final int kJoystickRAXIS_PRESS = 12;
+  public static final int kJoystickRT = 8;
+  public static final int kJoystickLT = 7;
+  public static final int kJoystickAXIS_LX = 0;
+  public static final int kJoystickAXIS_LY = 1;
+  public static final int kJoystickAXIS_RX = 4;
+  public static final int kJoystickAXIS_RY = 5;
+  public static final int kControllerD_PAD_UP = 0;
+  public static final int kControllerD_PAD_DOWN = 4;
+
+  //angler angles
+  public static final int AngleA = 0; //?
+  public static final int AngleB = 45;//?
+  public static final int AngleC = 90; //?
+  public static final int AngleD = 95; //?
+
   static {
     new Constants().loadFromFile();
   }
