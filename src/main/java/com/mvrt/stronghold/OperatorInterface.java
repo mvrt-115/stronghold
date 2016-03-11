@@ -1,8 +1,8 @@
 package com.mvrt.stronghold;
 
 import com.mvrt.lib.ConstantsBase;
-import com.mvrt.stronghold.commands.SetFlywheelSpeed;
 import com.mvrt.stronghold.commands.AnglerMoveToAngle;
+import com.mvrt.stronghold.commands.SetFlywheelSpeed;
 import com.mvrt.stronghold.commands.Shoot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -55,27 +55,27 @@ public class OperatorInterface {
 
     //angler position
 
-      new JoystickButton (operatorJoystick, Constants.kJoystickSTART);
+    new JoystickButton(operatorJoystick, Constants.kJoystickSTART);
 
-      if (angle == 0){
-        new AnglerMoveToAngle(Constants.AngleA);
-      }
+    if (angle == 0) {
+      new AnglerMoveToAngle(Constants.AngleA);
+    }
 
-      if (angle == 1){
-        new AnglerMoveToAngle(Constants.AngleB);
-      }
+    if (angle == 1) {
+      new AnglerMoveToAngle(Constants.AngleB);
+    }
 
-      if(angle == 2){
-        new AnglerMoveToAngle(Constants.AngleC);
-      }
+    if (angle == 2) {
+      new AnglerMoveToAngle(Constants.AngleC);
+    }
 
-      if (angle == 3){
-        new AnglerMoveToAngle(Constants.AngleD);
-      }
+    if (angle == 3) {
+      new AnglerMoveToAngle(Constants.AngleD);
+    }
 
-      if (angle == 4){
-        angle = 0;
-      }
+    if (angle == 4) {
+      angle = 0;
+    }
 
 
     //auto-aim: no command made yet
@@ -105,7 +105,7 @@ public class OperatorInterface {
 
     // shoot the ball
     new JoystickButton(operatorJoystick, Constants.kExtendPistonButton).whenPressed(new Shoot());
-    new JoystickButton (operatorJoystick, Constants.kJoystickRT).whenPressed(new Shoot());
+    new JoystickButton(operatorJoystick, Constants.kJoystickRT).whenPressed(new Shoot());
   }
 
   public Joystick getDriveJoystick() {
