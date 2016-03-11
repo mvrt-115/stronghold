@@ -1,0 +1,75 @@
+buildscript {
+  repositories {
+	mavenCentral()
+	maven {
+		name = "GradleRIO"
+		url = "http://dev.imjac.in/maven"
+	}
+  }
+  dependencies {
+    classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '+'			//Change this line if you wish to Update GradleRIO
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'GradleRIO'                                 //Apply the GradleRIO plugin
+
+gradlerio.robotClass = "com.mvrt.stronghold.Robot"   //The class for the main Robot Class. Used in manifest
+gradlerio.team = "115"                                   //Your FRC team number (e.g. 5333 for team 'Can't C#', or 47 for Chief Delphi)
+gradlerio.rioIP = "10.1.15.22"                         //Uncomment to specify the IP address of the RIO
+
+def robotManifest = {
+  attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
+  attributes 'Robot-Class': gradlerio.robotClass
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    compile 'org.eclipse.jetty:jetty-server:9.3.7.v20160115'
+    compile 'org.eclipse.jetty:jetty-servlet:9.3.7.v20160115'
+    compile 'org.eclipse.jetty:jetty-util:9.3.7.v20160115'
+    compile 'org.eclipse.jetty:jetty-io:9.3.7.v20160115'
+    compile 'org.eclipse.jetty:jetty-continuation:9.3.7.v20160115'
+    compile 'org.eclipse.jetty:jetty-http:9.3.7.v20160115'
+    compile 'org.eclipse.jetty:jetty-security:9.3.7.v20160115'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'org.eclipse.jetty.websocket:websocket-server:9.3.7.v20160115'
+    compile 'org.eclipse.jetty.websocket:websocket-api:9.3.7.v20160115'
+    compile 'org.eclipse.jetty.websocket:websocket-client:9.3.7.v20160115'
+    compile 'org.eclipse.jetty.websocket:websocket-common:9.3.7.v20160115'
+    compile 'org.eclipse.jetty.websocket:websocket-servlet:9.3.7.v20160115'
+    compile fileTree(dir: 'libs/', include: '*.jar')
+
+    testCompile 'junit:junit:4.12'
+}
+
+jar {
+  from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  manifest robotManifest
+}
+
+task genJavadoc(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
+}
+
+artifacts {
+  archives genJavadoc
+}
+
+checkstyle {
+  toolVersion = '6.10'
+}
+
+defaultTasks 'assemble', 'check'
