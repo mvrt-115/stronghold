@@ -1,33 +1,33 @@
-package src.main.java.com.mvrt.stronghold.commands;
+package com.mvrt.stronghold.commands;
 
+import com.mvrt.stronghold.Constants;
+import com.mvrt.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
-import src.main.java.com.mvrt.stronghold.Constants;
-import src.main.java.com.mvrt.stronghold.Robot;
 
 public class Climb extends Command {
 
-	public Climb() {
-		requires(Robot.climber);
-	}
-	
-	protected void initialize() {
-		
-	}
+  public Climb() {
+    requires(Robot.climber);
+  }
 
-	protected void execute() {
-		Robot.climber.winchUp();
-	}
+  protected void initialize() {
 
-	protected boolean isFinished() {
-		return !(Robot.operatorInterface.getOperatorJoystick().getRawButton(Constants.kClimberButton));
-	}
+  }
 
-	protected void end() {
-		Robot.climber.stop();
-	}
+  protected void execute() {
+    Robot.climber.winchUp();
+  }
 
-	protected void interrupted() {
-		end();
-	}
+  protected boolean isFinished() {
+    return !(Robot.operatorInterface.getOperatorJoystick().getRawButton(Constants.kClimbButton));
+  }
+
+  protected void end() {
+    Robot.climber.stop();
+  }
+
+  protected void interrupted() {
+    end();
+  }
 
 }

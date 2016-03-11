@@ -97,11 +97,6 @@ public class Constants extends ConstantsBase {
   public static int kAnglerHallEffectsBottomLimit = 10;
   public static int kAnglerHallEffectsBatter = 11;
   public static int kAnglerHallEffectsTopLimit = 12;
-  
-  public static int kBatterPreset = 0;
-  public static int kBottomPreset = 0;
-  public static int kTopPreset = 0;
-  public static int[] kAnglerPresets = {kBatterPreset, kBottomPreset, kTopPreset};
 
   public static double kAnglerBatterPreset = 45;
   public static double kAnglerTopPreset = 90;

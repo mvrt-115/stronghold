@@ -1,29 +1,42 @@
-package src.main.java.com.mvrt.stronghold.commands;
+package com.mvrt.stronghold.commands;
 
+import com.mvrt.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
-import src.main.java.com.mvrt.stronghold.Robot;
 
+/**
+ * Created by MVRT on 3/10/2016.
+ */
 public class ExtendClimber extends Command {
 
-	boolean isFinished = false;
-	
-	public ExtendClimber() {
-		requires(Robot.climber);
-	}
-	
-	protected void initialize() {}
+  boolean isFinished = false;
 
-	protected void execute() {
-		Robot.climber.extendClimber();
-		isFinished = true;
-	}
+  public ExtendClimber() {
+    requires(Robot.climber);
+  }
 
-	protected boolean isFinished() {
-		return isFinished;
-	}
+  @Override
+  protected void initialize() {
 
-	protected void end() {}
+  }
 
-	protected void interrupted() {}
+  @Override
+  protected void execute() {
+    Robot.climber.extendClimber();
+    isFinished = true;
+  }
 
+  @Override
+  protected boolean isFinished() {
+    return isFinished;
+  }
+
+  @Override
+  protected void end() {
+
+  }
+
+  @Override
+  protected void interrupted() {
+
+  }
 }

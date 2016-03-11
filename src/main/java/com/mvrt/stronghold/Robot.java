@@ -2,17 +2,16 @@ package com.mvrt.stronghold;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.mvrt.stronghold.subsystems.Angler;
+import com.mvrt.stronghold.subsystems.Climber;
 import com.mvrt.stronghold.subsystems.DriveTrain;
 import com.mvrt.stronghold.subsystems.Flywheel;
 import com.mvrt.stronghold.subsystems.Punch;
-import com.mvrt.stronghold.web.WebServer;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import src.main.java.com.mvrt.stronghold.subsystems.Climber;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -50,9 +49,8 @@ public class Robot extends IterativeRobot {
         new Flywheel("Right Flywheel", Constants.kFlywheelRightId, Constants.kFlywheelEncoderRightA,
             Constants.kFlywheelEncoderRightB, Constants.kFlywheelKp, Constants.kFlywheelKi,
             Constants.kFlywheelKd);
-    operatorInterface = new OperatorInterface();
     climber = new Climber();
-    WebServer.startServer();
+    operatorInterface = new OperatorInterface();
     new Compressor().start();
   }
 

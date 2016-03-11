@@ -1,12 +1,12 @@
 package com.mvrt.stronghold;
 
+import com.mvrt.stronghold.commands.Climb;
+import com.mvrt.stronghold.commands.ExtendClimber;
 import com.mvrt.stronghold.commands.SetFlywheelSpeed;
 import com.mvrt.stronghold.commands.Shoot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import src.main.java.com.mvrt.stronghold.commands.Climb;
-import src.main.java.com.mvrt.stronghold.commands.ExtendClimber;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -41,7 +41,8 @@ public class OperatorInterface {
     // shoot the ball
     new JoystickButton(operatorJoystick, Constants.kExtendPistonButton).whenPressed(new Shoot());
     
-    new JoystickButton(operatorJoystick, Constants.kExtendClimberButton).whenPressed(new ExtendClimber());
+    new JoystickButton(operatorJoystick, Constants.kExtendClimberButton)
+            .whenPressed(new ExtendClimber());
     
     new JoystickButton(operatorJoystick, Constants.kClimbButton).whenPressed(new Climb());
   }
