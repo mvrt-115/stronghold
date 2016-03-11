@@ -86,6 +86,28 @@ public class Constants extends ConstantsBase {
   public static int kAnglerBrakePortOne;
   public static int kAnglerBrakePortTwo;
 
+  // CONTROLLER Buttons
+  public static int kControllerA = 2;
+  public static int kControllerB = 3;
+  public static int kControllerY = 4;
+  public static int kControllerX = 1;
+  public static int kControllerLB = 5;
+  public static int kControllerRB = 6;
+  public static int kControllerBACK = 9;
+  public static int kControllerSTART = 10;
+  public static int kControllerLAXIS_PRESS = 11;
+  public static int kControllerRAXIS_PRESS = 12;
+  public static int kControllerRT = 8;
+  public static int kControllerLT = 7;
+  public static int kControllerAXIS_LX = 0;
+  public static int kControllerAXIS_LY = 1;
+  public static int kControllerAXIS_RX = 4;
+  public static int kControllerAXIS_RY = 5;
+  public static int kControllerD_PAD_UP = 0;
+  public static int kControllerD_PAD_DOWN = 4;
+  public static double[] kAnglerPresets = {};
+
+
   static {
     new Constants().loadFromFile();
   }
