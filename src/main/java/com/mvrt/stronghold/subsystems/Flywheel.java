@@ -3,6 +3,7 @@ package com.mvrt.stronghold.subsystems;
 import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.commands.SetFlywheelSpeed;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -39,5 +40,9 @@ public class Flywheel extends PIDSubsystem {
   @Override
   protected void initDefaultCommand() {
     new SetFlywheelSpeed(this, 0);
+  }
+
+  protected void setVoltage(double newVoltage) {
+    motor.set(newVoltage / DriverStation.getInstance().getBatteryVoltage());
   }
 }
