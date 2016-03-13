@@ -1,5 +1,8 @@
 package com.mvrt.lib;
 
+/**
+ * Created by lee on 1/21/16.
+ */
 public class DriveSignal {
   public double leftMotor, rightMotor;
 

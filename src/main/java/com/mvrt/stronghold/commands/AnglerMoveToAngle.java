@@ -5,7 +5,6 @@ import com.mvrt.lib.PidConstants;
 import com.mvrt.lib.SynchronousPid;
 import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
-import com.sun.corba.se.impl.orbutil.concurrent.Sync;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AnglerMoveToAngle extends Command {
