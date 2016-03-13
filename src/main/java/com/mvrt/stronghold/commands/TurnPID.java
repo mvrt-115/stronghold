@@ -1,9 +1,12 @@
 package com.mvrt.stronghold.commands;
 
 
+import com.mvrt.lib.ConstantsBase;
+import com.mvrt.lib.PidConstants;
+import com.mvrt.lib.SynchronousPid;
 import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
-import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.command.Command;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -12,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Marcus Plutowski
  *
  */
-public class TurnPID extends PIDCommand {
+public class TurnPID extends Command {
 	
 	private static final double tolerance = 0.2;
 	private static final double onTargetThreshold = 11;
@@ -21,36 +24,25 @@ public class TurnPID extends PIDCommand {
 	private boolean onTarget;
 	private double initial;
 	private double target;
+
+  private SynchronousPid controller;
 	
 	public TurnPID(double degrees, boolean innerLoop) {
-		super(Constants.kDriveTurnKp, Constants.kDriveTurnKi, Constants.kDriveTurnKd);
 		requires(Robot.drive);
-		
+
+    controller = new SynchronousPid(Constants.kDriveTurnKp, Constants.kDriveTurnKi, Constants.kDriveTurnKd);
 		this.target = degrees;
 		this.onTarget = innerLoop;
 	}
 
-	@Override
-	protected double returnPIDInput() {
-		SmartDashboard.putNumber("Yaw", Robot.navx.getYaw());
-		return Robot.navx.getYaw();
-	}
-
-	@Override
-	protected void usePIDOutput(double output) { //-output because idk
-		SmartDashboard.putNumber("Output", -output);
-		Robot.drive.drive(0, -output);
-		
-	}
 	
 	@Override
 	protected void initialize() {
 		SmartDashboard.putBoolean("Entered TurnPID command", true);
-		setInputRange(-180, 180);
-		getPIDController().setOutputRange(-0.7, 0.7);
-		getPIDController().setContinuous(true);
-		getPIDController().setAbsoluteTolerance(tolerance);
-		
+    controller.setOutputRange(-0.7, 0.7);
+    controller.setInputRange(-180, 180);
+    controller.setContinuous(true);
+
 		this.initial = Robot.navx.getYaw();
 		setSetpoint((target+initial));
 		this.onTarget = false;
@@ -59,17 +51,22 @@ public class TurnPID extends PIDCommand {
 	@Override
 	protected void execute() {
 		SmartDashboard.putNumber("Initial", this.initial);
+
 		if(onTarget) {
-			getPIDController().setPID(Constants.kDriveTurnOnTargetKp, Constants.kDriveTurnOnTargetKi, Constants.kDriveTurnOnTargetKd);
+			controller.setPid(Constants.kDriveTurnOnTargetKp, Constants.kDriveTurnOnTargetKi, Constants.kDriveTurnOnTargetKd);
 			SmartDashboard.putBoolean("InnerPID", true);
 		}
 		else {
-			getPIDController().setPID(Constants.kDriveTurnKp, Constants.kDriveTurnKi, Constants.kDriveTurnKi);
+			controller.setPid(Constants.kDriveTurnKp, Constants.kDriveTurnKi, Constants.kDriveTurnKi);
 			SmartDashboard.putBoolean("InnerPID", false);
 		}
-		setSetpoint((target+initial));
-		SmartDashboard.putNumber("Setpoint", getPIDController().getSetpoint());
-		SmartDashboard.putNumber("Error", getPIDController().getError());
+
+    double output = controller.calculate(Robot.navx.getYaw());
+
+    Robot.drive.setLeftRightMotorOutputs(-output, output);
+
+		SmartDashboard.putNumber("Setpoint", controller.getSetpoint());
+		SmartDashboard.putNumber("Error", controller.getError());
 		/*if(Math.abs(this.returnPIDInput() - this.setpoint) < onTargetThreshold) {
 			System.out.println("OnTarget");
 			onTarget = true;
@@ -88,12 +85,12 @@ public class TurnPID extends PIDCommand {
 			this.setpoint = target;
 		}
 		SmartDashboard.putNumber("SETPOINT",this.setpoint);
-		getPIDController().setSetpoint(this.setpoint);
+		controller.setSetpoint(this.setpoint);
 	}
 	@Override
 	protected boolean isFinished() {
-		SmartDashboard.putNumber("dooty isFinished", this.returnPIDInput() - this.setpoint);
-		return Math.abs(this.returnPIDInput() - this.setpoint) < this.tolerance;
+		SmartDashboard.putNumber("dooty isFinished", Robot.navx.getYaw() - this.setpoint);
+		return Math.abs(Robot.navx.getYaw() - this.setpoint) < this.tolerance;
 	}
 
 	@Override
