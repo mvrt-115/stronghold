@@ -19,8 +19,8 @@ public class Constants extends ConstantsBase {
   public static double kDriveTurnKi = 0;
   public static double kDriveTurnKd = 0;
 
-  public static double kDriveTurnOnTargetKp = 0;
-  public static double kDriveTurnOnTargetKi = 0;
+  public static double kDriveTurnOnTargetKp = 0.01;
+  public static double kDriveTurnOnTargetKi = 0.001;
   public static double kDriveTurnOnTargetKd = 0;
 
   public static double kAnglerDegreesPerVolt = 360.0 / 5.0;

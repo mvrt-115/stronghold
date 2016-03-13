@@ -91,6 +91,9 @@ public class Robot extends IterativeRobot {
     SmartDashboard.putData("AngleTo45", new AnglerMoveToAngle(-45));
     SmartDashboard.putData("AngleTo113", new AnglerMoveToAngle(-113));
     SmartDashboard.putData("AngleTo100", new AnglerMoveToAngle(-100));
+
+    SmartDashboard.putData("Turn90", new TurnPID(90, true));
+    SmartDashboard.putData("Turn45", new TurnPID(45, true));
     SmartDashboard.putData("UnBrake", new DisableBrake());
     Scheduler.getInstance().run();
   }

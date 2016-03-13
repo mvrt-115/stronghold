@@ -45,12 +45,17 @@ public class TurnPID extends Command {
 
 		this.initial = Robot.navx.getYaw();
 		setSetpoint((target+initial));
-		this.onTarget = false;
 	}
 
 	@Override
 	protected void execute() {
 		SmartDashboard.putNumber("Initial", this.initial);
+
+    double angle = Robot.navx.getYaw();
+
+    if(Math.abs(angle - this.setpoint) < this.tolerance) {
+      Robot.drive.stop();
+    }
 
 		if(onTarget) {
 			controller.setPid(Constants.kDriveTurnOnTargetKp, Constants.kDriveTurnOnTargetKi, Constants.kDriveTurnOnTargetKd);
@@ -61,9 +66,9 @@ public class TurnPID extends Command {
 			SmartDashboard.putBoolean("InnerPID", false);
 		}
 
-    double output = controller.calculate(Robot.navx.getYaw());
+    double output = controller.calculate(angle);
 
-    Robot.drive.setLeftRightMotorOutputs(-output, output);
+    Robot.drive.setLeftRightMotorOutputs(output, output);
 
 		SmartDashboard.putNumber("Setpoint", controller.getSetpoint());
 		SmartDashboard.putNumber("Error", controller.getError());
@@ -90,7 +95,7 @@ public class TurnPID extends Command {
 	@Override
 	protected boolean isFinished() {
 		SmartDashboard.putNumber("dooty isFinished", Robot.navx.getYaw() - this.setpoint);
-		return Math.abs(Robot.navx.getYaw() - this.setpoint) < this.tolerance;
+		return false;
 	}
 
 	@Override
