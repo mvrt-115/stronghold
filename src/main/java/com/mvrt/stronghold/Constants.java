@@ -65,7 +65,7 @@ public class Constants extends ConstantsBase {
   public static final int kShootPresetButton2 = 6;
   public static final int kExtendPistonButton = 1;
 
-  public static final int kShooterIntake = -50;
+  public static final int kShooterIntake = -20;
   public static final int kShooterPreset1 = 100;
   public static final int kShooterPreset2 = 50;
 

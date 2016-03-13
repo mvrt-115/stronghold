@@ -38,6 +38,6 @@ public class Flywheel extends PIDSubsystem {
 
   @Override
   protected void initDefaultCommand() {
-    new SetFlywheelSpeed(this, 0);
+    //new SetFlywheelSpeed(this, 0);
   }
 }

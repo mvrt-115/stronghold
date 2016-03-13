@@ -11,10 +11,18 @@ public class SetFlywheelSpeed extends Command {
 
   private boolean finished = false;
 
+  public SetFlywheelSpeed(Flywheel flywheel) {//Use this to just blank fire and then stop
+    this.speed = 25;
+    this.referenceFlywheel = flywheel;
+
+    finished = true;
+    requires(flywheel);
+  }
   public SetFlywheelSpeed(Flywheel flywheel, double speed) {
     this.speed = speed;
     this.referenceFlywheel = flywheel;
 
+    finished = false;
     requires(flywheel);
   }
 
@@ -32,7 +40,7 @@ public class SetFlywheelSpeed extends Command {
 
   @Override
   protected boolean isFinished() {
-    return finished;
+    return finished && referenceFlywheel.getPIDController().onTarget();
   }
 
   @Override
