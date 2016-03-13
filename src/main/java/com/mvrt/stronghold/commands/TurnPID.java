@@ -49,9 +49,10 @@ public class TurnPID extends Command {
 
 	@Override
 	protected void execute() {
-		SmartDashboard.putNumber("Initial", this.initial);
 
     double angle = Robot.navx.getYaw();
+
+    SmartDashboard.putNumber("Yaw", angle);
 
     if(Math.abs(angle - this.setpoint) < this.tolerance) {
       Robot.drive.stop();
@@ -70,8 +71,7 @@ public class TurnPID extends Command {
 
     Robot.drive.setLeftRightMotorOutputs(output, output);
 
-		SmartDashboard.putNumber("Setpoint", controller.getSetpoint());
-		SmartDashboard.putNumber("Error", controller.getError());
+		SmartDashboard.putNumber("Turn Error", controller.getError());
 		/*if(Math.abs(this.returnPIDInput() - this.setpoint) < onTargetThreshold) {
 			System.out.println("OnTarget");
 			onTarget = true;

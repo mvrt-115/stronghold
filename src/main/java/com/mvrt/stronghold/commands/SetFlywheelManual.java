@@ -1,21 +1,22 @@
 package com.mvrt.stronghold.commands;
 
+import com.mvrt.stronghold.Robot;
 import com.mvrt.stronghold.subsystems.Flywheel;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SetFlywheelSpeed extends Command {
-
-  private Flywheel referenceFlywheel;
+/**
+ * Created by Ishan on 3/13/2016.
+ */
+public class SetFlywheelManual extends Command {
 
   private final double speed;
 
   private boolean finished = false;
 
-  public SetFlywheelSpeed(Flywheel flywheel, double speed) {
+  public SetFlywheelManual(double speed) {
     this.speed = speed;
-    this.referenceFlywheel = flywheel;
 
-    requires(flywheel);
+    requires(Robot.rightFlywheel);
   }
 
   @Override
@@ -25,8 +26,8 @@ public class SetFlywheelSpeed extends Command {
 
   @Override
   protected void execute() {
-    referenceFlywheel.setSetpoint(speed);
-    referenceFlywheel.enable();
+    Robot.rightFlywheel.setSpeed(speed);
+    Robot.leftFlywheel.setSpeed(-speed);
   }
 
   @Override

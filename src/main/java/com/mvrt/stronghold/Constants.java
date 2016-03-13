@@ -19,16 +19,16 @@ public class Constants extends ConstantsBase {
   public static double kDriveTurnKi = 0;
   public static double kDriveTurnKd = 0;
 
-  public static double kDriveTurnOnTargetKp = 0.01;
-  public static double kDriveTurnOnTargetKi = 0.001;
-  public static double kDriveTurnOnTargetKd = 0;
+  public static double kDriveTurnOnTargetKp = 0.04;
+  public static double kDriveTurnOnTargetKi = 0;
+  public static double kDriveTurnOnTargetKd = 0.002;
 
   public static double kAnglerDegreesPerVolt = 360.0 / 5.0;
   public static double kAnglerVoltsPerDegree = 5.0 / 360.0;
 
   public static double kFlywheelRotationsPerTick = 1.0 / 1024.0;
 
-  public static double kFlywheelKp = 0;
+  public static double kFlywheelKp = 0.001;
   public static double kFlywheelKi = 0;
   public static double kFlywheelKd = 0;
 
@@ -90,16 +90,16 @@ public class Constants extends ConstantsBase {
 
   public static int kAnglerEncoder = 0;
 
-  public static int kDriveEncoderLeftA = 0;
-  public static int kDriveEncoderLeftB = 1;
+  public static int kDriveEncoderLeftA = 6;
+  public static int kDriveEncoderLeftB = 5;
 
-  public static int kDriveEncoderRightA = 2;
-  public static int kDriveEncoderRightB = 3;
+  public static int kDriveEncoderRightA = 8;
+  public static int kDriveEncoderRightB = 9;
 
-  public static int kFlywheelEncoderLeftA = 4;
-  public static int kFlywheelEncoderLeftB = 5;
-  public static int kFlywheelEncoderRightA = 6;
-  public static int kFlywheelEncoderRightB = 7;
+  public static int kFlywheelEncoderLeftA = 1;
+  public static int kFlywheelEncoderLeftB = 2;
+  public static int kFlywheelEncoderRightA = 3;
+  public static int kFlywheelEncoderRightB = 4;
 
   public static int kAnglerHallEffectsBottomLimit = 10;
   public static int kAnglerHallEffectsBatter = 11;
