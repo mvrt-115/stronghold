@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Angler extends Subsystem {
 
@@ -31,7 +32,7 @@ public class Angler extends Subsystem {
 
     anglerTwo.setInverted(true);
 
-    brake = new DoubleSolenoid(Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo);
+    brake = new DoubleSolenoid(Constants.kPcmId, Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo);
 
     hallEffectsBottom = new DigitalInput(Constants.kAnglerHallEffectsBottomLimit);
     hallEffectsBatter = new DigitalInput(Constants.kAnglerHallEffectsBatter);
@@ -43,17 +44,18 @@ public class Angler extends Subsystem {
   }
 
   public void setOutput(double speed) {
+    SmartDashboard.putNumber("Angler output", speed);
     anglerOne.set(speed);
     anglerTwo.set(speed);
   }
 
   public void brakeOff() {
-    brake.set(DoubleSolenoid.Value.kReverse);
+    brake.set(DoubleSolenoid.Value.kForward);
     isBraked = false;
   }
 
   public void brakeOn() {
-    brake.set(DoubleSolenoid.Value.kForward);
+    brake.set(DoubleSolenoid.Value.kReverse);
     isBraked = true;
   }
 
@@ -72,6 +74,10 @@ public class Angler extends Subsystem {
   public void stop() {
     brakeOn();
     setOutput(0);
+  }
+
+  public void zero() {
+    resetVoltage = getVoltage();
   }
 
   public double getAverageSpeed() {

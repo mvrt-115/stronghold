@@ -5,8 +5,8 @@ import com.mvrt.lib.PidConstants;
 import com.mvrt.lib.SynchronousPid;
 import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
-import com.sun.corba.se.impl.orbutil.concurrent.Sync;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AnglerMoveToAngle extends Command {
 
@@ -24,12 +24,16 @@ public class AnglerMoveToAngle extends Command {
         Constants.kAnglerBottomUpKd);
     bottomDownPid = new PidConstants(Constants.kAnglerBottomDownKp, Constants.kAnglerBottomDownKi,
         Constants.kAnglerBottomDownKd);
+
+
     middleUpPid = new PidConstants(Constants.kAnglerMiddleUpKp, Constants.kAnglerMiddleUpKi,
         Constants.kAnglerMiddleUpKd);
     middleDownPid = new PidConstants(Constants.kAnglerMiddleDownKp, Constants.kAnglerMiddleDownKi,
-        Constants.kAnglerBottomUpKd);
+        Constants.kAnglerMiddleDownKd);
+
     topPid = new PidConstants(Constants.kAnglerTopKp, Constants.kAnglerTopKi,
         Constants.kAnglerTopKd);
+
 
     pidController = new SynchronousPid(bottomUpPid);
 
@@ -41,46 +45,55 @@ public class AnglerMoveToAngle extends Command {
     Robot.angler.brakeOff();
 
     pidController.setSetpoint(goal);
+    pidController.setOutputRange(-0.8, 0.8);
+  }
+
+  public void setSetpoint(double goal) {
+    pidController.setSetpoint(goal);
   }
 
   @Override
   protected void execute() {
-    if (wantBrake && !Robot.angler.isBraked()) {
+    if (wantBrake) {
+      pidController.resetIntegrator();
       Robot.angler.brakeOn();
-    } else if (!wantBrake && Robot.angler.isBraked()) {
+    } else {
       Robot.angler.brakeOff();
     }
 
     double angle = Robot.angler.getAngle();
 
-    boolean goingUp = angle <= goal;
+    boolean goingUp = angle >= goal;
 
-    if (angle >= -40 && angle < 50) {
+
+    if (angle >= -20 && angle < 0) {
       pidController.setPid(goingUp ? bottomUpPid : bottomDownPid);
-    } else if (angle >= 50 && angle < 100) {
+    } else if (angle >= -50 && angle < -20) {
       pidController.setPid(goingUp ? middleUpPid : middleDownPid);
-    } else if (angle >= 100) {
+    } else if(angle >= -113 && angle < -50) {
       pidController.setPid(topPid);
     }
 
-    pidController.calculate(angle);
+    double output = pidController.calculate(angle);
 
-    Robot.angler.setOutput(pidController.retrieve());
+    Robot.angler.setOutput(output);
 
-    if (isFinished()) {
-      wantBrake = true;
-    }
+    wantBrake = onTarget();
+  }
+
+  private boolean onTarget(){
+    return Math.abs(pidController.getError()) <= Constants.kAnglerTolerance;
   }
 
   @Override
   protected boolean isFinished() {
-    return Math.abs(goal - Robot.angler.getAngle()) <= 3;
+    return false;
   }
 
   @Override
   protected void end() {
     wantBrake = true;
-    Robot.angler.brakeOn();
+    Robot.angler.stop();
   }
 
   @Override

@@ -32,7 +32,7 @@ public class DriveTrain extends Subsystem {
     drive = new RobotDrive(frontLeft, frontRight);
 
     leftEncoder = new Encoder(Constants.kDriveEncoderLeftA, Constants.kDriveEncoderLeftB);
-    rightEncoder = new Encoder(Constants.kDriveEncoderLeftA, Constants.kDriveEncoderRightB);
+    rightEncoder = new Encoder(Constants.kDriveEncoderRightA, Constants.kDriveEncoderRightB);
 
     leftEncoder.setDistancePerPulse(Constants.kDriveDistancePerTick);
     rightEncoder.setDistancePerPulse(Constants.kDriveDistancePerTick);

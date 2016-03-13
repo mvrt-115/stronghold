@@ -1,7 +1,6 @@
 package com.mvrt.stronghold;
 
-import com.mvrt.stronghold.commands.Climb;
-import com.mvrt.stronghold.commands.ExtendClimber;
+import com.mvrt.stronghold.commands.AnglerMoveToAngle;
 import com.mvrt.stronghold.commands.SetFlywheelSpeed;
 import com.mvrt.stronghold.commands.Shoot;
 
@@ -37,14 +36,10 @@ public class OperatorInterface {
         .whileActive(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset2));
     new JoystickButton(operatorJoystick, Constants.kShootPresetButton2)
         .whileActive(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset2));
+    
 
     // shoot the ball
     new JoystickButton(operatorJoystick, Constants.kExtendPistonButton).whenPressed(new Shoot());
-    
-    new JoystickButton(operatorJoystick, Constants.kExtendClimberButton)
-            .whenPressed(new ExtendClimber());
-    
-    new JoystickButton(operatorJoystick, Constants.kClimbButton).whenPressed(new Climb());
   }
   
   public double getAnglerPreset() {
