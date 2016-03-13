@@ -24,6 +24,9 @@ public class Constants extends ConstantsBase {
   public static double kFlywheelKi = 0;
   public static double kFlywheelKd = 0;
 
+  public static double kFlywheelIntakeSpeed = 0;
+  public static double kBatterShootSpeed = 0;
+
   public static double kAnglerBottomUpKp = 0;
   public static double kAnglerBottomUpKi = 0;
   public static double kAnglerBottomUpKd = 0;
@@ -99,14 +102,11 @@ public class Constants extends ConstantsBase {
   public static int kAnglerHallEffectsTopLimit = 12;
 
   public static double kAnglerBatterPreset = 45;
-  public static double kAnglerTopPreset = 90;
-  public static double kAnglerBottomPreset = 0;
+  public static double kAnglerBottomPreset = 45;
+  public static double kAnglerTopPreset = 45;
+  public static double kAnglerLowBarPreset = 0;
 
   public static double kAnglerError = 3;
-
-  public static double[] kAnglerPresets = {kAnglerBatterPreset,
-                                           kAnglerTopPreset,
-                                           kAnglerBottomPreset};
 
   public static int kAnglerBrakePortOne;
   public static int kAnglerBrakePortTwo;
@@ -116,6 +116,12 @@ public class Constants extends ConstantsBase {
   
   public static int kClimberMotor1 = 9;
   public static int kClimberMotor2 = 10;
+
+  public static int kOperatorClimberButton = 0;
+  public static int kOperatorLowBarPresetButton = 0;
+  public static int kOperatorBatterPresetButton = 0;
+  public static int kOperatorBatterButton = 0;
+  public static int kDriveIntakeButton = 0;
 
   static {
     new Constants().loadFromFile();
