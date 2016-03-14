@@ -64,8 +64,7 @@ public class AnglerMoveToAngle extends Command {
     double angle = Robot.angler.getAngle();
 
     boolean goingUp = angle >= goal;
-
-
+    
     if (angle >= -20 && angle < 0) {
       pidController.setPid(goingUp ? bottomUpPid : bottomDownPid);
     } else if (angle >= -50 && angle < -20) {
