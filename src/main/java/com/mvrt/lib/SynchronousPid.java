@@ -1,5 +1,6 @@
 package com.mvrt.lib;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.BoundaryException;
 
 /**
@@ -83,6 +84,8 @@ public class SynchronousPid {
     } else if (result < minOutput) {
       result = minOutput;
     }
+    SmartDashboard.putNumber("Error", error);
+    SmartDashboard.putNumber("Target output", result);
     return result;
   }
 

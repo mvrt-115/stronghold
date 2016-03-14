@@ -1,4 +1,4 @@
-package org.usfirst.frc.team115.robot.commands;
+package com.mvrt.stronghold.commands;
 
 import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
@@ -26,7 +26,7 @@ public class DriveStraight extends PIDCommand {
    * @param joystick If there this a joystick
    */
   public DriveStraight(double speed, boolean joystick) {
-    super(Constants.kDrivekp, Constants.kDriveki, Constants.kDrivekd);
+    super(Constants.kDriveKp, Constants.kDriveKi, Constants.kDriveKd);
     requires(Robot.drive);
     this.joystick = joystick;
     this.speed = speed;
