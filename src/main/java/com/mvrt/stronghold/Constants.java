@@ -32,6 +32,9 @@ public class Constants extends ConstantsBase {
   public static double kFlywheelKi = 0;
   public static double kFlywheelKd = 0;
 
+  public static double kFlywheelIntakeSpeed = 0;
+  public static double kBatterShootSpeed = 0;
+
   public static double kAnglerTopKp = 0.008;
   public static double kAnglerTopKi = 0.00015;
   public static double kAnglerTopKd = 0.007;
@@ -51,7 +54,6 @@ public class Constants extends ConstantsBase {
   public static double kAnglerBottomDownKp = 0.006;
   public static double kAnglerBottomDownKi = 0;
   public static double kAnglerBottomDownKd = 0.0095;
-
 
   public static int kEndEditableArea = 0;
   
@@ -106,16 +108,12 @@ public class Constants extends ConstantsBase {
   public static int kAnglerHallEffectsTopLimit = 12;
 
   public static double kAnglerBatterPreset = 45;
-  public static double kAnglerTopPreset = 90;
-  public static double kAnglerBottomPreset = 0;
+  public static double kAnglerBottomPreset = 45;
+  public static double kAnglerTopPreset = 45;
+  public static double kAnglerLowBarPreset = 0;
 
   public static double kAnglerError = 3;
   public static double kAnglerTolerance = 1;
-
-
-  public static double[] kAnglerPresets = {kAnglerBatterPreset,
-                                           kAnglerTopPreset,
-                                           kAnglerBottomPreset};
 
   public static int kAnglerBrakePortOne = 2;
   public static int kAnglerBrakePortTwo = 3;
@@ -125,6 +123,12 @@ public class Constants extends ConstantsBase {
   
   public static int kClimberMotor1 = 9;
   public static int kClimberMotor2 = 10;
+
+  public static int kOperatorClimberButton = 0;
+  public static int kOperatorLowBarPresetButton = 0;
+  public static int kOperatorBatterPresetButton = 0;
+  public static int kOperatorBatterButton = 0;
+  public static int kDriveIntakeButton = 0;
 
   static {
     new Constants().loadFromFile();
