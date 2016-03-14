@@ -1,7 +1,8 @@
-package org.usfirst.frc.team115.robot.commands;
+package com.mvrt.stronghold.commands;
 
 import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
+import com.mvrt.stronghold.commands.DriveStraight;
 
 public class DriveStraightForDistance extends DriveStraight {
 

@@ -1,8 +1,11 @@
 package com.mvrt.stronghold;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.mvrt.lib.ConstantsBase;
+import com.mvrt.stronghold.commands.AnglerMoveToAngle;
+import com.mvrt.stronghold.commands.DisableBrake;
+import com.mvrt.stronghold.commands.TurnPid;
 import com.mvrt.stronghold.subsystems.Angler;
-import com.mvrt.stronghold.subsystems.Climber;
 import com.mvrt.stronghold.subsystems.DriveTrain;
 import com.mvrt.stronghold.subsystems.Flywheel;
 import com.mvrt.stronghold.subsystems.Punch;
@@ -12,6 +15,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,7 +33,6 @@ public class Robot extends IterativeRobot {
   public static Flywheel leftFlywheel;
   public static Flywheel rightFlywheel;
   public static Punch punch;
-  public static Climber climber;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -49,9 +52,9 @@ public class Robot extends IterativeRobot {
         new Flywheel("Right Flywheel", Constants.kFlywheelRightId, Constants.kFlywheelEncoderRightA,
             Constants.kFlywheelEncoderRightB, Constants.kFlywheelKp, Constants.kFlywheelKi,
             Constants.kFlywheelKd);
-    climber = new Climber();
     operatorInterface = new OperatorInterface();
-    new Compressor().start();
+    angler.zero();
+    new Compressor(Constants.kPcmId).start();
   }
 
   public void disabledPeriodic() {
@@ -76,13 +79,19 @@ public class Robot extends IterativeRobot {
    * You can use it to reset subsystems before shutting down.
    */
   public void disabledInit() {
-
   }
 
   /**
    * This function is called periodically during operator control.
    */
   public void teleopPeriodic() {
+    /*DEBUG*/ SmartDashboard.putNumber("Angler angle", angler.getAngle());
+    SmartDashboard.putData("AngleTo30", new AnglerMoveToAngle(-30));
+    SmartDashboard.putData("AngleTo15", new AnglerMoveToAngle(-15));
+    SmartDashboard.putData("AngleTo45", new AnglerMoveToAngle(-45));
+    SmartDashboard.putData("AngleTo113", new AnglerMoveToAngle(-113));
+    SmartDashboard.putData("AngleTo100", new AnglerMoveToAngle(-100));
+    SmartDashboard.putData("UnBrake", new DisableBrake());
     Scheduler.getInstance().run();
   }
 

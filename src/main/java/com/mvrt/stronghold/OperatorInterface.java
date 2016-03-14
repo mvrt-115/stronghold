@@ -2,7 +2,6 @@ package com.mvrt.stronghold;
 
 import com.mvrt.lib.ConstantsBase;
 import com.mvrt.stronghold.commands.AnglerMoveToAngle;
-import com.mvrt.stronghold.commands.ExtendClimber;
 import com.mvrt.stronghold.commands.SetFlywheelSpeed;
 import com.mvrt.stronghold.commands.Shoot;
 import com.mvrt.stronghold.indep.BatterShot;
@@ -44,9 +43,6 @@ public class OperatorInterface {
     // Angler Low Bar Preset
     new JoystickButton(operatorJoystick, Constants.kOperatorLowBarPresetButton)
             .whenPressed(new AnglerMoveToAngle(Constants.kAnglerLowBarPreset));
-
-    // Extend Climber Button
-    new JoystickButton(operatorJoystick, Constants.kOperatorClimberButton);
   }
 
   public Joystick getDriveJoystick() {
