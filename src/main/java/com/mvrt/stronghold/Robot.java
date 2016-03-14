@@ -4,7 +4,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.mvrt.lib.ConstantsBase;
 import com.mvrt.stronghold.commands.AnglerMoveToAngle;
 import com.mvrt.stronghold.commands.DisableBrake;
-import com.mvrt.stronghold.commands.TurnPID;
+import com.mvrt.stronghold.commands.TurnPid;
 import com.mvrt.stronghold.subsystems.Angler;
 import com.mvrt.stronghold.subsystems.DriveTrain;
 import com.mvrt.stronghold.subsystems.Flywheel;

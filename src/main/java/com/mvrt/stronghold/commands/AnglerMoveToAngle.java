@@ -64,13 +64,12 @@ public class AnglerMoveToAngle extends Command {
     double angle = Robot.angler.getAngle();
 
     boolean goingUp = angle >= goal;
-
-
+    
     if (angle >= -20 && angle < 0) {
       pidController.setPid(goingUp ? bottomUpPid : bottomDownPid);
     } else if (angle >= -50 && angle < -20) {
       pidController.setPid(goingUp ? middleUpPid : middleDownPid);
-    } else if(angle >= -113 && angle < -50) {
+    } else if (angle >= -113 && angle < -50) {
       pidController.setPid(topPid);
     }
 
@@ -81,7 +80,7 @@ public class AnglerMoveToAngle extends Command {
     wantBrake = onTarget();
   }
 
-  private boolean onTarget(){
+  private boolean onTarget() {
     return Math.abs(pidController.getError()) <= Constants.kAnglerTolerance;
   }
 

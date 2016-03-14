@@ -32,7 +32,8 @@ public class Angler extends Subsystem {
 
     anglerTwo.setInverted(true);
 
-    brake = new DoubleSolenoid(Constants.kPcmId, Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo);
+    brake = new DoubleSolenoid(Constants.kPcmId,
+            Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo);
 
     hallEffectsBottom = new DigitalInput(Constants.kAnglerHallEffectsBottomLimit);
     hallEffectsBatter = new DigitalInput(Constants.kAnglerHallEffectsBatter);
