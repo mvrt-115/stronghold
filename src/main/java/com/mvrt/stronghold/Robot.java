@@ -4,7 +4,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.mvrt.lib.ConstantsBase;
 import com.mvrt.stronghold.commands.AnglerMoveToAngle;
 import com.mvrt.stronghold.commands.DisableBrake;
-import com.mvrt.stronghold.commands.TurnPID;
+import com.mvrt.stronghold.commands.TurnPid;
 import com.mvrt.stronghold.subsystems.Angler;
 import com.mvrt.stronghold.subsystems.DriveTrain;
 import com.mvrt.stronghold.subsystems.Flywheel;
@@ -80,8 +80,8 @@ public class Robot extends IterativeRobot {
     SmartDashboard.putData("AngleTo113", new AnglerMoveToAngle(-113));
     SmartDashboard.putData("AngleTo100", new AnglerMoveToAngle(-100));
 
-    SmartDashboard.putData("Turn90", new TurnPID(90, true));
-    SmartDashboard.putData("Turn45", new TurnPID(45, true));
+    SmartDashboard.putData("Turn90", new TurnPid(90, true));
+    SmartDashboard.putData("Turn45", new TurnPid(45, true));
     SmartDashboard.putData("UnBrake", new DisableBrake());
   }
 
@@ -96,6 +96,13 @@ public class Robot extends IterativeRobot {
    * This function is called periodically during operator control.
    */
   public void teleopPeriodic() {
+    /*DEBUG*/ SmartDashboard.putNumber("Angler angle", angler.getAngle());
+    SmartDashboard.putData("AngleTo30", new AnglerMoveToAngle(-30));
+    SmartDashboard.putData("AngleTo15", new AnglerMoveToAngle(-15));
+    SmartDashboard.putData("AngleTo45", new AnglerMoveToAngle(-45));
+    SmartDashboard.putData("AngleTo113", new AnglerMoveToAngle(-113));
+    SmartDashboard.putData("AngleTo100", new AnglerMoveToAngle(-100));
+    SmartDashboard.putData("UnBrake", new DisableBrake());
     Scheduler.getInstance().run();
   }
 

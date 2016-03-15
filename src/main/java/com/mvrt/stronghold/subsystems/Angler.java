@@ -28,11 +28,12 @@ public class Angler extends Subsystem {
    */
   public Angler() {
     anglerOne = new CANTalon(Constants.kAnglerTalonOneId);
-    anglerTwo = new CANTalon(Constants.kAnglerTalonTwo);
+    anglerTwo = new CANTalon(Constants.kAnglerTalonTwoId);
 
     anglerTwo.setInverted(true);
 
-    brake = new DoubleSolenoid(Constants.kPcmId, Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo);
+    brake = new DoubleSolenoid(Constants.kPcmId,
+            Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo);
 
     hallEffectsBottom = new DigitalInput(Constants.kAnglerHallEffectsBottomLimit);
     hallEffectsBatter = new DigitalInput(Constants.kAnglerHallEffectsBatter);
