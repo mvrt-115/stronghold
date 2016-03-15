@@ -40,9 +40,6 @@ public class OperatorInterface {
     new JoystickButton(operatorJoystick, Constants.kControllerA)
             .whenPressed(new Shoot());
 
-    new JoystickButton(operatorJoystick, Constants.kControllerY)
-            .whenPressed(new AnglerMoveToAngle(Constants.kAnglerLowBarPreset));
-
     new JoystickButton(operatorJoystick, Constants.kControllerB)
             .whenPressed(new AnglerMoveToAngle(Constants.kAnglerBottomPreset));
 
