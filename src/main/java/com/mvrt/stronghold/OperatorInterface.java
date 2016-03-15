@@ -4,6 +4,7 @@ import com.mvrt.stronghold.commands.AnglerMoveToAngle;
 import com.mvrt.stronghold.commands.MoveToAngle;
 import com.mvrt.stronghold.commands.SetFlywheelSpeed;
 import com.mvrt.stronghold.commands.Shoot;
+import com.mvrt.stronghold.commands.ToggleBrake;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -45,8 +46,11 @@ public class OperatorInterface {
     new JoystickButton(operatorJoystick, Constants.kControllerB)
             .whenPressed(new AnglerMoveToAngle(Constants.kAnglerBottomPreset));
 
-    new JoystickButton(operatorJoystick, Constants.kControllerX)
+    new JoystickButton(operatorJoystick, Constants.kControllerLAXIS_PRESS)
             .toggleWhenPressed(new MoveToAngle());
+
+    new JoystickButton(operatorJoystick, Constants.kControllerX)
+            .whenPressed(new ToggleBrake());
 
   }
 

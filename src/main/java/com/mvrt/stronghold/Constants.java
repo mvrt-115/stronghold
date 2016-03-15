@@ -94,10 +94,6 @@ public class Constants extends ConstantsBase {
   public static double kAnglerDegreesPerVolt = 360.0 / 5.0;
   public static double kAnglerVoltsPerDegree = 5.0 / 360.0;
 
-  public static int kAnglerHallEffectsBottomLimit = 10;
-  public static int kAnglerHallEffectsBatter = 11;
-  public static int kAnglerHallEffectsTopLimit = 12;
-
   public static double kAnglerBatterPreset = -113;
   public static double kAnglerBottomPreset = 0;
   public static double kAnglerTopPreset = 90;

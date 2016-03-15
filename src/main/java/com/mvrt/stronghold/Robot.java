@@ -3,7 +3,6 @@ package com.mvrt.stronghold;
 import com.kauailabs.navx.frc.AHRS;
 import com.mvrt.lib.ConstantsBase;
 import com.mvrt.stronghold.commands.AnglerMoveToAngle;
-import com.mvrt.stronghold.commands.DisableBrake;
 import com.mvrt.stronghold.commands.TurnPid;
 import com.mvrt.stronghold.subsystems.Angler;
 import com.mvrt.stronghold.subsystems.DriveTrain;
@@ -82,7 +81,6 @@ public class Robot extends IterativeRobot {
 
     SmartDashboard.putData("Turn90", new TurnPid(90, true));
     SmartDashboard.putData("Turn45", new TurnPid(45, true));
-    SmartDashboard.putData("UnBrake", new DisableBrake());
   }
 
   /**
@@ -102,7 +100,6 @@ public class Robot extends IterativeRobot {
     SmartDashboard.putData("AngleTo45", new AnglerMoveToAngle(-45));
     SmartDashboard.putData("AngleTo113", new AnglerMoveToAngle(-113));
     SmartDashboard.putData("AngleTo100", new AnglerMoveToAngle(-100));
-    SmartDashboard.putData("UnBrake", new DisableBrake());
     Scheduler.getInstance().run();
   }
 
