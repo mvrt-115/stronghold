@@ -29,7 +29,7 @@ public class Intake extends Command {
 
   @Override
   protected boolean isFinished() {
-    return !(Robot.operatorInterface.getDriveJoystick().getRawButton(Constants.kIntakeButton)); //replace with operator part
+    return !(Robot.operatorInterface.getDriveJoystick().getRawButton(Constants.kDriveIntakeButton)); //replace with operator part
   }
 
   @Override

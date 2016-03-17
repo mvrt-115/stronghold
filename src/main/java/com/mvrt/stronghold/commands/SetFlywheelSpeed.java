@@ -14,7 +14,7 @@ public class SetFlywheelSpeed extends Command {
 
   private boolean finished = false;
 
-  public SetFlywheelSpeed(Flywheel flywheel) {//Use this to just blank fire and then stop
+  public SetFlywheelSpeed(Flywheel flywheel) { //Use this to just blank fire and then stop
     this.speed = 25;
     this.referenceFlywheel = flywheel;
 
@@ -31,9 +31,7 @@ public class SetFlywheelSpeed extends Command {
   }
 
   @Override
-  protected void initialize() {
-
-  }
+  protected void initialize() {}
 
   @Override
   protected void execute() {
@@ -54,12 +52,8 @@ public class SetFlywheelSpeed extends Command {
   }
 
   @Override
-  protected void end() {
-
-  }
+  protected void end() {}
 
   @Override
-  protected void interrupted() {
-
-  }
+  protected void interrupted() {}
 }

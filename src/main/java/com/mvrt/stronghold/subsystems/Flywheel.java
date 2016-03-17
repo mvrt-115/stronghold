@@ -1,6 +1,7 @@
 package com.mvrt.stronghold.subsystems;
 
 import com.mvrt.stronghold.Constants;
+import com.mvrt.stronghold.Robot;
 import com.mvrt.stronghold.commands.SetFlywheelSpeed;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;

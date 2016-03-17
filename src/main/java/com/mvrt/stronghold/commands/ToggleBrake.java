@@ -1,28 +1,26 @@
 package com.mvrt.stronghold.commands;
 
 /**
- * Created by Ishan on 3/12/2016.
- */
+* Created by Ishan on 3/12/2016.
+*/
 
 import com.mvrt.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DisableBrake extends Command {
+public class ToggleBrake extends Command {
 
   boolean isFinished = false;
 
-  public DisableBrake() {
+  public ToggleBrake() {
     requires(Robot.angler);
   }
 
   @Override
-  protected void initialize() {
-
-  }
+  protected void initialize() {}
 
   @Override
   protected void execute() {
-    Robot.angler.brakeOff();
+    Robot.angler.toggleBrake();
     isFinished = true;
   }
 
@@ -32,12 +30,8 @@ public class DisableBrake extends Command {
   }
 
   @Override
-  protected void end() {
-
-  }
+  protected void end() {}
 
   @Override
-  protected void interrupted() {
-
-  }
+  protected void interrupted() {}
 }
