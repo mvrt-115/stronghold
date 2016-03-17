@@ -1,7 +1,10 @@
 package com.mvrt.stronghold;
 
-import com.mvrt.stronghold.commands.*;
-
+import com.mvrt.stronghold.commands.AnglerMoveWithJoystick;
+import com.mvrt.stronghold.commands.Intake;
+import com.mvrt.stronghold.commands.SetFlywheelSpeed;
+import com.mvrt.stronghold.commands.Shoot;
+import com.mvrt.stronghold.commands.ToggleBrake;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 

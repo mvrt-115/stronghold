@@ -31,11 +31,11 @@ public class Flywheel extends PIDSubsystem {
     this.setAbsoluteTolerance(3);
   }
 
-  public void setSpeed(double speed){
+  public void setSpeed(double speed) {
     motor.set(speed);
   }
 
-  public double getSpeed(){
+  public double getSpeed() {
     return motor.getSpeed();
   }
 
@@ -49,9 +49,13 @@ public class Flywheel extends PIDSubsystem {
 
   @Override
   protected void usePIDOutput(double output) {
-    if(output < 0 && getSetpoint() > 0) output = 0;
-    if(output > 0 && getSetpoint() < 0) output = 0;
-    SmartDashboard.putNumber(getName()+"Flywheel", output);
+    if (output < 0 && getSetpoint() > 0) {
+      output = 0;
+    }
+    if (output > 0 && getSetpoint() < 0) {
+      output = 0;
+    }
+    SmartDashboard.putNumber(getName() + "Flywheel", output);
     motor.set(output);
   }
 

@@ -10,7 +10,9 @@ public class Punch extends Subsystem {
   private DoubleSolenoid punch;
 
   public Punch() {
-    punch = new DoubleSolenoid(Constants.kPcmId, Constants.kPunchSolenoidA, Constants.kPunchSolenoidB);
+
+    punch = new DoubleSolenoid(Constants.kPcmId, Constants.kPunchSolenoidA,
+        Constants.kPunchSolenoidB);
   }
 
   public void extend() {

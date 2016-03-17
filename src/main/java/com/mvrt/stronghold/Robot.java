@@ -1,21 +1,12 @@
 package com.mvrt.stronghold;
 
 import com.kauailabs.navx.frc.AHRS;
-import com.mvrt.lib.ConstantsBase;
-import com.mvrt.stronghold.commands.AnglerMoveToAngle;
-<<<<<<< HEAD
-import com.mvrt.stronghold.commands.DisableBrake;
-import com.mvrt.stronghold.commands.SpyBotAuton;
-import com.mvrt.stronghold.commands.TurnPID;
-import com.mvrt.stronghold.subsystems.*;
-=======
-import com.mvrt.stronghold.commands.TurnPid;
+
+import com.mvrt.stronghold.subsystems.ActiveIntake;
 import com.mvrt.stronghold.subsystems.Angler;
 import com.mvrt.stronghold.subsystems.DriveTrain;
 import com.mvrt.stronghold.subsystems.Flywheel;
 import com.mvrt.stronghold.subsystems.Punch;
->>>>>>> feature/logitech
-
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI;
@@ -69,7 +60,7 @@ public class Robot extends IterativeRobot {
   }
 
   public void autonomousInit() {
-    Scheduler.getInstance().add(new SpyBotAuton());
+
   }
 
   /**
@@ -80,26 +71,7 @@ public class Robot extends IterativeRobot {
   }
 
   public void teleopInit() {
-    Scheduler.getInstance().removeAll();
 
-    SmartDashboard.putData("AngleTo30", new AnglerMoveToAngle(-30));
-    SmartDashboard.putData("AngleTo15", new AnglerMoveToAngle(-15));
-    SmartDashboard.putData("AngleTo45", new AnglerMoveToAngle(-45));
-    SmartDashboard.putData("LowBar", new AnglerMoveToAngle(Constants.kAnglerLowBarPreset));
-    SmartDashboard.putData("Intake", new AnglerMoveToAngle(0));
-    SmartDashboard.putData("Batter", new AnglerMoveToAngle(Constants.kAnglerBatterPreset));
-    SmartDashboard.putData("AngleTo100", new AnglerMoveToAngle(-100));
-    SmartDashboard.putData("AngleTo110", new AnglerMoveToAngle(-110));
-    SmartDashboard.putData("AngleTo111", new AnglerMoveToAngle(-111));
-    SmartDashboard.putData("AngleTo112", new AnglerMoveToAngle(-112));
-    SmartDashboard.putData("AngleTo105", new AnglerMoveToAngle(-105));
-    SmartDashboard.putData("AngleTo107", new AnglerMoveToAngle(-107));
-    SmartDashboard.putData("AngleTo108", new AnglerMoveToAngle(-108));
-    SmartDashboard.putData("AngleTo100", new AnglerMoveToAngle(-100));
-    SmartDashboard.putData("AngleTo102", new AnglerMoveToAngle(-102));
-
-    SmartDashboard.putData("Turn90", new TurnPid(90, true));
-    SmartDashboard.putData("Turn45", new TurnPid(45, true));
   }
 
   /**
@@ -113,16 +85,8 @@ public class Robot extends IterativeRobot {
    * This function is called periodically during operator control.
    */
   public void teleopPeriodic() {
-<<<<<<< HEAD
     SmartDashboard.putNumber("Angler angle", angler.getAngle());
-=======
-    /*DEBUG*/ SmartDashboard.putNumber("Angler angle", angler.getAngle());
-    SmartDashboard.putData("AngleTo30", new AnglerMoveToAngle(-30));
-    SmartDashboard.putData("AngleTo15", new AnglerMoveToAngle(-15));
-    SmartDashboard.putData("AngleTo45", new AnglerMoveToAngle(-45));
-    SmartDashboard.putData("AngleTo113", new AnglerMoveToAngle(-113));
-    SmartDashboard.putData("AngleTo100", new AnglerMoveToAngle(-100));
->>>>>>> feature/logitech
+
     Scheduler.getInstance().run();
   }
 

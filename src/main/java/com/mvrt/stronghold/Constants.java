@@ -67,7 +67,7 @@ public class Constants extends ConstantsBase {
   public static int kDriveRightRearId = 4;
 
   public static int kAnglerTalonOneId = 6;
-  public static int kAnglerTalonTwo = 5;
+  public static int kAnglerTalonTwoId = 5;
 
   public static int kFlywheelLeftId = 7;
   public static int kFlywheelRightId = 8;
