@@ -1,12 +1,10 @@
 package com.mvrt.stronghold.commands;
 
-import com.mvrt.lib.ConstantsBase;
 import com.mvrt.lib.PidConstants;
 import com.mvrt.lib.SynchronousPid;
 import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AnglerMoveToAngle extends Command {
 
@@ -15,7 +13,7 @@ public class AnglerMoveToAngle extends Command {
   private PidConstants bottomUpPid, bottomDownPid, middleUpPid, middleDownPid, topPid;
   private SynchronousPid pidController;
 
-  private final double goal;
+  private double goal;
 
   public AnglerMoveToAngle(double angle) {
     requires(Robot.angler);

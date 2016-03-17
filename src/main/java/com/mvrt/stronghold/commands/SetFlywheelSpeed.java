@@ -1,10 +1,8 @@
 package com.mvrt.stronghold.commands;
 
 import com.mvrt.stronghold.Constants;
-import com.mvrt.stronghold.Robot;
 import com.mvrt.stronghold.subsystems.Flywheel;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SetFlywheelSpeed extends Command {
 
@@ -14,19 +12,21 @@ public class SetFlywheelSpeed extends Command {
 
   private boolean finished = false;
 
-  public SetFlywheelSpeed(Flywheel flywheel) { //Use this to just blank fire and then stop
-    this.speed = 25;
-    this.referenceFlywheel = flywheel;
-
-    finished = true;
-    requires(flywheel);
-  }
+  private boolean willTimeout = false;
 
   public SetFlywheelSpeed(Flywheel flywheel, double speed) {
     this.speed = speed;
     this.referenceFlywheel = flywheel;
 
-    finished = false;
+    requires(flywheel);
+  }
+
+  public SetFlywheelSpeed(Flywheel flywheel, double speed, double timeout) {
+    this.speed = speed;
+    this.referenceFlywheel = flywheel;
+
+    setTimeout(timeout);
+    willTimeout = true;
     requires(flywheel);
   }
 
@@ -35,25 +35,31 @@ public class SetFlywheelSpeed extends Command {
 
   @Override
   protected void execute() {
-    if (referenceFlywheel.isNearTarget()) {
-      referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKp, Constants.kFlywheelKi,
-          Constants.kAnglerBottomDownKd);
-    } else {
-      referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKpOnTarget,
-          Constants.kFlywheelKiOnTarget, Constants.kFlywheelKdOnTarget);
+    if(!finished) {
+      if (referenceFlywheel.isNearTarget()) {
+        referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKp, Constants.kFlywheelKi,
+                Constants.kAnglerBottomDownKd);
+      } else {
+        referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKpOnTarget,
+                Constants.kFlywheelKiOnTarget, Constants.kFlywheelKdOnTarget);
+      }
+      referenceFlywheel.setSetpoint(speed);
+      referenceFlywheel.enable();
+      finished = true;
     }
-    referenceFlywheel.setSetpoint(speed);
-    referenceFlywheel.enable();
-    finished = true;
   }
 
   @Override
   protected boolean isFinished() {
-    return finished;
+    return finished && !willTimeout;
   }
 
   @Override
-  protected void end() {}
+  protected void end() {
+    if(willTimeout){
+      referenceFlywheel.stop();
+    }
+  }
 
   @Override
   protected void interrupted() {}
