@@ -8,13 +8,14 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem {
 
   private CANTalon frontLeft, frontRight, backLeft, backRight;
   private Encoder leftEncoder, rightEncoder;
 
-  private RobotDrive drive;
+  //private RobotDrive drive;
 
   public DriveTrain() {
     frontLeft = new CANTalon(Constants.kDriveLeftFrontId);
@@ -27,9 +28,7 @@ public class DriveTrain extends Subsystem {
     backRight.changeControlMode(CANTalon.TalonControlMode.Follower);
     backRight.set(frontRight.getDeviceID());
 
-    frontRight.setInverted(true);
-
-    drive = new RobotDrive(frontLeft, frontRight);
+    frontLeft.setInverted(true);
 
     leftEncoder = new Encoder(Constants.kDriveEncoderLeftA, Constants.kDriveEncoderLeftB);
     rightEncoder = new Encoder(Constants.kDriveEncoderRightA, Constants.kDriveEncoderRightB);
@@ -41,22 +40,23 @@ public class DriveTrain extends Subsystem {
   }
 
   public void drive(double throttle, double rotate, boolean quickturn) {
-    DriveSignal signal = DriveInterpreter.austinDrive(throttle, rotate, quickturn);
-    drive.setLeftRightMotorOutputs(signal.leftMotor, signal.rightMotor);
+    DriveSignal signal = DriveInterpreter.arcade(throttle, rotate, quickturn);
+    this.setLeftRightMotorOutputs(signal.leftMotor, signal.rightMotor);
   }
 
   public void drive(double driveSpeed, double turnSpeed) {
     DriveSignal signal = DriveInterpreter.arcade(driveSpeed, turnSpeed);
-    drive.setLeftRightMotorOutputs(signal.leftMotor, signal.rightMotor);
+    this.setLeftRightMotorOutputs(signal.leftMotor, signal.rightMotor);
   }
 
   public void stop() {
     DriveSignal signal = DriveInterpreter.stop();
-    drive.setLeftRightMotorOutputs(signal.leftMotor, signal.rightMotor);
+    this.setLeftRightMotorOutputs(signal.leftMotor, signal.rightMotor);
   }
 
   public void setLeftRightMotorOutputs(double left, double right) {
-    drive.setLeftRightMotorOutputs(left, right);
+    frontLeft.set(left);
+    frontRight.set(right);
   }
 
   public double getDistanceLeft() {

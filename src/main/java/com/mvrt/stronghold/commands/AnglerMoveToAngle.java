@@ -55,8 +55,8 @@ public class AnglerMoveToAngle extends Command {
   @Override
   protected void execute() {
     if (wantBrake) {
-      pidController.resetIntegrator();
       Robot.angler.brakeOn();
+      pidController.resetIntegrator();
     } else {
       Robot.angler.brakeOff();
     }

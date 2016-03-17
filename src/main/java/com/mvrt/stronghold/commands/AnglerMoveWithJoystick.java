@@ -3,9 +3,12 @@ package com.mvrt.stronghold.commands;
 import com.mvrt.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * Created by Ishan on 3/14/2016.
+ */
 public class AnglerMoveWithJoystick extends Command {
 
-  public AnglerMoveWithJoystick() {
+  public AnglerMoveWithJoystick(){
     requires(Robot.angler);
   }
 
@@ -16,12 +19,13 @@ public class AnglerMoveWithJoystick extends Command {
 
   @Override
   protected void execute() {
-    // should use operator joystick?
+    Robot.angler.brakeOff();
+    Robot.angler.setOutput(Robot.operatorInterface.getDriveJoystick().getZ());
   }
 
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.operatorInterface.getDriveJoystick().getRawButton(6);
   }
 
   @Override
@@ -31,6 +35,6 @@ public class AnglerMoveWithJoystick extends Command {
 
   @Override
   protected void interrupted() {
-    end();
+
   }
 }

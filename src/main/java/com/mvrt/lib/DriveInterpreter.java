@@ -122,7 +122,7 @@ public class DriveInterpreter {
     wheel = dampen(wheel, wheelNonLinearity);
     wheel = dampen(wheel, wheelNonLinearity);
 
-    double leftPwm, rightPwm, overPower;
+    double leftPwm, rightPwm, overPower = 0;
     double sensitivity = SENSITIVITY;
 
     double angularPower;

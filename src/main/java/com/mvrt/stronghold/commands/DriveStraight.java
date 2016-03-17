@@ -43,6 +43,11 @@ public class DriveStraight extends PIDCommand {
   @Override
   protected void usePIDOutput(double output) {
     SmartDashboard.putNumber("DriveStraightOutput", output);
+    SmartDashboard.putNumber("DriveStraight Error", Robot.navx.getYaw() - getSetpoint());
+    if(Math.abs(Robot.navx.getYaw() - getSetpoint()) < 1)
+      getPIDController().setPID(Constants.kDriveKp, 0, Constants.kDriveKi);
+    else
+      getPIDController().setPID(Constants.kDriveKp, Constants.kDriveKi, Constants.kDriveKd);
     if (joystick) {
       Robot.drive.drive(Robot.operatorInterface.getDriveJoystick().getY() * speed, output);
     } else {
@@ -54,7 +59,7 @@ public class DriveStraight extends PIDCommand {
   protected void initialize() {
     Robot.drive.stop();
     setInputRange(-180, 180); // Set range from -180 to 180 degrees. The input is obtained from navx
-    getPIDController().setOutputRange(-0.6, 0.6); // Value to pass to output for driving.
+    getPIDController().setOutputRange(-0.8, 0.8); // Value to pass to output for driving.
     getPIDController().setContinuous(true);
     setSetpoint(Robot.navx.getYaw()); // Set the current location to goal to keep on track
   }

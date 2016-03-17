@@ -4,11 +4,9 @@ import com.kauailabs.navx.frc.AHRS;
 import com.mvrt.lib.ConstantsBase;
 import com.mvrt.stronghold.commands.AnglerMoveToAngle;
 import com.mvrt.stronghold.commands.DisableBrake;
+import com.mvrt.stronghold.commands.SpyBotAuton;
 import com.mvrt.stronghold.commands.TurnPID;
-import com.mvrt.stronghold.subsystems.Angler;
-import com.mvrt.stronghold.subsystems.DriveTrain;
-import com.mvrt.stronghold.subsystems.Flywheel;
-import com.mvrt.stronghold.subsystems.Punch;
+import com.mvrt.stronghold.subsystems.*;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -32,6 +30,7 @@ public class Robot extends IterativeRobot {
   public static Angler angler;
   public static Flywheel leftFlywheel;
   public static Flywheel rightFlywheel;
+  public static ActiveIntake intake;
   public static Punch punch;
 
   /**
@@ -43,15 +42,15 @@ public class Robot extends IterativeRobot {
     angler = new Angler();
     navx = new AHRS(SPI.Port.kMXP);
     punch = new Punch();
-
+    intake = new ActiveIntake();
     leftFlywheel =
         new Flywheel("Left Flywheel", Constants.kFlywheelLeftId, Constants.kFlywheelEncoderLeftA,
             Constants.kFlywheelEncoderLeftB, Constants.kFlywheelKp, Constants.kFlywheelKi,
-            Constants.kFlywheelKd);
+            Constants.kFlywheelKd, true);
     rightFlywheel =
         new Flywheel("Right Flywheel", Constants.kFlywheelRightId, Constants.kFlywheelEncoderRightA,
             Constants.kFlywheelEncoderRightB, Constants.kFlywheelKp, Constants.kFlywheelKi,
-            Constants.kFlywheelKd);
+            Constants.kFlywheelKd, false);
     operatorInterface = new OperatorInterface();
     angler.zero();
     new Compressor(Constants.kPcmId).start();
@@ -62,7 +61,7 @@ public class Robot extends IterativeRobot {
   }
 
   public void autonomousInit() {
-
+    Scheduler.getInstance().add(new SpyBotAuton());
   }
 
   /**
@@ -73,12 +72,23 @@ public class Robot extends IterativeRobot {
   }
 
   public void teleopInit() {
-    SmartDashboard.putNumber("Angler angle", angler.getAngle());
+    Scheduler.getInstance().removeAll();
+
     SmartDashboard.putData("AngleTo30", new AnglerMoveToAngle(-30));
     SmartDashboard.putData("AngleTo15", new AnglerMoveToAngle(-15));
     SmartDashboard.putData("AngleTo45", new AnglerMoveToAngle(-45));
-    SmartDashboard.putData("AngleTo113", new AnglerMoveToAngle(-113));
+    SmartDashboard.putData("LowBar", new AnglerMoveToAngle(Constants.kAnglerLowBarPreset));
+    SmartDashboard.putData("Intake", new AnglerMoveToAngle(0));
+    SmartDashboard.putData("Batter", new AnglerMoveToAngle(Constants.kAnglerBatterPreset));
     SmartDashboard.putData("AngleTo100", new AnglerMoveToAngle(-100));
+    SmartDashboard.putData("AngleTo110", new AnglerMoveToAngle(-110));
+    SmartDashboard.putData("AngleTo111", new AnglerMoveToAngle(-111));
+    SmartDashboard.putData("AngleTo112", new AnglerMoveToAngle(-112));
+    SmartDashboard.putData("AngleTo105", new AnglerMoveToAngle(-105));
+    SmartDashboard.putData("AngleTo107", new AnglerMoveToAngle(-107));
+    SmartDashboard.putData("AngleTo108", new AnglerMoveToAngle(-108));
+    SmartDashboard.putData("AngleTo100", new AnglerMoveToAngle(-100));
+    SmartDashboard.putData("AngleTo102", new AnglerMoveToAngle(-102));
 
     SmartDashboard.putData("Turn90", new TurnPID(90, true));
     SmartDashboard.putData("Turn45", new TurnPID(45, true));
@@ -96,6 +106,7 @@ public class Robot extends IterativeRobot {
    * This function is called periodically during operator control.
    */
   public void teleopPeriodic() {
+    SmartDashboard.putNumber("Angler angle", angler.getAngle());
     Scheduler.getInstance().run();
   }
 

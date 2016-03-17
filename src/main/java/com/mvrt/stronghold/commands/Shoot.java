@@ -27,6 +27,8 @@ public class Shoot extends Command {
   @Override
   protected void end() {
     Robot.punch.retract();
+    Robot.leftFlywheel.disable();
+    Robot.rightFlywheel.disable();
   }
 
   @Override

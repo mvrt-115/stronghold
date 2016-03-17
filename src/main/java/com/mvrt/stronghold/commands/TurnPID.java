@@ -68,7 +68,7 @@ public class TurnPID extends Command {
 
     double output = controller.calculate(angle);
 
-    Robot.drive.setLeftRightMotorOutputs(output, output);
+    Robot.drive.drive(0, output);
 
 		SmartDashboard.putNumber("Setpoint", controller.getSetpoint());
 		SmartDashboard.putNumber("Error", controller.getError());

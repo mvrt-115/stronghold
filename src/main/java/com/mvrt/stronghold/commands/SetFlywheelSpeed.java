@@ -1,7 +1,10 @@
 package com.mvrt.stronghold.commands;
 
+import com.mvrt.stronghold.Constants;
+import com.mvrt.stronghold.Robot;
 import com.mvrt.stronghold.subsystems.Flywheel;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SetFlywheelSpeed extends Command {
 
@@ -18,6 +21,7 @@ public class SetFlywheelSpeed extends Command {
     finished = true;
     requires(flywheel);
   }
+
   public SetFlywheelSpeed(Flywheel flywheel, double speed) {
     this.speed = speed;
     this.referenceFlywheel = flywheel;
@@ -33,6 +37,12 @@ public class SetFlywheelSpeed extends Command {
 
   @Override
   protected void execute() {
+    if(referenceFlywheel.isNearTarget()){
+      referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKp, Constants.kFlywheelKi, Constants.kAnglerBottomDownKd);
+    }
+    else{
+      referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKpOnTarget, Constants.kFlywheelKiOnTarget, Constants.kFlywheelKdOnTarget);
+    }
     referenceFlywheel.setSetpoint(speed);
     referenceFlywheel.enable();
     finished = true;
@@ -40,7 +50,7 @@ public class SetFlywheelSpeed extends Command {
 
   @Override
   protected boolean isFinished() {
-    return finished && referenceFlywheel.getPIDController().onTarget();
+    return finished;
   }
 
   @Override

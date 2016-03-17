@@ -1,9 +1,6 @@
 package com.mvrt.stronghold;
 
-import com.mvrt.stronghold.commands.AnglerMoveToAngle;
-import com.mvrt.stronghold.commands.Fire;
-import com.mvrt.stronghold.commands.SetFlywheelSpeed;
-import com.mvrt.stronghold.commands.Shoot;
+import com.mvrt.stronghold.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -21,32 +18,26 @@ public class OperatorInterface {
     operatorJoystick = new Joystick(Constants.kOperatorJoystick);
 
     // intake with the flywheels
-    new JoystickButton(operatorJoystick, Constants.kIntakeButton)
-        .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterIntake));
-    new JoystickButton(operatorJoystick, Constants.kIntakeButton)
-        .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterIntake));
+    new JoystickButton(driveJoystick, Constants.kIntakeButton)
+        .whenPressed(new Intake());
+    new JoystickButton(driveJoystick, Constants.kIntakeButton)
+        .whenPressed(new Intake());
 
-    // run one preset of the flywheels
-    /*new JoystickButton(operatorJoystick, Constants.kShootPresetButton1)
-        .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset1));
-    new JoystickButton(operatorJoystick, Constants.kShootPresetButton1)
-        .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset1));*/ //DEPRECATED
+    new JoystickButton(driveJoystick, Constants.kShootBatterButton)
+        .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterBatterPreset));
+    new JoystickButton(driveJoystick, Constants.kShootBatterButton)
+        .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterBatterPreset));
 
-    // run another preset of the flywheels
-    /*new JoystickButton(operatorJoystick, Constants.kShootPresetButton2)
-        .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterPreset2));
-    new JoystickButton(operatorJoystick, Constants.kShootPresetButton2)
-        .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterPreset2));*/ //DEPRECATED
-    
+    new JoystickButton(driveJoystick, Constants.kShootSpyBotButton)
+        .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterSpyBotPreset));
+    new JoystickButton(driveJoystick, Constants.kShootSpyBotButton)
+        .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterSpyBotPreset));
 
     // shoot the ball
-    new JoystickButton(operatorJoystick, Constants.kExtendPistonButton).whenPressed(new Fire());
+    new JoystickButton(driveJoystick, Constants.kExtendPistonButton).whenPressed(new Shoot());
+    new JoystickButton(driveJoystick, 3).whenPressed(new DriveStraight(true));
+    new JoystickButton(driveJoystick, 2).whenPressed(new AnglerMoveWithJoystick());
   }
-  
-  /*public double getAnglerPreset() {
-    double location = operatorJoystick.getThrottle(); // TODO get the correct axis
-    return Constants.kAnglerPresets[(int)(location * (Constants.kAnglerPresets.length - 1))];
-  }*/ //DEPRECATED
 
   public Joystick getDriveJoystick() {
     return driveJoystick;
