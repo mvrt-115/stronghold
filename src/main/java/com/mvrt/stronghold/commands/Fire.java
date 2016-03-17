@@ -8,8 +8,8 @@ public class Fire extends CommandGroup {
 
   public Fire() {
     addSequential (new AnglerMoveToAngle(Constants.kAnglerBatterPreset));
-    addSequential (new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kFlywheelBatterSpeedRPM, 1));
+    addParallel (new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kFlywheelBatterSpeedRPM, 1));
     addParallel (new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kFlywheelBatterSpeedRPM, 1));
-    addParallel (new DelayCommand(new Fire(), 0.7));
+    addSequential (new DelayCommand(new Fire(), 0.7));
   }
 }

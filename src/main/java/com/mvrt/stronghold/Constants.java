@@ -6,10 +6,10 @@ public class Constants extends ConstantsBase {
 
   public static double kHallVoltageConstant = 1; //Minimum value to be considered high
 
-  public static int kUpperLimitSwitchID = 0;
-  public static int kUpperLimitHallID = 0;
-  public static int kLowerLimitHallID = 0;
-  public static int kLowerLimitSwitchID = 0;
+//  public static int kUpperLimitSwitchID = 0;
+//  public static int kUpperLimitHallID = 0;
+//  public static int kLowerLimitHallID = 0;
+//  public static int kLowerLimitSwitchID = 0;
 
   public static double kDriveKp = 0.04;
   public static double kDriveKi = 0.001;
@@ -73,27 +73,27 @@ public class Constants extends ConstantsBase {
   public static int kDriveRightFrontId = 3;
   public static int kDriveRightRearId = 4;
 
-  public static int kAnglerTalonOneId = 6;
-  public static int kAnglerTalonTwoId = 5;
+  public static int kAnglerTalonOneId = 8;
+  public static int kAnglerTalonTwoId = 7;
 
-  public static int kFlywheelLeftId = 7;
-  public static int kFlywheelRightId = 8;
+  public static int kFlywheelLeftId = 5;
+  public static int kFlywheelRightId = 6;
 
   public static int kPunchSolenoidA = 0;
   public static int kPunchSolenoidB = 1;
 
   public static int kAnglerEncoder = 0;
 
-  public static int kDriveEncoderLeftA = 1;
-  public static int kDriveEncoderLeftB = 2;
+  public static int kDriveEncoderLeftA = 8;
+  public static int kDriveEncoderLeftB = 9;
 
-  public static int kDriveEncoderRightA = 7;
-  public static int kDriveEncoderRightB = 8;
+  public static int kDriveEncoderRightA = 6;
+  public static int kDriveEncoderRightB = 7;
 
-  public static int kFlywheelEncoderLeftA = 4;
-  public static int kFlywheelEncoderLeftB = 5;
-  public static int kFlywheelEncoderRightA = 6;
-  public static int kFlywheelEncoderRightB = 7;
+  public static int kFlywheelEncoderLeftA = 2;
+  public static int kFlywheelEncoderLeftB = 3;
+  public static int kFlywheelEncoderRightA = 0;
+  public static int kFlywheelEncoderRightB = 1;
 
   public static int kAnglerHallEffectsBottomLimit = 10;
   public static int kAnglerHallEffectsBatter = 11;
@@ -123,6 +123,11 @@ public class Constants extends ConstantsBase {
 
   public static int kShootPresetButton1 = 5;
   public static int kShootPresetButton2 = 6;
+
+  public static int kArduinoBoardAnglerUp = 2;
+  public static int kArduinoBoardShoot = 4;
+  public static int kArduinoBoardAnglerDown = 5;
+  public static int kArduinoBoardFlywheelStart = 6;
 
   public static int kControllerA = 2;
   public static int kControllerB = 3;

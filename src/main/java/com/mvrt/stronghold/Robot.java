@@ -45,11 +45,11 @@ public class Robot extends IterativeRobot {
     leftFlywheel =
         new Flywheel("Left Flywheel", Constants.kFlywheelLeftId, Constants.kFlywheelEncoderLeftA,
             Constants.kFlywheelEncoderLeftB, Constants.kFlywheelKp, Constants.kFlywheelKi,
-            Constants.kFlywheelKd, true);
+            Constants.kFlywheelKd, false);
     rightFlywheel =
         new Flywheel("Right Flywheel", Constants.kFlywheelRightId, Constants.kFlywheelEncoderRightA,
             Constants.kFlywheelEncoderRightB, Constants.kFlywheelKp, Constants.kFlywheelKi,
-            Constants.kFlywheelKd, false);
+            Constants.kFlywheelKd, true);
     operatorInterface = new OperatorInterface();
     angler.zero();
     new Compressor(Constants.kPcmId).start();

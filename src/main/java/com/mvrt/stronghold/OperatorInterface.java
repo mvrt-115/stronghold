@@ -1,8 +1,7 @@
 package com.mvrt.stronghold;
 
-import com.mvrt.stronghold.commands.Intake;
-import com.mvrt.stronghold.commands.SetFlywheelSpeed;
-import com.mvrt.stronghold.commands.Shoot;
+import com.mvrt.lib.ConstantsBase;
+import com.mvrt.stronghold.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -28,13 +27,22 @@ public class OperatorInterface {
   }
 
   public void initOperator() {
-    new JoystickButton(operatorJoystick, Constants.kControllerB)
+    /*new JoystickButton(operatorJoystick, Constants.kControllerB)
             .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterBatterPreset));
     new JoystickButton(operatorJoystick, Constants.kControllerB)
             .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterBatterPreset));
 
     new JoystickButton(operatorJoystick, Constants.kControllerA)
-            .whenPressed(new Shoot());
+            .whenPressed(new Shoot()); */
+
+    new JoystickButton(operatorJoystick, Constants.kArduinoBoardAnglerUp)
+            .whenPressed(new AnglerMoveToAngle(100)); //TODO: find actual angle
+
+    new JoystickButton(operatorJoystick, Constants.kArduinoBoardAnglerDown)
+            .whenPressed(new LowBar());
+
+    new JoystickButton(operatorJoystick, Constants.kArduinoBoardShoot)
+            .whenPressed(new Fire());
 
    // new JoystickButton(operatorJoystick, Constants.kControllerLAXIS_PRESS)
    //         .toggleWhenPressed(new AnglerMoveWithJoystick());

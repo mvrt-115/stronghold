@@ -1,111 +1,119 @@
 package com.mvrt.stronghold.commands;
 
+
+import com.mvrt.lib.ConstantsBase;
+import com.mvrt.lib.PidConstants;
+import com.mvrt.lib.SynchronousPid;
 import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
-import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.command.Command;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/** This class drives the robot in a circle at a set amount of degrees.
-* @author Marcus Plutowski
-*
-*/
-public class TurnPid extends PIDCommand {
+/**
+ * This class drives the robot in a circle at a set amount of degrees
+ * @author Marcus Plutowski
+ *
+ */
+public class TurnPID extends Command {
+	
+	private static final double tolerance = 0.2;
+	private static final double onTargetThreshold = 11;
+	
+	private double setpoint;
+	private boolean onTarget;
+	private double initial;
+	private double target;
 
-  private static final double tolerance = 0.2;
-  private static final double onTargetThreshold = 11;
+  private SynchronousPid controller;
+	
+	public TurnPID(double degrees, boolean innerLoop) {
+		requires(Robot.drive);
 
-  private double setpoint;
-  private boolean onTarget;
-  private double initial;
-  private double target;
+    controller = new SynchronousPid(Constants.kDriveTurnKp, Constants.kDriveTurnKi, Constants.kDriveTurnKd);
+		this.target = degrees;
+		this.onTarget = innerLoop;
+	}
 
-  public TurnPid(double degrees, boolean innerLoop) {
-    super(Constants.kDriveTurnKp,
-        Constants.kDriveTurnKi, Constants.kDriveTurnKd);
-    requires(Robot.drive);
-    this.target = degrees;
-    this.onTarget = innerLoop;
-  }
+	
+	@Override
+	protected void initialize() {
+		SmartDashboard.putBoolean("Entered TurnPID command", true);
+    controller.setOutputRange(-0.7, 0.7);
+    controller.setInputRange(-180, 180);
+    controller.setContinuous(true);
 
-  @Override
-  protected double returnPIDInput() {
-    SmartDashboard.putNumber("Yaw", Robot.navx.getYaw());
-    return Robot.navx.getYaw();
-  }
+		this.initial = Robot.navx.getYaw();
+		setSetpoint((target+initial));
+	}
 
-  @Override
-  protected void usePIDOutput(double output) { //-output because idk
-    SmartDashboard.putNumber("Output", -output);
-    Robot.drive.drive(0, -output);
-  }
+	@Override
+	protected void execute() {
+		SmartDashboard.putNumber("Initial", this.initial);
 
-  @Override
-  protected void initialize() {
-    SmartDashboard.putBoolean("Entered TurnPID command", true);
-    setInputRange(-180, 180);
-    getPIDController().setOutputRange(-0.7, 0.7);
-    getPIDController().setContinuous(true);
-    getPIDController().setAbsoluteTolerance(tolerance);
+    double angle = Robot.navx.getYaw();
 
-    this.initial = Robot.navx.getYaw();
-    setSetpoint((target + initial));
-    this.onTarget = false;
-  }
-
-  @Override
-  protected void execute() {
-    SmartDashboard.putNumber("Initial", this.initial);
-    if (onTarget) {
-      getPIDController().setPID(Constants.kDriveTurnOnTargetKp,
-          Constants.kDriveTurnOnTargetKi, Constants.kDriveTurnOnTargetKd);
-      SmartDashboard.putBoolean("InnerPID", true);
-    } else {
-      getPIDController().setPID(Constants.kDriveTurnKp,
-          Constants.kDriveTurnKi, Constants.kDriveTurnKi);
-      SmartDashboard.putBoolean("InnerPID", false);
+    if(Math.abs(angle - this.setpoint) < this.tolerance) {
+      Robot.drive.stop();
     }
-    setSetpoint((target + initial));
-    SmartDashboard.putNumber("Setpoint", getPIDController().getSetpoint());
-    SmartDashboard.putNumber("Error", getPIDController().getError());
-    /*if (Math.abs(this.returnPIDInput() - this.setpoint) < onTargetThreshold) {
-      System.out.println("OnTarget");
-      onTarget = true;
-    }*/
-  }
 
-  public void setSetpoint(double target) {
-    SmartDashboard.putNumber("TARGET", target);
-    if (target >= 180) {
-      this.setpoint = target - 360;
-    } else if (target <= -180) {
-      this.setpoint = target + 360;
-    } else {
-      this.setpoint = target;
-    }
-    SmartDashboard.putNumber("SETPOINT",this.setpoint);
-    getPIDController().setSetpoint(this.setpoint);
-  }
+		if(onTarget) {
+			controller.setPid(Constants.kDriveTurnOnTargetKp, Constants.kDriveTurnOnTargetKi, Constants.kDriveTurnOnTargetKd);
+			SmartDashboard.putBoolean("InnerPID", true);
+		}
+		else {
+			controller.setPid(Constants.kDriveTurnKp, Constants.kDriveTurnKi, Constants.kDriveTurnKi);
+			SmartDashboard.putBoolean("InnerPID", false);
+		}
 
-  @Override
-  protected boolean isFinished() {
-    SmartDashboard.putNumber("dooty isFinished",
-        this.returnPIDInput() - this.setpoint);
-    return Math.abs(this.returnPIDInput() - this.setpoint) < this.tolerance;
-  }
+    double output = controller.calculate(angle);
 
-  @Override
-  protected void end() {
-    Robot.drive.stop();
-  }
+    Robot.drive.drive(0, output);
 
-  @Override
-  protected void interrupted() {}
+		SmartDashboard.putNumber("Setpoint", controller.getSetpoint());
+		SmartDashboard.putNumber("Error", controller.getError());
+		/*if(Math.abs(this.returnPIDInput() - this.setpoint) < onTargetThreshold) {
+			System.out.println("OnTarget");
+			onTarget = true;
+		}*/
+	}
 
-  public void setGoal(double yaw) {
-    this.target = yaw;
-    this.initial = Robot.navx.getYaw();
-    this.setSetpoint(target + initial);
-    this.onTarget = false;
-  }
+	public void setSetpoint(double target){
+		SmartDashboard.putNumber("TARGET", target);
+		if(target >= 180){
+			this.setpoint = target - 360;
+		}
+		else if(target <= -180){
+			this.setpoint = target + 360;
+		}
+		else {
+			this.setpoint = target;
+		}
+		SmartDashboard.putNumber("SETPOINT",this.setpoint);
+		controller.setSetpoint(this.setpoint);
+	}
+	@Override
+	protected boolean isFinished() {
+		SmartDashboard.putNumber("dooty isFinished", Robot.navx.getYaw() - this.setpoint);
+		return false;
+	}
+
+	@Override
+	protected void end() {
+		Robot.drive.stop();
+	}
+
+	@Override
+	protected void interrupted() {
+		
+	}
+
+	public void setGoal(double yaw) {
+		this.target = yaw;
+		this.initial = Robot.navx.getYaw();
+		this.setSetpoint(target+initial);
+		this.onTarget = false;
+	}
+	
+	
 }
