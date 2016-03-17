@@ -4,6 +4,13 @@ import com.mvrt.lib.ConstantsBase;
 
 public class Constants extends ConstantsBase {
 
+  public static double kHallVoltageConstant = 1; //Minimum value to be considered high
+
+  public static int kUpperLimitSwitchID = 0;
+  public static int kUpperLimitHallID = 0;
+  public static int kLowerLimitHallID = 0;
+  public static int kLowerLimitSwitchID = 0;
+
   public static double kDriveKp = 0.04;
   public static double kDriveKi = 0.001;
   public static double kDriveKd = 0;
@@ -137,6 +144,10 @@ public class Constants extends ConstantsBase {
   public static int kControllerD_PAD_DOWN = 4;
 
   public static int kPcmId = 1;
+
+  public static double kFlywheelBatterSpeedRPM = 20;
+
+  public static double kAnglerTimeOut = 5; //Seconds
 
   static {
     new Constants().loadFromFile();

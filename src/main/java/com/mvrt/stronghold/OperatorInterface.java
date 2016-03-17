@@ -1,10 +1,8 @@
 package com.mvrt.stronghold;
 
-import com.mvrt.stronghold.commands.AnglerMoveWithJoystick;
 import com.mvrt.stronghold.commands.Intake;
 import com.mvrt.stronghold.commands.SetFlywheelSpeed;
 import com.mvrt.stronghold.commands.Shoot;
-import com.mvrt.stronghold.commands.ToggleBrake;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -38,11 +36,12 @@ public class OperatorInterface {
     new JoystickButton(operatorJoystick, Constants.kControllerA)
             .whenPressed(new Shoot());
 
-    new JoystickButton(operatorJoystick, Constants.kControllerLAXIS_PRESS)
-            .toggleWhenPressed(new AnglerMoveWithJoystick());
+   // new JoystickButton(operatorJoystick, Constants.kControllerLAXIS_PRESS)
+   //         .toggleWhenPressed(new AnglerMoveWithJoystick());
+   // No we're not doing this
 
-    new JoystickButton(operatorJoystick, Constants.kControllerX)
-            .whenPressed(new ToggleBrake());
+   // new JoystickButton(operatorJoystick, Constants.kControllerX)
+   //         .whenPressed(new ToggleBrake());
   }
 
   public Joystick getDriveJoystick() {

@@ -1,10 +1,7 @@
 package com.mvrt.stronghold.subsystems;
 
 import com.mvrt.stronghold.Constants;
-import com.mvrt.stronghold.Robot;
-import com.mvrt.stronghold.commands.SetFlywheelSpeed;
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -59,6 +56,10 @@ public class Flywheel extends PIDSubsystem {
     motor.set(output);
   }
 
+  public void stop() {
+    getPIDController().disable();
+    motor.set(0);
+  }
   public boolean isNearTarget() {
     return Math.abs(returnPIDInput() - this.getSetpoint()) <= 0.5;
   }

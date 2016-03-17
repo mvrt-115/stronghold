@@ -39,6 +39,7 @@ public class AnglerMoveToAngle extends Command {
   }
   @Override
   protected void initialize() {
+    setTimeout (Constants.kAnglerTimeOut);
     wantBrake = false;
     Robot.angler.brakeOff();
 

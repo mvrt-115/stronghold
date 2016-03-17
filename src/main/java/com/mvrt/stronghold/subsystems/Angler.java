@@ -17,6 +17,12 @@ public class Angler extends Subsystem {
   private AnalogInput encoder;
   private DoubleSolenoid brake;
 
+  private DigitalInput upperLimitSwitch;
+  private AnalogInput upperLimitHall;
+
+  private DigitalInput lowerLimitSwitch;
+  private AnalogInput lowerLimitHall;
+
   private double resetVoltage = 0.00;
 
   /*
@@ -28,6 +34,11 @@ public class Angler extends Subsystem {
 
     anglerTwo.setInverted(true);
 
+    upperLimitSwitch = new DigitalInput(Constants.kUpperLimitSwitchID);
+    upperLimitHall = new AnalogInput(Constants.kUpperLimitHallID);
+    lowerLimitSwitch = new DigitalInput(Constants.kLowerLimitSwitchID);
+    lowerLimitHall = new AnalogInput(Constants.kLowerLimitHallID);
+
     brake = new DoubleSolenoid(Constants.kPcmId,
             Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo);
 
@@ -37,7 +48,16 @@ public class Angler extends Subsystem {
   }
 
   public void setOutput(double speed) {
+    if(isTopLimit()){
+      speed = Math.min(speed, 0);
+    }
+    if(isBottomLimit()){
+      speed = Math.max(speed, 0);
+    }
+    SmartDashboard.putBoolean("Top Limit", isTopLimit());
+    SmartDashboard.putBoolean("Bottom Limit", isBottomLimit());
     SmartDashboard.putNumber("Angler output", speed);
+
     anglerOne.set(speed);
     anglerTwo.set(speed);
   }
@@ -83,6 +103,13 @@ public class Angler extends Subsystem {
 
   public double getAngle() {
     return (getVoltage() - resetVoltage) * Constants.kAnglerDegreesPerVolt;
+  }
+
+  public boolean isTopLimit() {
+    return (upperLimitSwitch.get() || (upperLimitHall.getVoltage() > Constants.kHallVoltageConstant));
+  }
+  public boolean isBottomLimit() {
+    return (lowerLimitSwitch.get() || (lowerLimitHall.getVoltage() > Constants.kHallVoltageConstant));
   }
 
   public void initDefaultCommand() {}
