@@ -128,7 +128,7 @@ public class Constants extends ConstantsBase {
   public static int kArduinoBoardShoot = 4;
   public static int kArduinoBoardAnglerDown = 5;
   public static int kArduinoBoardFlywheelStart = 3;
-  public static int kArduinoBoardFlywheelStop = 7;
+  public static int kArduinoBoardFlywheelStop = 6;
 
   public static int kControllerA = 2;
   public static int kControllerB = 3;
