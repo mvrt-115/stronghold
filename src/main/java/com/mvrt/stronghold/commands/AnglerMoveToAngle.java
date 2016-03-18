@@ -4,6 +4,7 @@ import com.mvrt.lib.PidConstants;
 import com.mvrt.lib.SynchronousPid;
 import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AnglerMoveToAngle extends Command {
@@ -85,7 +86,7 @@ public class AnglerMoveToAngle extends Command {
 
   @Override
   protected boolean isFinished() {
-    return false;
+    return pidController.onTarget(3) || isTimedOut();
   }
 
   @Override

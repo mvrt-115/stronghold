@@ -127,7 +127,8 @@ public class Constants extends ConstantsBase {
   public static int kArduinoBoardAnglerUp = 2;
   public static int kArduinoBoardShoot = 4;
   public static int kArduinoBoardAnglerDown = 5;
-  public static int kArduinoBoardFlywheelStart = 6;
+  public static int kArduinoBoardFlywheelStart = 3;
+  public static int kArduinoBoardFlywheelStop = 7;
 
   public static int kControllerA = 2;
   public static int kControllerB = 3;
@@ -150,7 +151,6 @@ public class Constants extends ConstantsBase {
 
   public static int kPcmId = 1;
 
-  public static double kFlywheelBatterSpeedRPM = 20;
 
   public static double kAnglerTimeOut = 5; //Seconds
 

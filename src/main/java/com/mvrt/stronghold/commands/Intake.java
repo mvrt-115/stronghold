@@ -24,7 +24,7 @@ public class Intake extends Command {
   protected void execute() {
     Robot.rightFlywheel.setSpeed(Constants.kShooterIntakePreset);
     Robot.leftFlywheel.setSpeed(Constants.kShooterIntakePreset);
-    Robot.intake.setOutput(-0.6);
+    Robot.intake.setOutput(-0.4);
   }
 
   @Override

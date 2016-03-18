@@ -36,15 +36,23 @@ public class OperatorInterface {
             .whenPressed(new Shoot()); */
 
     new JoystickButton(operatorJoystick, Constants.kArduinoBoardAnglerUp)
-            .whenPressed(new AnglerMoveToAngle(100)); //TODO: find actual angle
+            .whenPressed(new Batter()); //TODO: find actual angle
 
     new JoystickButton(operatorJoystick, Constants.kArduinoBoardAnglerDown)
             .whenPressed(new LowBar());
 
     new JoystickButton(operatorJoystick, Constants.kArduinoBoardShoot)
-            .whenPressed(new Fire());
+            .whenPressed(new Shoot());
 
-   // new JoystickButton(operatorJoystick, Constants.kControllerLAXIS_PRESS)
+    new JoystickButton(operatorJoystick, Constants.kArduinoBoardFlywheelStart)
+            .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterBatterPreset));
+    new JoystickButton(operatorJoystick, Constants.kArduinoBoardFlywheelStart)
+            .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterBatterPreset));
+
+    new JoystickButton(operatorJoystick, Constants.kArduinoBoardFlywheelStop)
+            .whenPressed(new StopFlywheels());
+
+    // new JoystickButton(operatorJoystick, Constants.kControllerLAXIS_PRESS)
    //         .toggleWhenPressed(new AnglerMoveWithJoystick());
    // No we're not doing this
 

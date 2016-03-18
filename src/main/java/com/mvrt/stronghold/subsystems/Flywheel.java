@@ -24,7 +24,7 @@ public class Flywheel extends PIDSubsystem {
 
     motor.setInverted(invert);
 
-    this.setOutputRange(-1.0, 1.0);
+    this.setOutputRange(-0.8, 0.8);
     this.setAbsoluteTolerance(3);
   }
 
