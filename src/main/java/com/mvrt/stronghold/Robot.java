@@ -2,7 +2,11 @@ package com.mvrt.stronghold;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.mvrt.stronghold.commands.DriveStraightAuton;
-import com.mvrt.stronghold.subsystems.*;
+import com.mvrt.stronghold.subsystems.ActiveIntake;
+import com.mvrt.stronghold.subsystems.Angler;
+import com.mvrt.stronghold.subsystems.DriveTrain;
+import com.mvrt.stronghold.subsystems.Flywheel;
+import com.mvrt.stronghold.subsystems.Punch;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -63,7 +67,9 @@ public class Robot extends IterativeRobot {
 
   public void autonomousInit() {
     autonomousCommand = new DriveStraightAuton();
-    if (autonomousCommand != null) autonomousCommand.start();
+    if (autonomousCommand != null) {
+      autonomousCommand.start();
+    }
   }
 
   /**

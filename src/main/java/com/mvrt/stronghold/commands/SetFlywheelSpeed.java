@@ -17,13 +17,11 @@ public class SetFlywheelSpeed extends Command {
     this.speed = speed;
     this.referenceFlywheel = flywheel;
     requires(flywheel);
-
   }
 
   public SetFlywheelSpeed(Flywheel flywheel, double speed, double timeout) {
     this.speed = speed;
     this.referenceFlywheel = flywheel;
-
     setTimeout(timeout);
     willTimeout = true;
     requires(flywheel);
@@ -37,7 +35,7 @@ public class SetFlywheelSpeed extends Command {
 
   @Override
   protected void execute() {
-    if(!finished) {
+    if (!finished) {
       /*if (referenceFlywheel.isNearTarget()) {
         referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKp, Constants.kFlywheelKi,
                 Constants.kAnglerBottomDownKd);
@@ -59,7 +57,7 @@ public class SetFlywheelSpeed extends Command {
 
   @Override
   protected void end() {
-    if(willTimeout){
+    if (willTimeout) {
       referenceFlywheel.stop();
     }
   }

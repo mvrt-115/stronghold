@@ -10,20 +10,17 @@ public class SetFlywheelPower extends Command {
   private final double speed;
 
   private boolean finished = false;
-
   private boolean willTimeout = false;
 
   public SetFlywheelPower(Flywheel flywheel, double speed) {
     this.speed = speed;
     this.referenceFlywheel = flywheel;
-
     requires(flywheel);
   }
 
   public SetFlywheelPower(Flywheel flywheel, double speed, double timeout) {
     this.speed = speed;
     this.referenceFlywheel = flywheel;
-
     requires(flywheel);
   }
 
@@ -34,7 +31,7 @@ public class SetFlywheelPower extends Command {
 
   @Override
   protected void execute() {
-      referenceFlywheel.setSpeed(speed);
+    referenceFlywheel.setSpeed(speed);
   }
 
   @Override

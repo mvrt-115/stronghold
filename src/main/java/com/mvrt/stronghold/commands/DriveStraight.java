@@ -52,7 +52,7 @@ public class DriveStraight extends PIDCommand {
     SmartDashboard.putNumber("DriveStraightOutput", output);
     SmartDashboard.putNumber("DriveStraight Error", Robot.navx.getYaw() - getSetpoint());
     if (Math.abs(Robot.navx.getYaw() - getSetpoint()) < Constants.kDrivePIDTolerance) {
-      getPIDController().setPID(0, Constants.kDriveKi, Constants.kDriveKd/2);
+      getPIDController().setPID(0, Constants.kDriveKi, Constants.kDriveKd / 2);
     } else {
       getPIDController().setPID(Constants.kDriveKp, Constants.kDriveKi, Constants.kDriveKd);
     }

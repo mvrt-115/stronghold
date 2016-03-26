@@ -6,10 +6,10 @@ public class Constants extends ConstantsBase {
 
   public static double kHallVoltageConstant = 1; //Minimum value to be considered high
 
-//  public static int kUpperLimitSwitchID = 0;
-//  public static int kUpperLimitHallID = 0;
-//  public static int kLowerLimitHallID = 0;
-//  public static int kLowerLimitSwitchID = 0;
+  //public static int kUpperLimitSwitchID = 0;
+  //public static int kUpperLimitHallID = 0;
+  //public static int kLowerLimitHallID = 0;
+  //public static int kLowerLimitSwitchID = 0;
 
   public static double kDriveKp = 0.08;
   public static double kDriveKi = 0.001;
@@ -109,14 +109,12 @@ public class Constants extends ConstantsBase {
   public static double kAnglerError = 3;
   public static double kAnglerTolerance = 0.5;
 
-
   public static double[] kAnglerPresets = {kAnglerBatterPreset,
                                            kAnglerSpyBotPreset,
                                            kAnglerBottomPreset};
 
   public static int kAnglerBrakePortOne = 2;
   public static int kAnglerBrakePortTwo = 3;
-
 
   public static int kIntakeTalonId = 9;
 
@@ -152,11 +150,10 @@ public class Constants extends ConstantsBase {
 
   public static int kPcmId = 1;
 
+  public static double kAnglerTimeOut = 5; // Seconds
+  public static double kFlywheelBatterPower = 0.28;
 
-  public static double kAnglerTimeOut = 5; //Seconds
-     public static double kFlywheelBatterPower = 0.28;
-
-    static {
+  static {
     new Constants().loadFromFile();
   }
 
