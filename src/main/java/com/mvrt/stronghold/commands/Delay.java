@@ -20,7 +20,7 @@ public class Delay extends Command {
   }
 
   @Override
-  protected boolean isFinished() {return false;}
+  protected boolean isFinished() {return isTimedOut();}
 
   @Override
   protected void end() {}

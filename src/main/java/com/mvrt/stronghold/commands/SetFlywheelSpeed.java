@@ -1,6 +1,5 @@
 package com.mvrt.stronghold.commands;
 
-import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.subsystems.Flywheel;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -17,8 +16,8 @@ public class SetFlywheelSpeed extends Command {
   public SetFlywheelSpeed(Flywheel flywheel, double speed) {
     this.speed = speed;
     this.referenceFlywheel = flywheel;
-
     requires(flywheel);
+
   }
 
   public SetFlywheelSpeed(Flywheel flywheel, double speed, double timeout) {
@@ -31,20 +30,24 @@ public class SetFlywheelSpeed extends Command {
   }
 
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    finished = false;
+    referenceFlywheel.disable();
+  }
 
   @Override
   protected void execute() {
     if(!finished) {
-      if (referenceFlywheel.isNearTarget()) {
+      /*if (referenceFlywheel.isNearTarget()) {
         referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKp, Constants.kFlywheelKi,
                 Constants.kAnglerBottomDownKd);
       } else {
         referenceFlywheel.getPIDController().setPID(Constants.kFlywheelKpOnTarget,
                 Constants.kFlywheelKiOnTarget, Constants.kFlywheelKdOnTarget);
-      }
-      referenceFlywheel.setSetpoint(speed);
-      referenceFlywheel.enable();
+      }*/
+      referenceFlywheel.setSpeed(speed);
+      //referenceFlywheel.setSetpoint(speed);
+      //referenceFlywheel.enable();
       finished = true;
     }
   }

@@ -11,9 +11,10 @@ public class Constants extends ConstantsBase {
 //  public static int kLowerLimitHallID = 0;
 //  public static int kLowerLimitSwitchID = 0;
 
-  public static double kDriveKp = 0.04;
+  public static double kDriveKp = 0.08;
   public static double kDriveKi = 0.001;
   public static double kDriveKd = 0;
+  public static double kDrivePIDTolerance = 2.5;
 
   public static double kDriveDistancePerTick = 8 * Math.PI / 250;
   public static double kDriveDistanceThreshold = 0.05;
@@ -64,7 +65,7 @@ public class Constants extends ConstantsBase {
   public static final int kDriveJoystick = 0;
   public static final int kOperatorJoystick = 1;
 
-  public static final int kShooterIntakePreset = -21;
+  public static final double kShooterIntakePreset = -0.3;
   public static final int kShooterSpyBotPreset = 25;
   public static final int kShooterBatterPreset = 11;
 
@@ -82,7 +83,7 @@ public class Constants extends ConstantsBase {
   public static int kPunchSolenoidA = 0;
   public static int kPunchSolenoidB = 1;
 
-  public static int kAnglerEncoder = 0;
+  public static int kAnglerEncoder = 1;
 
   public static int kDriveEncoderLeftA = 8;
   public static int kDriveEncoderLeftB = 9;
@@ -153,8 +154,9 @@ public class Constants extends ConstantsBase {
 
 
   public static double kAnglerTimeOut = 5; //Seconds
+     public static double kFlywheelBatterPower = 0.28;
 
-  static {
+    static {
     new Constants().loadFromFile();
   }
 

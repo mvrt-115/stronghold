@@ -1,6 +1,5 @@
 package com.mvrt.stronghold;
 
-import com.mvrt.lib.ConstantsBase;
 import com.mvrt.stronghold.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -22,8 +21,8 @@ public class OperatorInterface {
   }
 
   public void initDrive() {
-    new JoystickButton(driveJoystick, Constants.kDriveIntakeButton)
-            .whenPressed(new Intake());
+    /*new JoystickButton(rightDriveJoystick, Constants.kDriveIntakeButton)
+            .whenPressed(new Intake());*/
   }
 
   public void initOperator() {
@@ -45,9 +44,9 @@ public class OperatorInterface {
             .whenPressed(new Shoot());
 
     new JoystickButton(operatorJoystick, Constants.kArduinoBoardFlywheelStart)
-            .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kShooterBatterPreset));
+            .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kFlywheelBatterPower));
     new JoystickButton(operatorJoystick, Constants.kArduinoBoardFlywheelStart)
-            .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kShooterBatterPreset));
+            .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kFlywheelBatterPower));
 
     new JoystickButton(operatorJoystick, Constants.kArduinoBoardFlywheelStop)
             .whenPressed(new StopFlywheels());

@@ -2,7 +2,6 @@ package com.mvrt.stronghold.commands;
 
 import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
-import com.mvrt.stronghold.subsystems.Flywheel;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -24,7 +23,7 @@ public class Intake extends Command {
   protected void execute() {
     Robot.rightFlywheel.setSpeed(Constants.kShooterIntakePreset);
     Robot.leftFlywheel.setSpeed(Constants.kShooterIntakePreset);
-    Robot.intake.setOutput(-0.4);
+    Robot.intake.setOutput(-0.35);
   }
 
   @Override

@@ -14,7 +14,7 @@ public class Batter extends Command {
 
     @Override
     protected void initialize() {
-
+        Robot.angler.brakeOff();
     }
 
     @Override
@@ -24,7 +24,7 @@ public class Batter extends Command {
 
     @Override
     protected boolean isFinished() {
-        return Robot.angler.getAngle() <= 0;
+        return Robot.angler.getAngle() <= 2;
     }
 
     @Override

@@ -1,9 +1,7 @@
 package com.mvrt.stronghold.commands;
 
-import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class LowBar extends Command {
 
@@ -13,12 +11,12 @@ public class LowBar extends Command {
 
   @Override
   protected void initialize() {
-
+    Robot.angler.brakeOff();
   }
 
   @Override
   protected void execute() {
-    Robot.angler.setOutput(0.4);
+    Robot.angler.setOutput(0.55);
   }
 
   @Override

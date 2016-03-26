@@ -25,6 +25,13 @@ public class DriveStraight extends PIDCommand {
    * @param speed The speed to drive at
    * @param joystick If there this a joystick
    */
+  public DriveStraight(double speed, boolean joystick, double timeout) {
+    super(Constants.kDriveKp, Constants.kDriveKi, Constants.kDriveKd);
+    requires(Robot.drive);
+    this.joystick = joystick;
+    this.speed = speed;
+    setTimeout(timeout);
+  }
   public DriveStraight(double speed, boolean joystick) {
     super(Constants.kDriveKp, Constants.kDriveKi, Constants.kDriveKd);
     requires(Robot.drive);
@@ -44,15 +51,15 @@ public class DriveStraight extends PIDCommand {
   protected void usePIDOutput(double output) {
     SmartDashboard.putNumber("DriveStraightOutput", output);
     SmartDashboard.putNumber("DriveStraight Error", Robot.navx.getYaw() - getSetpoint());
-    if (Math.abs(Robot.navx.getYaw() - getSetpoint()) < 1) {
-      getPIDController().setPID(Constants.kDriveKp, 0, Constants.kDriveKi);
+    if (Math.abs(Robot.navx.getYaw() - getSetpoint()) < Constants.kDrivePIDTolerance) {
+      getPIDController().setPID(0, Constants.kDriveKi, Constants.kDriveKd/2);
     } else {
       getPIDController().setPID(Constants.kDriveKp, Constants.kDriveKi, Constants.kDriveKd);
     }
     if (joystick) {
       Robot.drive.drive(Robot.operatorInterface.getDriveJoystick().getY() * speed, output);
     } else {
-      Robot.drive.drive(speed, output);
+      Robot.drive.drive(-speed, output);
     }
   }
 
@@ -71,7 +78,7 @@ public class DriveStraight extends PIDCommand {
 
   @Override
   protected boolean isFinished() {
-    return false;
+    return false | isTimedOut();
   }
 
   @Override
