@@ -5,8 +5,8 @@ import com.mvrt.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * Created by Admin on 3/18/2016.
- */
+* Created by Admin on 3/18/2016.
+*/
 public class Fire extends CommandGroup {
 
     public Fire(){

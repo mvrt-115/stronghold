@@ -3,7 +3,10 @@ package com.mvrt.stronghold;
 import com.kauailabs.navx.frc.AHRS;
 import com.mvrt.stronghold.commands.*;
 import com.mvrt.stronghold.subsystems.*;
-import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -67,7 +70,8 @@ public class Robot extends IterativeRobot {
 
   public void autonomousInit() {
     autonomousCommand = (Command)(autonPicker.getSelected());
-    if (autonomousCommand != null) autonomousCommand.start();
+    if (autonomousCommand != null)
+      autonomousCommand.start();
   }
 
   /**

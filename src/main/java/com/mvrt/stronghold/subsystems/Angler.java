@@ -43,7 +43,7 @@ public class Angler extends Subsystem {
   }
 
   public void setOutput(double speed) {
-    if(isTopLimit()){
+    if (isTopLimit()) {
       speed = Math.min(speed, 0);
     }
     else if(isBottomLimit()){
