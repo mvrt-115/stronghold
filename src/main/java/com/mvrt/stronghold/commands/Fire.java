@@ -1,5 +1,6 @@
 package com.mvrt.stronghold.commands;
 
+import com.mvrt.stronghold.Constants;
 import com.mvrt.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -9,10 +10,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Fire extends CommandGroup {
 
     public Fire(){
-        addSequential(new SetFlywheelPower(Robot.leftFlywheel, 0.25));
-        addSequential(new SetFlywheelPower(Robot.rightFlywheel, 0.25));
-        addSequential(new DelayCommand(new Fire(), 0.5));
-        addSequential(new StopFlywheels());
+        addSequential(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kFlywheelBatterPower));
+        addParallel(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kFlywheelBatterPower));
+        addSequential(new Delay(3.25));
+        addSequential(new Shoot());
+        //addSequential(new StopFlywheels());
     }
 
 }

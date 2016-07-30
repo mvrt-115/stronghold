@@ -10,6 +10,7 @@ public class DriveStraightAuton extends CommandGroup {
     public DriveStraightAuton(){
         addSequential(new LowBar());
         addSequential(new DriveStraight(0.4, false, 2.8));
+        addSequential(new Batter());
     }
 
 }

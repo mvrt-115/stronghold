@@ -4,12 +4,8 @@ import com.mvrt.lib.ConstantsBase;
 
 public class Constants extends ConstantsBase {
 
-  public static double kHallVoltageConstant = 1; //Minimum value to be considered high
-
-//  public static int kUpperLimitSwitchID = 0;
-//  public static int kUpperLimitHallID = 0;
-//  public static int kLowerLimitHallID = 0;
-//  public static int kLowerLimitSwitchID = 0;
+  public static int kUpperLimitSwitchID = 4;
+  public static int kLowerLimitSwitchID = 5;
 
   public static double kDriveKp = 0.08;
   public static double kDriveKi = 0.001;
@@ -83,7 +79,7 @@ public class Constants extends ConstantsBase {
   public static int kPunchSolenoidA = 0;
   public static int kPunchSolenoidB = 1;
 
-  public static int kAnglerEncoder = 1;
+  public static int kAnglerEncoder = 5;
 
   public static int kDriveEncoderLeftA = 8;
   public static int kDriveEncoderLeftB = 9;
@@ -128,8 +124,8 @@ public class Constants extends ConstantsBase {
   public static int kArduinoBoardAnglerUp = 2;
   public static int kArduinoBoardShoot = 4;
   public static int kArduinoBoardAnglerDown = 5;
-  public static int kArduinoBoardFlywheelStart = 3;
-  public static int kArduinoBoardFlywheelStop = 6;
+  public static int kArduinoBoardFlywheelStart = 1;
+  public static int kArduinoBoardFlywheelStop = 3;
 
   public static int kControllerA = 2;
   public static int kControllerB = 3;
@@ -154,7 +150,7 @@ public class Constants extends ConstantsBase {
 
 
   public static double kAnglerTimeOut = 5; //Seconds
-     public static double kFlywheelBatterPower = 0.28;
+  public static double kFlywheelBatterPower = 10;
 
     static {
     new Constants().loadFromFile();

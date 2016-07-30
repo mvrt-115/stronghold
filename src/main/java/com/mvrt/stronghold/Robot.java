@@ -1,15 +1,13 @@
 package com.mvrt.stronghold;
 
 import com.kauailabs.navx.frc.AHRS;
-import com.mvrt.stronghold.commands.DriveStraightAuton;
+import com.mvrt.stronghold.commands.*;
 import com.mvrt.stronghold.subsystems.*;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -31,6 +29,7 @@ public class Robot extends IterativeRobot {
   public static Punch punch;
 
   Command autonomousCommand;
+  SendableChooser autonPicker;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -51,7 +50,12 @@ public class Robot extends IterativeRobot {
             Constants.kFlywheelEncoderRightB, Constants.kFlywheelKp, Constants.kFlywheelKi,
             Constants.kFlywheelKd, true);
     operatorInterface = new OperatorInterface();
-    angler.zero();
+    autonPicker = new SendableChooser();
+    autonPicker.addObject("Low Bar", new DriveStraightAuton());
+    autonPicker.addDefault("Other Defense", new GenericObstacleAuton());
+    autonPicker.addDefault("No Auton", new DoNothingAuton());
+    SmartDashboard.putData("Auto Chooser", autonPicker);
+    //angler.zero();
     CameraServer.getInstance().setQuality(50);
     CameraServer.getInstance().startAutomaticCapture("cam0");
     new Compressor(Constants.kPcmId).start();
@@ -62,7 +66,7 @@ public class Robot extends IterativeRobot {
   }
 
   public void autonomousInit() {
-    autonomousCommand = new DriveStraightAuton();
+    autonomousCommand = (Command)(autonPicker.getSelected());
     if (autonomousCommand != null) autonomousCommand.start();
   }
 
@@ -89,6 +93,28 @@ public class Robot extends IterativeRobot {
    */
   public void teleopPeriodic() {
     SmartDashboard.putNumber("Angler angle", angler.getAngle());
+    SmartDashboard.putBoolean("Top?", angler.isTopLimit());
+    SmartDashboard.putBoolean("Bottom?", angler.isBottomLimit());
+    SmartDashboard.putNumber("Left Flywheel Speed", leftFlywheel.getEncRate());
+    SmartDashboard.putNumber("Right Flywheel Speed", rightFlywheel.getEncRate());
+    SmartDashboard.putNumber("Wheel angle ", operatorInterface.getWheel().getX());
+    SmartDashboard.putData("Speed:7", new SetFlywheelSingleSpeed(7));
+    SmartDashboard.putData("Speed:8", new SetFlywheelSingleSpeed(8));
+    SmartDashboard.putData("Speed:9", new SetFlywheelSingleSpeed(9));
+    SmartDashboard.putData("Speed:10", new SetFlywheelSingleSpeed(10));
+    SmartDashboard.putData("Speed:11", new SetFlywheelSingleSpeed(11));
+    SmartDashboard.putData("Speed:12", new SetFlywheelSingleSpeed(12));
+    SmartDashboard.putData("Speed:13", new SetFlywheelSingleSpeed(13));
+    SmartDashboard.putData("Speed:14", new SetFlywheelSingleSpeed(14));
+    SmartDashboard.putData("Speed:15", new SetFlywheelSingleSpeed(15));
+    SmartDashboard.putData("Speed:16", new SetFlywheelSingleSpeed(16));
+    SmartDashboard.putData("Speed:17", new SetFlywheelSingleSpeed(17));
+    SmartDashboard.putData("Speed:18", new SetFlywheelSingleSpeed(18));
+    SmartDashboard.putData("Speed:19", new SetFlywheelSingleSpeed(19));
+    SmartDashboard.putData("Speed:20", new SetFlywheelSingleSpeed(20));
+    SmartDashboard.putData("Speed:21", new SetFlywheelSingleSpeed(21));
+    SmartDashboard.putData("SHOOT", new Shoot());
+    SmartDashboard.putData("STOP", new StopFlywheels());
 
     Scheduler.getInstance().run();
   }

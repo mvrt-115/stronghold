@@ -10,13 +10,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Intake extends Command {
 
   public Intake() {
-
     requires(Robot.intake);
   }
 
   @Override
   protected void initialize() {
-
+    Robot.rightFlywheel.disable();
+    Robot.leftFlywheel.disable();
   }
 
   @Override

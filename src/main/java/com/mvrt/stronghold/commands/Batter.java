@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Batter extends Command {
 
     public Batter() {
+        setTimeout(1.25);
         requires(Robot.angler);
     }
 
@@ -19,12 +20,12 @@ public class Batter extends Command {
 
     @Override
     protected void execute() {
-        Robot.angler.setOutput(-0.8);
+        Robot.angler.setOutput(0.75);
     }
 
     @Override
     protected boolean isFinished() {
-        return Robot.angler.getAngle() <= 2;
+        return isTimedOut() || Robot.angler.isTopLimit();
     }
 
     @Override

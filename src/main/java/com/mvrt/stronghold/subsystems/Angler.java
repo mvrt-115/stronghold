@@ -18,10 +18,7 @@ public class Angler extends Subsystem {
   private DoubleSolenoid brake;
 
   private DigitalInput upperLimitSwitch;
-  private AnalogInput upperLimitHall;
-
   private DigitalInput lowerLimitSwitch;
-  private AnalogInput lowerLimitHall;
 
   private double resetVoltage = 0.00;
 
@@ -34,10 +31,8 @@ public class Angler extends Subsystem {
 
     anglerTwo.setInverted(true);
 
-//    upperLimitSwitch = new DigitalInput(Constants.kUpperLimitSwitchID);
-//    upperLimitHall = new AnalogInput(Constants.kUpperLimitHallID);
-//    lowerLimitSwitch = new DigitalInput(Constants.kLowerLimitSwitchID);
-//    lowerLimitHall = new AnalogInput(Constants.kLowerLimitHallID);
+    upperLimitSwitch = new DigitalInput(Constants.kUpperLimitSwitchID);
+    lowerLimitSwitch = new DigitalInput(Constants.kLowerLimitSwitchID);
 
     brake = new DoubleSolenoid(Constants.kPcmId,
             Constants.kAnglerBrakePortOne, Constants.kAnglerBrakePortTwo);
@@ -51,7 +46,7 @@ public class Angler extends Subsystem {
     if(isTopLimit()){
       speed = Math.min(speed, 0);
     }
-    if(isBottomLimit()){
+    else if(isBottomLimit()){
       speed = Math.max(speed, 0);
     }
     SmartDashboard.putBoolean("Top Limit", isTopLimit());
@@ -106,10 +101,10 @@ public class Angler extends Subsystem {
   }
 
   public boolean isTopLimit() {
-    return false;//(upperLimitSwitch.get() || (upperLimitHall.getVoltage() > Constants.kHallVoltageConstant));
+    return !(upperLimitSwitch.get());
   }
   public boolean isBottomLimit() {
-    return false;//(lowerLimitSwitch.get() || (lowerLimitHall.getVoltage() > Constants.kHallVoltageConstant));
+    return !(lowerLimitSwitch.get());
   }
 
   public void initDefaultCommand() {}

@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class LowBar extends Command {
 
   public LowBar() {
+    setTimeout(0.45);
     requires(Robot.angler);
   }
 
@@ -16,12 +17,12 @@ public class LowBar extends Command {
 
   @Override
   protected void execute() {
-    Robot.angler.setOutput(0.55);
+    Robot.angler.setOutput(-0.65);
   }
 
   @Override
   protected boolean isFinished() {
-    return Robot.angler.getAngle() >= 85;
+    return  isTimedOut() || Robot.angler.isBottomLimit();
   }
 
   @Override

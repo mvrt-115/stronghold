@@ -11,18 +11,20 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OperatorInterface {
   private Joystick driveJoystick;
+  private Joystick wheel;
   private Joystick operatorJoystick;
 
   public OperatorInterface() {
     driveJoystick = new Joystick(Constants.kDriveJoystick);
-    operatorJoystick = new Joystick(Constants.kOperatorJoystick);
+    wheel = new Joystick(1);
+    operatorJoystick = new Joystick(2);
     initDrive();
     initOperator();
   }
 
   public void initDrive() {
-    /*new JoystickButton(rightDriveJoystick, Constants.kDriveIntakeButton)
-            .whenPressed(new Intake());*/
+    new JoystickButton(driveJoystick, Constants.kDriveIntakeButton)
+            .whenPressed(new Intake());
   }
 
   public void initOperator() {
@@ -44,9 +46,9 @@ public class OperatorInterface {
             .whenPressed(new Shoot());
 
     new JoystickButton(operatorJoystick, Constants.kArduinoBoardFlywheelStart)
-            .whenPressed(new SetFlywheelSpeed(Robot.leftFlywheel, Constants.kFlywheelBatterPower));
-    new JoystickButton(operatorJoystick, Constants.kArduinoBoardFlywheelStart)
-            .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kFlywheelBatterPower));
+            .whenPressed(new SetFlywheelSingleSpeed(Constants.kFlywheelBatterPower));
+    /*new JoystickButton(operatorJoystick, Constants.kArduinoBoardFlywheelStart)
+            .whenPressed(new SetFlywheelSpeed(Robot.rightFlywheel, Constants.kFlywheelBatterPower));*/
 
     new JoystickButton(operatorJoystick, Constants.kArduinoBoardFlywheelStop)
             .whenPressed(new StopFlywheels());
@@ -61,6 +63,10 @@ public class OperatorInterface {
 
   public Joystick getDriveJoystick() {
     return driveJoystick;
+  }
+
+  public Joystick getWheel() {
+    return wheel;
   }
 
   public Joystick getOperatorJoystick() {

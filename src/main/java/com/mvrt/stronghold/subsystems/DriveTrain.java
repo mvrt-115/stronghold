@@ -38,7 +38,7 @@ public class DriveTrain extends Subsystem {
   }
 
   public void drive(double throttle, double rotate, boolean quickturn) {
-    DriveSignal signal = DriveInterpreter.arcade(throttle, rotate, quickturn);
+    DriveSignal signal = DriveInterpreter.austinDrive2(throttle, rotate, quickturn);
     this.setLeftRightMotorOutputs(signal.leftMotor, signal.rightMotor);
   }
 
